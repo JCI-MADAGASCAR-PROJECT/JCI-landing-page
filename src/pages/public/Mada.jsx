@@ -15,14 +15,13 @@ import LogoToamasina from "../../images/JCI/JCI Toamasina/JCI_Toamasina_backgrou
 import LogoToliara from "../../images/JCI/JCI Toliara/JCI_Toliara_background_marine_blue_logo-removebg-preview.png"
 
 import "./Mada.css"
-const INTRO_DURATION = 3000 
+const INTRO_DURATION = 400 
 
 const Mada = ({ Width, Height }) => {
     const [hoveredOl, setHoveredOl] = useState(null)
-    const [showAll, setShowAll] = useState(true)
-    const [isTouch, setIsTouch] = useState(
-        window.matchMedia("(hover: none)").matches
-    )
+    const [introRegionIndex, setIntroRegionIndex] = useState(-1)
+    const [isTouch, setIsTouch] = useState(window.matchMedia("(hover: none)").matches)
+    const [introStopped, setIntroStopped] = useState(false)
 
     useEffect(() => {
         const mq = window.matchMedia("(hover: none)")
@@ -32,108 +31,123 @@ const Mada = ({ Width, Height }) => {
     }, [])
 
     useEffect(() => {
-        const timer = setTimeout(() => setShowAll(false), INTRO_DURATION)
-        return () => clearTimeout(timer)
-    }, [])
+        if (introStopped) return
+
+        const regions = Object.keys(olData)
+
+        const interval = setInterval(() => {
+            setIntroRegionIndex((prev) => {
+                if (prev >= regions.length - 1) {
+                    clearInterval(interval)
+                    return prev
+                }
+
+                return prev + 1
+            })
+        }, INTRO_DURATION)
+
+        return () => clearInterval(interval)
+    }, [introStopped])
     
-    const olData = {
-        toliara: [
-            {
-                id: "ol-toliara",
-                name: "OL Toliara",
-                logo: LogoToliara,
-            },
-        ],
+   const olData = {
+    diego: [
+        {
+            id: "ol-antsiranana",
+            name: "Antsiranana",
+            logo: LogoAntsiranana,
+        },
+        {
+            id: "ol-ambilobe",
+            name: "Ambilobe",
+            logo: LogoAmbilobe,
+        },
+        {
+            id: "ol-nosy_be",
+            name: "Nosy Be",
+            logo: LogoNosyBe,
+        },
+    ],
 
-        faradofay: [
-            {
-                id: "ol-faradofay",
-                name: "OL Faradofay",
-                logo: LogoFaradofay,
-            },
-        ],
+    sambava: [
+        {
+            id: "ol-sambava",
+            name: "OL Sambava",
+            logo: LogoSambava,
+        },
+    ],
 
-        ivonea: [
-            {
-                id: "ol-ivonea",
-                name: "OL Ivonea",
-                logo: LogoIvonea,
-            },
-        ],
+    antsohihy: [
+        {
+            id: "ol-antsohihy",
+            name: "OL Antsohihy",
+            logo: LogoAntsohihy,
+        },
+    ],
 
-        analamanga: [
-            {
-                id: "ol-antananarivo",
-                name: "OL Antananarivo",
-                logo: LogoAntananarivo,
-            },
-            {
-                id: "ol-ilon-iarivo",
-                name: "OL Ivandry",
-                logo: LogoIlonIarivo,
-            },
-            {
-                id: "ol-iarivo",
-                name: "OL Iarivo",
-                logo: Logoiarivo,
-            },
-            {
-                id: "ol-mayendeleyo",
-                name: "OL Mayendeleyo",
-                logo: LogoMayendeleyo,
-            },
-        ],
+    mahajanga: [
+        {
+            id: "ol-mahajanga",
+            name: "OL Mahajanga",
+            logo: LogoMahajanga,
+        },
+    ],
 
-        tamatave: [
-            {
-                id: "ol-tamatave",
-                name: "OL Tamatave",
-                logo: LogoToamasina,
-            },
-        ],
+    tamatave: [
+        {
+            id: "ol-tamatave",
+            name: "OL Tamatave",
+            logo: LogoToamasina,
+        },
+    ],
 
-        mahajanga: [
-            {
-                id: "ol-mahajanga",
-                name: "OL Mahajanga",
-                logo: LogoMahajanga,
-            },
-        ],
+    analamanga: [
+        {
+            id: "ol-antananarivo",
+            name: "OL Antananarivo",
+            logo: LogoAntananarivo,
+        },
+        {
+            id: "ol-ilon-iarivo",
+            name: "OL Ivandry",
+            logo: LogoIlonIarivo,
+        },
+        {
+            id: "ol-iarivo",
+            name: "OL Iarivo",
+            logo: Logoiarivo,
+        },
+        {
+            id: "ol-mayendeleyo",
+            name: "OL Mayendeleyo",
+            logo: LogoMayendeleyo,
+        },
+    ],
 
-        antsohihy: [
-            {
-                id: "ol-antsohihy",
-                name: "OL Antsohihy",
-                logo: LogoAntsohihy,
-            },
-        ],
+    ivonea: [
+        {
+            id: "ol-ivonea",
+            name: "OL Ivonea",
+            logo: LogoIvonea,
+        },
+    ],
 
-        sambava: [
-            {
-                id: "ol-sambava",
-                name: "OL Sambava",
-                logo: LogoSambava,
-            },
-        ],
+    faradofay: [
+        {
+            id: "ol-faradofay",
+            name: "OL Faradofay",
+            logo: LogoFaradofay,
+        },
+    ],
 
-        diego: [
-            {
-                id: "ol-antsiranana",
-                name: "Antsiranana",
-                logo: LogoAntsiranana,
-            },
-            {
-                id: "ol-ambikobe",
-                name: "Ambilobe",
-                logo: LogoAmbilobe,
-            },
-            {
-                id: "ol-ambikobe",
-                name: "Nosy Be",
-                logo: LogoNosyBe,
-            },
-        ],
-    }
+    toliara: [
+        {
+            id: "ol-toliara",
+            name: "OL Toliara",
+            logo: LogoToliara,
+        },
+    ],
+    test:[]
+}
 
     /*
      * Position de départ des labels de chaque région.
@@ -143,22 +157,22 @@ const Mada = ({ Width, Height }) => {
      */
     const olPositions = {
     toliara: [
-        { x: -30, y: 750 },
+        { x: -10, y: 700 },
     ],
 
     faradofay: [
-        { x: 260, y: 840 },
+        { x: 260, y: 810 },
     ],
 
     ivonea: [
-        { x: 255, y: 680 },
+        { x: 255, y: 650 },
     ],
 
     analamanga: [
-        { x: 280, y: 480 },
-        { x: 280, y: 526 },
-        { x: 280, y: 572 },
-        { x: 280, y: 613 },
+        { x: 280, y: 430 },
+        { x: 280, y: 486 },
+        { x: 280, y: 542 },
+        { x: 280, y: 593 },
     ],
 
     tamatave: [
@@ -166,28 +180,30 @@ const Mada = ({ Width, Height }) => {
     ],
 
     mahajanga: [
-        { x: 5, y: 265 },
+        { x: 90, y: 255 },
     ],
 
     antsohihy: [
-        { x: 150, y: 190 },
+        { x: 200, y: 190 },
     ],
 
     sambava: [
-        { x: 450, y: 170 },
+        { x: 430, y: 170 },
     ],
 
     diego: [
         { x: 400, y: 30 },
-        { x: 390, y: 100 },
-        { x: 170, y: 110 },
+        { x: 390, y: 115 },
+        { x: 230, y: 110 },
     ],
 }
 
     const handleMouseEnter = (e) => {
-        if (isTouch) return
-        setHoveredOl(e.currentTarget.id)
-    }
+    if (isTouch) return
+
+    setIntroStopped(true)
+    setHoveredOl(e.currentTarget.id)
+}
 
     const handleMouseLeave = () => {
         if (isTouch) return
@@ -199,7 +215,6 @@ const Mada = ({ Width, Height }) => {
         if (!isTouch) return
         e.stopPropagation()
         const id = e.currentTarget.id
-        setShowAll(false)
         setHoveredOl((prev) => (prev === id ? null : id))
     }
 
@@ -208,11 +223,14 @@ const Mada = ({ Width, Height }) => {
      *
      * Si la région n'a aucun OL, on utilise un tableau vide.
      */
-     const regionsToShow = showAll
-        ? Object.keys(olData)
-        : hoveredOl
-            ? [hoveredOl]
-            : []
+    const regions = Object.keys(olData)
+
+    const isIntroFinished =
+        introStopped || introRegionIndex >= regions.length - 1
+
+    const regionsToShow = isIntroFinished
+        ? (hoveredOl ? [hoveredOl] : [])
+        : regions.slice(0, introRegionIndex + 1)
 
     const labelsToShow = regionsToShow.flatMap((region) =>
         (olData[region] || [])
@@ -516,7 +534,7 @@ const Mada = ({ Width, Height }) => {
                                     
                                 >
                                     <rect
-                                        x="-38" y="-38" width="200" height="60" rx="12"
+                                        x="-38" y="-38" width="150" height="80" rx="12"
                                         fill="#0C091F"
                                     />
                                 </g>
@@ -537,7 +555,7 @@ const Mada = ({ Width, Height }) => {
                                 <image
                                     href={ol.logo}
                                     alt={ol.name}
-                                    x="-27" y="-45" width="80" height="70"
+                                    x="-27" y="-40" width="100" height="70"
                                     preserveAspectRatio="xMidYMid meet"
                                 />
                             </g>

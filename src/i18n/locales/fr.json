@@ -120,5 +120,17 @@
     "partners": "Partenaires",
     "contact": "Contact",
     "project": "Découvrir nos projets"
-  } 
+  } ,
+  "footer": {
+    "usefulLinks": "Liens utiles",
+    "values": "Nos valeurs",
+    "programs": "Nos programmes",
+    "localOrganizations": "Nos organisations locales",
+    "latestArticles": "Derniers articles",
+    "legalInformation": "Informations légales",
+    "termsOfUse": "Conditions générales d'utilisation",
+    "termsOfSale": "Conditions générales de vente",
+    "privacyPolicy": "Politique de confidentialité",
+    "contactUs": "Nous contacter"
+  }
 }

@@ -19,11 +19,11 @@ import { IoArrowDownCircle } from "react-icons/io5"
 import { eventAPI } from "../../services/api"
 import { useState, useEffect, useRef } from "react"
 import { useTranslation } from "react-i18next"
+import Typewriter from "../../hooks/Typewriter"
 
 
 const AcceuilPage = () => {
   const { t, i18n } = useTranslation()
-
   const [actuEvents, setActuEvents] = useState([])
   const [showSecondImage, setShowSecondImage] = useState(false)
   const [showPSD, setShowPSD] = useState(false)
@@ -465,7 +465,7 @@ const AcceuilPage = () => {
 
             <div className="relative flex items-center justify-center -ml-10">
 
-              <Mada Width="280" Height="755" />
+              <Mada Width="290" Height="755" />
 
             </div>
 
@@ -515,7 +515,10 @@ const AcceuilPage = () => {
                 <div className='flex flex-col gap-2'>
 
                   <p className='text-[10px] text-jci-white font-poppins leading-relaxed text-justify'>
-                    {t("home.about.description")}
+                      <Typewriter
+                      text={t("home.about.description")}
+                      speed={20}
+                    />
                   </p>
 
                   <ButtonVoid
@@ -543,7 +546,10 @@ const AcceuilPage = () => {
                 </H1>
 
                 <p className='text-[10px] text-jci-white font-poppins leading-relaxed text-justify'>
-                  {t("home.actions.description")}
+                  <Typewriter
+                      text={t("home.actions.description")}
+                      speed={20}
+                    />
                 </p>
 
                 <div className='ml-3 flex flex-col gap-1 text-[10px] text-jci-white font-poppins leading-relaxed'>
@@ -552,7 +558,10 @@ const AcceuilPage = () => {
 
                     {cadresAction.map((item) => (
                       <li key={item}>
-                        {item}
+                        <Typewriter
+                          text={item}
+                          speed={20}
+                        />
                       </li>
                     ))}
 
@@ -717,7 +726,10 @@ const AcceuilPage = () => {
                   </LabelTrait>
 
                   <p className='text-[10px] text-jci-white font-poppins leading-relaxed'>
-                    {t("home.values.mission.content")}
+                    <Typewriter
+                      text={t("home.values.mission.content")}
+                      speed={20}
+                    />
                   </p>
 
                 </div>
@@ -730,9 +742,11 @@ const AcceuilPage = () => {
                   </LabelTrait>
 
                   <p className='text-[10px] text-jci-white font-poppins leading-relaxed'>
-                    {t("home.values.vision.content")}
+                    <Typewriter
+                      text={t("home.values.vision.content")}
+                      speed={20}
+                    />
                   </p>
-
                 </div>
 
 
@@ -748,7 +762,10 @@ const AcceuilPage = () => {
 
                       {credoItems.map((item, index) => (
                         <li key={index}>
-                          {item}
+                          <Typewriter
+                            text={item}
+                            speed={20}
+                          />
                         </li>
                       ))}
 
@@ -779,7 +796,10 @@ const AcceuilPage = () => {
                   </H1>
 
                   <p className='ml-1 text-[10px] font-poppins text-jci-white'>
-                    {t("home.programs.intro")}
+                    <Typewriter
+                      text={t("home.programs.intro")}
+                      speed={20}
+                    />
                   </p>
 
                   <div className='flex flex-col gap-1'>
@@ -788,7 +808,10 @@ const AcceuilPage = () => {
 
                       {programmes.map((item) => (
                         <li key={item}>
-                          {item}
+                          <Typewriter
+                            text={item}
+                            speed={20}
+                          />
                         </li>
                       ))}
 
@@ -1127,8 +1150,8 @@ const AcceuilPage = () => {
               type="button"
               onClick={() => scrollByItemMobile(-1)}
               className="absolute left-2 top-1/2 -translate-y-1/2 z-10
-                      w-10 h-10 rounded-full bg-jci-black/70 text-jci-white
-                      flex items-center justify-center shadow-lg cursor-pointer hover:bg-jci-black transition-all duration-300"
+                w-10 h-10 rounded-full bg-jci-black/70 text-jci-white
+                flex items-center justify-center shadow-lg cursor-pointer hover:bg-jci-black transition-all duration-300"
           >
               &lt;
           </button>

@@ -85,7 +85,7 @@ const partners = [
 
 const PartenairesPage = () => {
   return (
-    <div className='min-h-screen font-poppins flex flex-col items-center pt-20  bg-jci-white'>
+    <div className='min-h-screen font-poppins flex flex-col items-center pt-5  bg-jci-white'>
 
       <div className='flex flex-col w-full'>
         {partners.map((partner, index) => (

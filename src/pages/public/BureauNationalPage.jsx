@@ -59,7 +59,7 @@ const BureauNationalPage = () => {
         <div className="flex flex-col  rounded-b-xl py-10 -mt-1 w-full min-w-0 bg-jci-white md:px-10 px-5 ">
 
           {/* ================= MOBILE ================= */}
-          {/* <div className="sm:hidden w-full min-w-0 overflow-hidden">
+          <div className="sm:hidden w-full min-w-0 overflow-hidden">
             <div className="relative w-full">
               <button
                 type="button"
@@ -155,9 +155,9 @@ const BureauNationalPage = () => {
               </button>
 
             </div>
-          </div> */}
+          </div>
           
-          <div className="sm:hidden w-full min-w-0 ">
+          {/* <div className="sm:hidden w-full min-w-0 ">
             <div className=" w-full">
                 {bnList.length > 0 ? (
                   <ScrollStack top={80} cardHeight="360px" maxWidth="640px"    >
@@ -213,7 +213,7 @@ const BureauNationalPage = () => {
 
 
 
-          </div>
+          </div> */}
           {/* ================= TABLET / DESKTOP ================= */}
           <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-5 gap-5 lg:gap-3 w-fit  lg:w-full   0">
 
