@@ -495,7 +495,7 @@ useEffect(() => {
       
       {olDetails && (
         <>
-        <div className="md:w-[90%] w-full rounded-xl p-5 bg-white flex flex-col gap-20 md:pt-0 pt-20">
+        <div className="md:w-[90%] w-full rounded-xl p-5 bg-white flex flex-col gap-20 md:pt-10 pt-20">
           <div>          
             <h1 className="text-4xl font-bold mb-4 text-jci text-jci-black font-jakarta self-center text-start">Page de détails de l'organisation locale <br />
               <span className="text-jci-yellow">{olDetails.name}</span>
@@ -1027,11 +1027,11 @@ useEffect(() => {
                   </div>
 
             {/* Cards */}
-            {filteredEvents.length > 0 ? (
+            {eventsPagination.length > 0 ? (
 
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
 
-                {filteredEvents.map((event) => {
+                {eventsPagination.map((event) => {
                     const date = new Date(event.date);
                     const day = date.getDate();
                     const month = date.toLocaleString('default', { month: 'short' });

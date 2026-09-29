@@ -164,7 +164,7 @@ const EventsManager = () => {
   const TOTAL_PAGES = filteredEvents.length % PAGE_SIZE === 0 ? Math.floor(filteredEvents.length / PAGE_SIZE) : Math.floor(filteredEvents.length / PAGE_SIZE) + 1 || 1
   const eventsPagination = filteredEvents.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE)
   return (
-    <div className='relative p-5 flex flex-col items-start bg-gray-100 w-full min-h-screen md:pt-0 pt-20'>
+    <div className='relative p-5 flex flex-col items-start bg-gray-100 w-full min-h-screen md:pt-10 pt-20'>
       
       <div className="w-full p-5 flex flex-col gap-5">
       

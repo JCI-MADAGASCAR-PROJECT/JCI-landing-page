@@ -151,7 +151,7 @@ const UserManager = () => {
     return emailMatch && roleMatch;
   });
   return (
-    <div className=' relative p-10 flex flex-col items-start gap-5 bg-gray-100 w-full min-h-screen md:pt-0 pt-20 '>
+    <div className=' relative p-10 flex flex-col items-start gap-5 bg-gray-100 w-full min-h-screen md:pt-10 pt-20 '>
       <h1 className='text-4xl font-bold text-jci-black'>Gestion des comptes utilisateurs</h1>
       <button
         className='px-5 py-2.5 bg-blue-100 rounded-lg text-blue-500 font-semibold text-sm  hover:bg-jci-white border border-blue-100 cursor-pointer transition-colors duration-300 flex items-center gap-2'

@@ -283,7 +283,7 @@ const ZonesDetailsManager = () => {
    
 
     return (
-        <div className='relative p-10 flex flex-col items-start gap-5 bg-gray-100 w-full md:pt-0 pt-20'>
+        <div className='relative p-10 flex flex-col items-start gap-5 bg-gray-100 w-full md:pt-10 pt-20'>
             {isPending && (
                 <div className='absolute inset-0 flex flex-col items-center justify-center gap-3 bg-white/60 backdrop-blur-sm z-10'>
                 <div className='w-8 h-8 border-4 border-jci-yellow border-t-transparent rounded-full animate-spin' />

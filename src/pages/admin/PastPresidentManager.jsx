@@ -133,7 +133,7 @@ const PastPresidentManager = () => {
   });
 
   return (
-    <div className='relative p-10 flex flex-col items-start gap-5 bg-gray-100 min-h-screen w-full md:pt-0 pt-20'>
+    <div className='relative p-10 flex flex-col items-start gap-5 bg-gray-100 min-h-screen w-full md:pt-10 pt-20'>
       <h1 className='text-4xl font-bold text-jci-black'>Gestion des Past Presidents</h1>
 
       <button

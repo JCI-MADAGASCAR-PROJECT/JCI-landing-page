@@ -136,7 +136,7 @@ const ZonesManager = () => {
 
 
   return (
-    <div className='relative p-10 min-h-screen flex flex-col items-start gap-2 bg-gray-100 w-full md:pt-0 pt-20'>
+    <div className='relative p-10 min-h-screen flex flex-col items-start gap-2 bg-gray-100 w-full md:pt-10 pt-20'>
       <h1 className='text-4xl font-bold text-jci-black'>Gestion des zones</h1>
       <div className='flex flex-row '>
         <NavLink

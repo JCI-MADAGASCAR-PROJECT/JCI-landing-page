@@ -252,7 +252,7 @@ const EventsDetailsManager = () => {
     };
 
   return (
-    <div className='relative p-5 md:p-10 flex flex-col items-start bg-gray-100 w-full min-h-screen md:pt-0 pt-20'>
+    <div className='relative p-5 md:p-10 flex flex-col items-start bg-gray-100 w-full min-h-screen md:pt-10 pt-20'>
     {eventDetails && (
         <div className="md:w-[90%] w-full rounded-xl p-5 bg-white flex flex-col gap-20">         
         <div className='flex flex-col gap-3 bg-jci-white rounded'>
