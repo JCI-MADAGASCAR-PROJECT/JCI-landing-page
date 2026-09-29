@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-
+{/** ButtonFull component */}
 const ButtonFull = ({children, path, TextColorHover}) => {
   return (
     <Link to={path} 

@@ -2,7 +2,7 @@ import { useParams, Navigate } from 'react-router'
 import ZoneFilterTabs from "../../components/layout/ZoneFilterTabs"
 import LabelTraitSimple from './../../components/ui/LabelTraitSimple';
 import { RiSendPlaneFill } from "react-icons/ri";
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import {zonesAPI, olAPI, contentAPI, memberAPI, eventAPI} from "../../services/api"
 import EventCard from "../../components/ui/EventCard"
 import ProfilePh from "../../images/profilePlaceHolder.jpeg"
@@ -20,6 +20,17 @@ const ZonePage = () => {
   const [currentOlMemberList, setCurrentOlMemberList] = useState([]);
   const [currentEventList, setCurrentEventList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1)
+  const carouselRefMobile = useRef(null)
+
+  const scrollByItemMobile = (direction) => {
+    const el = carouselRefMobile.current
+    if (!el) return
+
+    el.scrollBy({
+      left: direction * el.clientWidth,
+      behavior: "smooth"
+    })
+  }
 
   // Loading flags — separate from "empty data" so skeletons only show
   // while a request is actually in flight.
@@ -45,6 +56,8 @@ const ZonePage = () => {
   const showMembersSkeleton = membersLoading || currentOlMemberList.length === 0;
   const showEventsSkeleton = eventsLoading || events.length === 0;
   const showContactSkeleton = contentLoading || !currentOl;
+
+
 
 
   useEffect(() => {
@@ -409,33 +422,72 @@ useEffect(() => {
             )}
 
             {showEventsSkeleton ? (
-              <div className='sm:hidden flex w-full justify-center'>
-                <div className="w-full h-56 bg-gray-200 rounded animate-pulse" />
-              </div>
-            ) : (
-              <div className='sm:hidden flex flex-row overflow-x-scroll snap-x snap-mandatory self-center lg:w-full max-w-6xl'>
-                  {events?.map((event) => {
-                    const date = new Date(event?.date);
-                    const day = date.getDate();
-                    const month = date.toLocaleString('default', { month: 'short' });
-                    const year = date.getFullYear();
-                    return (
-                      <div key={event?.id} className='snap-center shrink-0 w-full flex justify-center'>
-                        <EventCard
-                          Img={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${event?.imgUrl}`}
-                          Title={event?.title}
-                          Content={event?.content}
-                          Day={day}
-                          Month={month}
-                          Type={event?.type}
-                          Year={year}
-                          Id={event?.id}
-                        />
-                      </div>
-                    )
-                  })}
-                </div>
-            )}
+  <div className='sm:hidden flex w-full justify-center'>
+    <div className="w-full h-56 bg-gray-200 rounded animate-pulse" />
+  </div>
+) : (
+  <div className="sm:hidden relative self-center w-full max-w-6xl">
+
+    {/* ARROW LEFT */}
+    <button
+      type="button"
+      onClick={() => scrollByItemMobile(-1)}
+      className="absolute left-2 top-1/2 -translate-y-1/2 z-10
+        w-10 h-10 rounded-full bg-jci-black/70 text-jci-white
+        flex items-center justify-center shadow-lg cursor-pointer
+        hover:bg-jci-black transition-all duration-300"
+    >
+      &lt;
+    </button>
+
+    {/* CAROUSEL */}
+    <div
+      ref={carouselRefMobile}
+      className="flex flex-row w-full overflow-x-auto
+        snap-x snap-mandatory scrollbar-hide"
+    >
+      {events?.map((event) => {
+        const date = new Date(event?.date);
+        const day = date.getDate();
+        const month = date.toLocaleString('default', {
+          month: 'short'
+        });
+        const year = date.getFullYear();
+
+        return (
+          <div
+            key={event?.id}
+            className="snap-center snap-always shrink-0 w-full flex justify-center"
+          >
+            <EventCard
+              Img={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${event?.imgUrl}`}
+              Title={event?.title}
+              Content={event?.content}
+              Day={day}
+              Month={month}
+              Type={event?.type}
+              Year={year}
+              Id={event?.id}
+            />
+          </div>
+        );
+      })}
+    </div>
+
+    {/* ARROW RIGHT */}
+    <button
+      type="button"
+      onClick={() => scrollByItemMobile(1)}
+      className="absolute right-2 top-1/2 -translate-y-1/2 z-10
+        w-10 h-10 rounded-full bg-jci-black/70 text-jci-white
+        flex items-center justify-center shadow-lg cursor-pointer
+        hover:bg-jci-black transition-all duration-300"
+    >
+      &gt;
+    </button>
+
+  </div>
+)}
             <div className='flex justify-center w-full mt-5'>
               <Pagination
                 currentPage={currentPage}

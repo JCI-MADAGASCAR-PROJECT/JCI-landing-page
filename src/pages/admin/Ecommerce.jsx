@@ -542,13 +542,13 @@ const Ecommerce = () => {
 
                 <td className='px-4 py-3'>
 
-                  <div className="w-15 h-15 rounded-lg overflow-hidden">
+                  <div className="w-15 h-15 rounded-lg overflow-hidden bg-jci-navy">
 
                     <img
                       loading="lazy"
                       src={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${item.imgUrl}`}
                       alt={item.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                     />
 
                   </div>

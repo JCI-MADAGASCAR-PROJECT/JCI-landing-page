@@ -11,6 +11,24 @@ import { pastPresidentAPI } from "../../services/api.js";
 const HistoriquePage = () => {
   const [presidentsList, setPresidentsList] = useState([])
 
+  const [isMobile, setIsMobile] = useState(
+    window.matchMedia("(max-width: 767px)").matches
+  )
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)")
+
+    const handleChange = (e) => {
+      setIsMobile(e.matches)
+    }
+
+    mediaQuery.addEventListener("change", handleChange)
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange)
+    }
+  }, [])
+
   useEffect(() => {
     const fetchPresidents = async () => {
       try {
@@ -43,10 +61,14 @@ const HistoriquePage = () => {
                 (premier guide de création d'entreprise en 10.000 exemplaires), Trophée JCE (award qui récompensait les entreprises performantes).
               </p>
             </div>
-            <div className='grid lg:grid-cols-3 grid-cols-2 gap-3 mt-10 items-center self-center justify-center lg:w-[60%]'>
-              <StatBlock Value="36" Label="ANS" TextColor2="text-jci-black" BGColor="bg-jci-teal" TextColor3="text-jci-white" />
-              <StatBlock Value="14" Label="OLs" TextColor2="text-jci-black" BGColor="bg-jci-teal" TextColor3="text-jci-white" />
-              <StatBlock Value="384" Label="Membres" TextColor2="text-jci-black" BGColor="bg-jci-teal" TextColor3="text-jci-white" />
+            <div className='flex flex-col md:flex-row gap-3 mt-10 items-center self-center justify-center lg:w-[60%]'>
+              <div className='flex flex-2 flex-row gap-3'>
+                <StatBlock Value="36" Label="ANS" TextColor2="text-jci-black" BGColor="bg-jci-teal" TextColor3="text-jci-white" />
+                <StatBlock Value="14" Label="OLs" TextColor2="text-jci-black" BGColor="bg-jci-teal" TextColor3="text-jci-white" />
+              </div>
+              <div className='flex flex-1 md:w-fit w-full bg-amber-200'>
+                <StatBlock Value="384" WFull={isMobile} Label="Membres" TextColor2="text-jci-black" BGColor="bg-jci-teal" TextColor3="text-jci-white" />
+              </div>
             </div>
             <div className='w-full mt-5 lg:0 items-center  flex justify-center'>
               <img src={Timeline} alt="" className="h-auto w-[90%] " />

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import H1 from "../../components/ui/H1"
 import EventCard from "../../components/ui/EventCard"
 import Pagination from "../../components/ui/Pagination"
@@ -20,28 +20,19 @@ const BlogPage = () => {
 
 
 
-  // const TOTAL_PAGES =
-  //   Math.ceil(filteredEvents.length / PAGE_SIZE) || 1
+  const carouselRefMobile = useRef(null)
 
-  // const events = filteredEvents.slice(
-  //   (currentPage - 1) * PAGE_SIZE,
-  //   currentPage * PAGE_SIZE
-  // )
+  const scrollByItemMobile = (direction) => {
+    const el = carouselRefMobile.current
+    if (!el) return
 
-  // useEffect(() => {
-  //   const fetchEvents = async () => {
-  //     try {
-  //       const res = await eventAPI.getAll()
-  //       setEventList(res.data)
-  //     } catch (error) {
-  //       console.error("Failed to fetch events:", error)
-  //     }
-  //   }
+    el.scrollBy({
+      left: direction * el.clientWidth,
+      behavior: "smooth"
+    })
+  }
 
-  //   fetchEvents()
-  // }, [])
-
-    useEffect(() => {
+  useEffect(() => {
     const fetchEvents = async () => {
       try {
         const res = await eventAPI.getAll({
@@ -163,7 +154,6 @@ const BlogPage = () => {
 
         {/* Contenu principal */}
         <div className='relative lg:absolute lg:top-35 lg:left-70 flex flex-col md:pb-0 pb-10 lg:flex-row w-full lg:w-auto lg:px-0 md:mt-10 md:bg-transparent bg-jci-white'>
-
           <div
             name="text"
             className='hidden lg:block relative h-[400px] w-[60px] -ml-10 mr-5'
@@ -203,44 +193,72 @@ const BlogPage = () => {
                 />
               )
             })}
-
           </div>
 
           {/* MOBILE */}
-          <div className='sm:hidden flex flex-row overflow-x-scroll snap-x snap-mandatory self-center lg:w-full max-w-6xl w-[90%]'>
+          <div className="sm:hidden relative self-center w-[90%] max-w-6xl">
 
-            {filteredEvents?.map((event) => {
-              const date = new Date(event.date)
+            {/* ARROW LEFT */}
+            <button
+              type="button"
+              onClick={() => scrollByItemMobile(-1)}
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-10
+                w-10 h-10 rounded-full bg-jci-black/70 text-jci-white
+                flex items-center justify-center shadow-lg cursor-pointer
+                hover:bg-jci-black transition-all duration-300"
+            >
+              &lt;
+            </button>
 
-              const day = date.getDate()
-              const month = date.toLocaleString('default', {
-                month: 'short'
-              })
-              const year = date.getFullYear()
+            {/* CAROUSEL */}
+            <div
+              ref={carouselRefMobile}
+              className="flex flex-row w-full overflow-x-auto
+                snap-x snap-mandatory scrollbar-hide"
+            >
+              {filteredEvents?.map((event) => {
+                const date = new Date(event.date)
 
-              return (
-                <div
-                  key={event.id}
-                  className='snap-center shrink-0 w-full flex justify-center'
-                >
-                  <EventCard
-                    Img={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${event.imgUrl}`}
-                    Title={event.title}
-                    Content={event.content}
-                    Day={day}
-                    Month={month}
-                    Type={event.type}
-                    Year={year}
-                    Id={event.id}
-                  />
-                </div>
-              )
-            })}
+                const day = date.getDate()
+                const month = date.toLocaleString('default', {
+                  month: 'short'
+                })
+                const year = date.getFullYear()
+
+                return (
+                  <div
+                    key={event.id}
+                    className="snap-center snap-always shrink-0 w-full flex justify-center"
+                  >
+                    <EventCard
+                      Img={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${event.imgUrl}`}
+                      Title={event.title}
+                      Content={event.content}
+                      Day={day}
+                      Month={month}
+                      Type={event.type}
+                      Year={year}
+                      Id={event.id}
+                    />
+                  </div>
+                )
+              })}
+            </div>
+
+            {/* ARROW RIGHT */}
+            <button
+              type="button"
+              onClick={() => scrollByItemMobile(1)}
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-10
+                w-10 h-10 rounded-full bg-jci-black/70 text-jci-white
+                flex items-center justify-center shadow-lg cursor-pointer
+                hover:bg-jci-black transition-all duration-300"
+            >
+              &gt;
+            </button>
 
           </div>
-
         </div>
-
       </section>
     </div>
   )

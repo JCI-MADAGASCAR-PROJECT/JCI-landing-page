@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-
+{/** ButtonVoid component */}
 const ButtonVoid = ({children, TextColor, BgColors, path}) => {
   return (
     <Link to={path} 

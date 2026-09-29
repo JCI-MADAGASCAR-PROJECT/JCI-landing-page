@@ -1,12 +1,13 @@
-const StatBlock = ({ Value, Label, TextColor, TextColor2, TextColor3, BGColor }) => {
+const StatBlock = ({ Value, Label, TextColor, TextColor2, TextColor3, BGColor, WFull }) => {
   return (
     <div
       className={`
         group relative overflow-hidden rounded
         border border-jci-blue/10
-        w-[32vw] max-w-35
-        aspect-[1.55/1]
-        px-4 py-3
+        
+        ${WFull ? "w-full h-[500] py-5 " : "w-[32vw] max-w-35 aspect-[1.55/1] px-4 py-3"}
+        
+        
         ${BGColor ? BGColor : ""}
       `}
     >
@@ -25,7 +26,7 @@ const StatBlock = ({ Value, Label, TextColor, TextColor2, TextColor3, BGColor })
         {Value}
       </span>
 
-      <div className="relative flex flex-col justify-center items-center -mt-5">
+      <div className="relative flex flex-col justify-center items-center ">
         <h1
           className={`
             text-[36px] tracking-tighter

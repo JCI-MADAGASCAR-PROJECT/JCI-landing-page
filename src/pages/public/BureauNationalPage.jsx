@@ -1,13 +1,24 @@
 import SubNav from "../../components/layout/SubNav";
 import LabelTraitSimple from "../../components/ui/LabelTraitSimple";
 import BNCard from "../../components/ui/BNCard";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { bnAPI } from "../../services/api.js";
-
+import ScrollStack,{ScrollStackItem } from '@/hooks/ScrollStack'
 
 const BureauNationalPage = () => {
   const [bnList, setBnList] = useState([]);
+  const carouselRefMobile = useRef(null);
 
+  const scrollByItemMobile = (direction) => {
+    const el = carouselRefMobile.current;
+    if (!el) return;
+
+    el.scrollBy({
+      left: direction * el.clientWidth,
+      behavior: "smooth",
+      });
+  };
+  console.log("PAGE RENDER", performance.now());  
   useEffect(() => {
     const fetchBureauNational = async () => {
       try {
@@ -22,7 +33,7 @@ const BureauNationalPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen w-full max-w-full overflow-x-hidden font-poppins flex flex-col items-start pt-25 pb-10 px-6 lg:pl-33 lg:pr-10 bg-jci-black gap-2">
+    <div className="min-h-screen w-full max-w-full overflow-x-clip font-poppins flex flex-col items-start pt-25 pb-10 px-6 lg:pl-33 lg:pr-10 bg-jci-black gap-2">
 
       <SubNav />
 
@@ -48,65 +59,161 @@ const BureauNationalPage = () => {
         <div className="flex flex-col  rounded-b-xl py-10 -mt-1 w-full min-w-0 bg-jci-white md:px-10 px-5 ">
 
           {/* ================= MOBILE ================= */}
-          <div className="sm:hidden w-full min-w-0 overflow-hidden">
-            <div className="flex w-full overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+          {/* <div className="sm:hidden w-full min-w-0 overflow-hidden">
+            <div className="relative w-full">
+              <button
+                type="button"
+                onClick={() => scrollByItemMobile(-1)}
+                className="
+                  absolute left-2 top-1/2 -translate-y-1/2 z-10
+                  w-10 h-10 rounded-full
+                  bg-jci-black/70 text-jci-white
+                  flex items-center justify-center
+                  shadow-lg cursor-pointer
+                  hover:bg-jci-black
+                  transition-all duration-300
+                "
+              >
+                &lt;
+              </button>
 
-              {bnList.length > 0 ? (
-                bnList.map((member) => (
-                  <div
-                    key={member.id}
-                    className="shrink-0 w-full min-w-0 snap-center snap-always px-6"
-                  >
-                    <BNCard
-                      image={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${member.imgUrl}`}
-                      firstName={member.firstName}
-                      lastName={member.name}
-                      role={member.title}
-                    />
-                  </div>
-                ))
-              ) : (
-                <div className="shrink-0 w-full min-w-0 px-6">
-                  <div className="w-full p-3 pb-2 border border-gray-400/50 rounded-xl flex flex-col justify-between bg-gray-200 animate-pulse">
+              <div
+                ref={carouselRefMobile}
+                className="
+                  flex w-full overflow-x-auto
+                  snap-x snap-mandatory
+                  scrollbar-hide
+                "
+              >
+                {bnList.length > 0 ? (
+                  bnList.map((member) => (
+                    <div
+                      key={member.id}
+                      className="shrink-0 w-full min-w-0 snap-center snap-always px-6"
+                    >
+                      <BNCard
+                        image={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${member.imgUrl}`}
+                        firstName={member.firstName}
+                        lastName={member.name}
+                        role={member.title}
+                      />
+                    </div>
+                  ))
+                ) : (
+                  <div className="shrink-0 w-full min-w-0 px-6">
+                    <div className="w-full p-3 pb-2 border border-gray-400/50 rounded-xl flex flex-col justify-between bg-gray-200 animate-pulse">
 
-                    <div className="flex flex-col justify-center items-center">
+                      <div className="flex flex-col justify-center items-center">
 
-                      <div className="w-[95%] aspect-square rounded-full border border-jci-black/30">
+                        <div className="w-[95%] aspect-square rounded-full border border-jci-black/30">
 
-                        <div className="w-full aspect-square rounded-full border-gray-300 border-[8px]">
+                          <div className="w-full aspect-square rounded-full border-gray-300 border-[8px]">
 
-                          <div className="w-full aspect-square rounded-full border-[2px] border-jci-black/40 overflow-hidden">
-                            <img
-                              src=""
-                              alt=""
-                              className="w-full h-full object-cover rounded-full"
-                            />
+                            <div className="w-full aspect-square rounded-full border-[2px] border-jci-black/40 overflow-hidden">
+                              <img
+                                src=""
+                                alt=""
+                                className="w-full h-full object-cover rounded-full"
+                              />
+                            </div>
+
                           </div>
+
+                        </div>
+
+                        <div className="text-center text-[clamp(10px,1.2vw,15px)] flex flex-col gap-0 text-jci-black font-poppins">
+
+                          <div className="h-4 bg-gray-300 rounded w-30 mx-auto"></div>
+
+                          <div className="h-4 bg-gray-400 rounded w-30 mx-auto mt-1"></div>
 
                         </div>
 
                       </div>
 
-                      <div className="text-center text-[clamp(10px,1.2vw,15px)] flex flex-col gap-0 text-jci-black font-poppins">
+                      <div className="h-4 bg-gray-400 rounded w-30 mx-auto mt-1"></div>
 
-                        <div className="h-4 bg-gray-300 rounded w-30 mx-auto"></div>
+                    </div>
+                  </div>
+                )}
+              </div>
 
-                        <div className="h-4 bg-gray-400 rounded w-30 mx-auto mt-1"></div>
+              <button
+                type="button"
+                onClick={() => scrollByItemMobile(1)}
+                className="
+                  absolute right-2 top-1/2 -translate-y-1/2 z-10
+                  w-10 h-10 rounded-full
+                  bg-jci-black/70 text-jci-white
+                  flex items-center justify-center
+                  shadow-lg cursor-pointer
+                  hover:bg-jci-black
+                  transition-all duration-300
+                "
+              >
+                &gt;
+              </button>
+
+            </div>
+          </div> */}
+          
+          <div className="sm:hidden w-full min-w-0 ">
+            <div className=" w-full">
+                {bnList.length > 0 ? (
+                  <ScrollStack top={80} cardHeight="360px" maxWidth="640px"    >
+                    {bnList.map((member) => (
+                    <ScrollStackItem key={member.id} BGColor="bg-jci-white">
+                      <BNCard
+                        image={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${member.imgUrl}`}
+                        firstName={member.firstName}
+                        lastName={member.name}
+                        role={member.title}
+                      />
+                    </ScrollStackItem>
+                    ))}
+                  </ScrollStack>
+                ) : (
+                  <div className="shrink-0 w-full min-w-0 px-6">
+                    <div className="w-full p-3 pb-2 border border-gray-400/50 rounded-xl flex flex-col justify-between bg-gray-200 animate-pulse">
+
+                      <div className="flex flex-col justify-center items-center">
+
+                        <div className="w-[95%] aspect-square rounded-full border border-jci-black/30">
+
+                          <div className="w-full aspect-square rounded-full border-gray-300 border-[8px]">
+
+                            <div className="w-full aspect-square rounded-full border-[2px] border-jci-black/40 overflow-hidden">
+                              <img
+                                src=""
+                                alt=""
+                                className="w-full h-full object-cover rounded-full"
+                              />
+                            </div>
+
+                          </div>
+
+                        </div>
+
+                        <div className="text-center text-[clamp(10px,1.2vw,15px)] flex flex-col gap-0 text-jci-black font-poppins">
+
+                          <div className="h-4 bg-gray-300 rounded w-30 mx-auto"></div>
+
+                          <div className="h-4 bg-gray-400 rounded w-30 mx-auto mt-1"></div>
+
+                        </div>
 
                       </div>
 
+                      <div className="h-4 bg-gray-400 rounded w-30 mx-auto mt-1"></div>
+
                     </div>
-
-                    <div className="h-4 bg-gray-400 rounded w-30 mx-auto mt-1"></div>
-
                   </div>
-                </div>
-              )}
+                )}
+              </div>
 
-            </div>
+
+
           </div>
-
-
           {/* ================= TABLET / DESKTOP ================= */}
           <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-5 gap-5 lg:gap-3 w-fit  lg:w-full   0">
 

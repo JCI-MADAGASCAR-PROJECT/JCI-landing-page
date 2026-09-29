@@ -1,0 +1,32 @@
+.mada-map path[id] {
+    cursor: pointer;
+
+    transition:
+        filter 200ms ease,
+        fill-opacity 200ms ease,
+        stroke-width 200ms ease;
+}
+
+.mada-map path[id]:hover {
+    filter: brightness(0.65);
+}
+
+.ol-label-container {
+    pointer-events: none;
+}
+
+.ol-label-inner {
+    transform-box: fill-box;
+    animation: ol-unroll 300ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes ol-unroll {
+    from {
+        clip-path: inset(0 100% 0 0);
+        opacity: 0;
+    }
+    to {
+        clip-path: inset(0 0 0 0);
+        opacity: 1;
+    }
+}

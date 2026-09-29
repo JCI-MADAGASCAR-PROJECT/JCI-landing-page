@@ -77,7 +77,7 @@ return (
     {/* Décoration géométrique */}
     <div className="absolute -right-34 -top-24 w-64 h-64 rounded-full border-[35px] border-jci-blue/10" />
 
-    <div className="absolute -left-20 -bottom-20 w-56 h-56 rounded-full border-[30px] border-jci-yellow/10" />
+    <div className="absolute -left-20 -bottom-20 w-56 h-56 rounded-full border-[30px] border-jci-white/10" />
 
     {/* Formulaire */}
     <form

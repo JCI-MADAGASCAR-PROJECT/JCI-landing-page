@@ -1,0 +1,124 @@
+{
+  "home": {
+    "about": {
+      "label": "WHO ARE WE?",
+      "title": "JCI MADAGASCAR",
+      "description": "is a non-profit organization dedicated to enterprising young leaders aged 18 to 40. We work to promote professional development, create economic opportunities, and develop innovative solutions to societal challenges.",
+      "readMore": "Read more"
+    },
+
+    "actions": {
+      "label": "WHAT DO WE DO?",
+      "title": "OUR AREAS OF ACTION",
+      "description": "At Junior Chamber International, we take on the challenge of identifying global strategic levers that enable our members to maximize the effectiveness of their actions in addressing the challenges faced by our society while strengthening their skills and leadership through various programs.",
+      "projects": "Our projects",
+      "categories": {
+        "individualDevelopment": "Individual Development",
+        "communityImpact": "Community Impact",
+        "businessEntrepreneurship": "Business and Entrepreneurship",
+        "internationalCooperation": "International Cooperation"
+      }
+    },
+
+    "president": {
+      "imageAlt": "Manjatosoa Minah RAKOTOBE, National President",
+      "name": "Minah RAKOTOBE",
+      "title": "National President 2026",
+      "messageButton": "Show message",
+      "message": {
+        "paragraph1": "The year 2026 marks a new cycle for JCI Madagascar, guided by a strong conviction: Build Legacy Together.",
+        "paragraph2": "Building a legacy means refusing to settle for one-time actions and short-lived results. It means choosing consistency, rigor, and transmission, based on responsible leadership, discipline, and collective impact.",
+        "paragraph3": "This year, our ambition is clear: to strengthen JCI Madagascar as a leading organization for youth leadership development through strong local organizations, projects with measurable impact, and responsible leaders capable of serving with purpose and integrity.",
+        "paragraph4": "To our members, observers, and active members, I make a sincere call: embrace this vision. Dare to take your place, invest fully in your journey, train yourself, learn through action, and actively contribute to building together.",
+        "paragraph5": "To our life members, more than ever, the next generation needs us. Let us be generous with our knowledge, advice, and support.",
+        "paragraph6": "To our partners, supporters, and friends of the Junior Chamber movement, we reaffirm our commitment to building lasting and sincere collaborations aligned with shared values.",
+        "paragraph7": "Young people represent a powerful force for transformation when they are trained, supported, and empowered. Together, we can create synergies that generate real and measurable impact for the development of Madagascar.",
+        "paragraph8": "TOGETHER, let us make 2026 a year to BUILD a LEGACY that goes beyond mandates and serves our country, our movement, and our national organization sustainably.",
+        "signature": "Jaycee regards."
+      }
+    },
+
+    "stats": {
+      "years": "YEARS",
+      "members": "MEMBERS",
+      "localOrganizations": "LOS"
+    },
+
+    "values": {
+      "label": "OUR VALUES",
+      "mission": {
+        "title": "OUR MISSION",
+        "content": "To provide young people with leadership development opportunities by empowering them to create positive change."
+      },
+      "vision": {
+        "title": "OUR VISION",
+        "content": "To be the leading global network of young leaders."
+      },
+      "credo": {
+        "title": "OUR CREDO",
+        "items": [
+          "That faith in God gives life its true meaning",
+          "That human brotherhood transcends the sovereignty of nations",
+          "That government should be based on law and not on arbitrariness",
+          "That individual freedom and enterprise best ensure economic justice",
+          "That the human person is the most precious of all riches",
+          "And that serving humanity is the noblest work of a lifetime"
+        ]
+      },
+      "readMore": "Read more"
+    },
+
+    "programs": {
+      "label": "OUR PROGRAMS",
+      "intro": "Through various programs:",
+      "readMore": "Read more",
+      "items": {
+        "jma": {
+          "title": "JMA (JCI Malagasy Academy)",
+          "content": "10 days of international immersion, sharing, and learning."
+        },
+        "publicSpeaking": {
+          "title": "Public Speaking & Debate"
+        },
+        "toyp": {
+          "title": "TOYP (Ten Outstanding Young Persons)"
+        },
+        "cye": {
+          "title": "CYE (Creative Young Entrepreneur)",
+          "content": "The program highlights innovative young entrepreneurs."
+        }
+      }
+    },
+
+    "partners": {
+      "label": "NEWS & EVENTS",
+      "title": "DISCOVER OUR PARTNERS",
+      "subtitle": "Explore our national partners",
+      "images": {
+        "midiMadagascar": "Midi Madagascar",
+        "orangeMadagascar": "Orange Madagascar",
+        "kentia": "Kentia Group",
+        "iseven": "ISeven",
+        "koonSpace": "Koon Space"
+      }
+    },
+
+    "news": {
+      "label": "NEWS & EVENTS",
+      "title": "STAY CONNECTED",
+      "subtitle": "Discover all the latest JCI news and upcoming events.",
+      "more": "See more",
+      "decorativeTitle": "News",
+      "decorativeSubtitle": "News & events"
+    }
+  },
+  "navbar": {
+    "home": "Home",
+    "jciMadagascar": "JCI Madagascar",
+    "localOrganizations": "Local Organizations",
+    "blog": "Blog",
+    "partners": "Partners",
+    "contact": "Contact",
+    "project": "Discover our projects"
+  }
+}

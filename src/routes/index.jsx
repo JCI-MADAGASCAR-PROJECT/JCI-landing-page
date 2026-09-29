@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router";
 import PublicLayout from "../layouts/PublicLayout";
 import RoleRoute from "./RoleRoute";
 import AdminLayout from "../layouts/AdminLayout";
+import Ecommercelayout from "../layouts/Ecommercelayout";
 import AnimationLoading from '../images/LoadingLogoJCIM.gif';
 
 const PageLoader = () => (
@@ -28,6 +29,9 @@ const LoginPage                    = lazy(() => import("../pages/public/LoginPag
 const CGUPage                      = lazy(() => import("../pages/public/CGUPage"));
 const PolitiqueConfidentialitePage = lazy(() => import("../pages/public/PolitiqueConfidentialitePage"));
 const ConditionsGeneralesVentePage = lazy(() => import("../pages/public/ConditionsGeneralesVentePage"));
+const ECommercePage                = lazy(() => import("../pages/public/ECommercePage"));
+const MadaPage                      = lazy(() => import("../pages/public/Mada"));
+const ScrollTest = lazy(() => import("../pages/public/ScrollTest"));
 
 // ─── Pages admin — JAMAIS téléchargées par un visiteur public ─────────────────
 const UserManager          = lazy(() => import("../pages/admin/UserManager"));
@@ -55,27 +59,32 @@ const UnauthorizedPage = () => (
 const AppRoutes = () => {
   
   return (
-  <Suspense fallback={<PageLoader />}>
+  <Suspense fallback={null}>
     <Routes>
         {/*when no user is connected */}
+        <Route element={<Ecommercelayout/>}>  
+        <Route path="/boutique" element={<ECommercePage />} />
+        <Route path="/scroll-test" element={<ScrollTest />} />
+        </Route>
         <Route element={<PublicLayout/>}>
-            <Route path="/" element={<AcceuilPage/>}/>
-            <Route path="/connexion" element={<LoginPage/>}/>
-            <Route path="/jci-madagascar" element={<HistoriquePage/>}/>
-            <Route path="/jci-madagascar/valeurs" element={<ValeursPage/>}/>
-            <Route path="/jci-madagascar/bureau-national" element={<BureauNationalPage/>}/>
-            <Route path="/jci-madagascar/programmes" element={<ProgrammesPage/>}/>
-            <Route path="/jci-madagascar/senat" element={<SenatPage/>}/>
-            <Route path="/organisations-locales" element={<OrganisationsLocalesPage/>}/>
-            <Route path="/organisations-locales/:zone" element={<ZonePage/>}/>
-            <Route path="/blog" element={<BlogPage/>}/>
-            <Route path="/blog/evenements/:eventId" element={<EventsDetails />} />
-            <Route path="/partenaires" element={<PartenairesPage/>}/>
-            <Route path="/contact" element={<ContactPage/>}/>
-            <Route path="*" element={<NotFoundPage/>}/>
-            <Route path="/conditions-generales-utilisation" element={<CGUPage />} />
-            <Route path="/politique-de-confidentialite" element={<PolitiqueConfidentialitePage />} />
-            <Route path="/conditions-generales-de-vente" element={<ConditionsGeneralesVentePage />}/>
+          <Route path="/" element={<AcceuilPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/evenements/:eventId" element={<EventsDetails />} />
+          <Route path="/conditions-generales-de-vente" element={<ConditionsGeneralesVentePage />} />
+          <Route path="/conditions-generales-utilisation" element={<CGUPage />} />
+          <Route path="/connexion" element={<LoginPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/jci-madagascar" element={<HistoriquePage />} />
+          <Route path="/jci-madagascar/bureau-national" element={<BureauNationalPage />} />
+          <Route path="/jci-madagascar/programmes" element={<ProgrammesPage />} />
+          <Route path="/jci-madagascar/senat" element={<SenatPage />} />
+          <Route path="/jci-madagascar/valeurs" element={<ValeursPage />} />
+          <Route path="/organisations-locales" element={<OrganisationsLocalesPage />} />
+          <Route path="/organisations-locales/:zone" element={<ZonePage />} />
+          <Route path="/partenaires" element={<PartenairesPage />} />
+          <Route path="/mada" element={<MadaPage />} />
+          <Route path="/politique-de-confidentialite" element={<PolitiqueConfidentialitePage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
 
         {/*when user is connected*/}

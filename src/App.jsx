@@ -3,6 +3,7 @@ import { UserContext } from './context/UserContext';
 import { useState, useEffect } from 'react';
 import { authAPI } from './services/api';
 import { Toaster } from "sonner";
+import ScrollToTop from './ScrollToTop';
 
 import AppRoutes from './routes/index';
 
@@ -32,7 +33,8 @@ useEffect(()=>{
   return (
     <UserContext value={{user, setUser, loading}}>
       <Router>
-        <Toaster position="bottom-right" richColors />        
+        <Toaster position="bottom-right" richColors />       
+        <ScrollToTop />
         <AppRoutes />
       </Router>
     </UserContext>

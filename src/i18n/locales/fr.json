@@ -1,0 +1,124 @@
+{
+  "home": {
+    "about": {
+      "label": "QUI SOMMES-NOUS ?",
+      "title": "LA JCI MADAGASCAR",
+      "description": "est une organisation à but non lucratif dédiée aux jeunes leaders entreprenants âgés de 18 à 40 ans. Nous œuvrons pour le développement professionnel, la création d'opportunités économiques et l'élaboration de solutions innovantes face aux défis sociétaux.",
+      "readMore": "Lire la suite"
+    },
+
+    "actions": {
+      "label": "QU'EST-CE QUE NOUS FAISONS ?",
+      "title": "NOS CADRES D'ACTIONS",
+      "description": "À la Jeune Chambre Internationale, nous nous lançons le défi d'identifier les leviers stratégiques mondiaux permettant à nos membres de maximiser l'efficacité de leurs actions pour résoudre les problématiques qu'encourt notre société tout en renforçant leurs compétences et leur leadership à travers divers programmes.",
+      "projects": "Nos projets",
+      "categories": {
+        "individualDevelopment": "Développement individuel",
+        "communityImpact": "Impact communautaire",
+        "businessEntrepreneurship": "Affaires et Entreprenariat",
+        "internationalCooperation": "Coopération internationale"
+      }
+    },
+
+    "president": {
+      "imageAlt": "Manjatosoa Minah RAKOTOBE, Présidente Nationale",
+      "name": "Minah RAKOTOBE",
+      "title": "Présidente Nationale 2026",
+      "messageButton": "Afficher le message",
+      "message": {
+        "paragraph1": "L’année 2026 marque pour la JCI Madagascar un nouveau cycle, guidé par une conviction forte : Build Legacy Together.",
+        "paragraph2": "Construire un héritage, c’est refuser l’action ponctuelle et les résultats éphémères. C’est faire le choix de la cohérence, de la rigueur et de la transmission fondé sur le leadership responsable, la rigueur et l’impact collectif.",
+        "paragraph3": "Cette année, notre ambition est claire : renforcer la JCI Madagascar comme acteur de référence du développement du leadership des jeunes, ceci à travers des organisations locales solides, des projets à impact mesurable et des leaders responsables, capables de servir avec sens et intégrité.",
+        "paragraph4": "À nos membres, observateurs et actifs, je lance un appel sincère : appropriez-vous cette vision. Osez prendre votre place, investissez-vous pleinement dans votre parcours, formez-vous, apprenez par l’action et contribuez activement à la construction collective.",
+        "paragraph5": "A nos membres à vie, plus que jamais, notre relève a besoin de nous. Soyons généreux dans nos partages, nos conseils et notre accompagnement.",
+        "paragraph6": "À nos partenaires, nos sympathisants et amis du mouvement jeune chambre, nous réaffirmons notre volonté de bâtir des collaborations durables, sincères et alignées sur des valeurs communes.",
+        "paragraph7": "La jeunesse représente un levier puissant de transformation lorsqu’elle est formée, accompagnée et responsabilisée. Ensemble, nous pouvons créer des synergies porteuses d’impact réel et mesurable pour le développement de Madagascar.",
+        "paragraph8": "ENSEMBLE, faisons de 2026, une année pour BATIR un HERITAGE qui dépasse les mandats et serve durablement notre pays, notre mouvement et notre organisation nationale.",
+        "signature": "Mes amitiés jaycees."
+      }
+    },
+
+    "stats": {
+      "years": "ANS",
+      "members": "MEMBRES",
+      "localOrganizations": "OLS"
+    },
+
+    "values": {
+      "label": "NOS VALEURS",
+      "mission": {
+        "title": "NOTRE MISSION",
+        "content": "Offrir aux jeunes des opportunités de développement de leadership en leur donnant la capacité de créer des changements positifs."
+      },
+      "vision": {
+        "title": "NOTRE VISION",
+        "content": "Être le principal réseau mondial de jeunes leaders."
+      },
+      "credo": {
+        "title": "NOTRE CREDO",
+        "items": [
+          "Que la foi en Dieu donne à la vie son véritable sens",
+          "Que la fraternité humaine transcende la souveraineté des nations",
+          "Que le gouvernement doit s'appuyer sur la loi et non sur l'arbitraire",
+          "Que la liberté des individus et des entreprises assure au mieux la justice économique",
+          "Que la personne humaine est la plus précieuse des richesses",
+          "Et que servir l'humanité constitue l'œuvre la plus noble d'une vie"
+        ]
+      },
+      "readMore": "Lire la suite"
+    },
+
+    "programs": {
+      "label": "NOS PROGRAMMES",
+      "intro": "À travers des divers programmes :",
+      "readMore": "Lire la suite",
+      "items": {
+        "jma": {
+          "title": "La JMA (JCI Malagasy Academy)",
+          "content": "10 jours d'immersion internationale, de partage et d'apprentissage."
+        },
+        "publicSpeaking": {
+          "title": "Art Oratoire & Débat"
+        },
+        "toyp": {
+          "title": "TOYP (Ten Outstanding Young Persons)"
+        },
+        "cye": {
+          "title": "CYE (Creative Young Entrepreneur)",
+          "content": "Le programme met en lumière les jeunes entrepreneurs innovants."
+        }
+      }
+    },
+
+    "partners": {
+      "label": "ACTUALITÉS & ÉVÉNEMENTS",
+      "title": "DÉCOUVREZ NOS PARTENAIRES",
+      "subtitle": "Explorez nos partenaires nationaux",
+      "images": {
+        "midiMadagascar": "Midi Madagascar",
+        "orangeMadagascar": "Orange Madagascar",
+        "kentia": "Groupe Kentia",
+        "iseven": "ISeven",
+        "koonSpace": "Koon Space"
+      }
+    },
+
+    "news": {
+      "label": "ACTUALITÉS & ÉVÉNEMENTS",
+      "title": "RESTEZ CONNECTÉ",
+      "subtitle": "Découvrez toutes les actualités autour de la JCI et les évènements à venir.",
+      "more": "Voir plus",
+      "decorativeTitle": "Actualités",
+      "decorativeSubtitle": "Actualités & événements"
+    }
+  },
+    "navbar": {
+    "home": "Accueil",
+    "jciMadagascar": "JCI Madagascar",
+    "localOrganizations": "Organisations Locales",
+    "blog": "Blog",
+    "partners": "Partenaires",
+    "contact": "Contact",
+    "project": "Découvrir nos projets"
+  } 
+}

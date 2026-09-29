@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../../context/UserContext'
 import { NavLink, useNavigate } from 'react-router'
 
-import JCILogo from "../../images/JCI/JCI Madagascar/JCI_Madagascar_background_marine_blue_name_blue_logo-removebg-preview.webp"
+import JCILogo from "../../images/JCI/JCI Madagascar/JCI_Madagascar_background_blue_logo-removebg-preview.webp"
 import { authAPI, olAPI } from '../../services/api'
 import { LogIn, Menu, X } from 'lucide-react'
 
