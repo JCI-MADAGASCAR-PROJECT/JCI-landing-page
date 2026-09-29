@@ -119,11 +119,16 @@ const UserManager = () => {
 
   useEffect(()=>{
     const fetchUsers = async () =>{
+      setIsPending(true);
       try {
         const res = await usersAPI.getAll();
         setUsers(res.data);
+
       } catch (error) {
       console.log(error.response?.data?.message || "Impossible de récupérer les utilisateurs");
+      }
+      finally {
+        setIsPending(false);
       }
     }
     const fetchOrganisationLocales = async () =>{
