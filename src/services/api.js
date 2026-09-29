@@ -7,19 +7,7 @@ const api = axios.create({
     },
     withCredentials: true // mi-assure anle cookie hitany back
 });
-//
-// // api.interceptors.request.use((config) => {
-// //   const token = localStorage.getItem("token");
-// //
-// //   if (token) {
-// //     config.headers.Authorization = `Bearer ${token}`;
-// //   }
-// //
-// //   return config;
-// // });
-//
-// // It is just a template for now
-//
+
 // Auth API
 export const authAPI ={
     login: (data) => api.post("/auth/login",data),
