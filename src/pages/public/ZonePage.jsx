@@ -208,11 +208,11 @@ useEffect(() => {
 }, [zoneDetails?.id]);
 
   return (
-    <div className='min-h-screen font-poppins flex flex-col items-start pt-25 pb-10 px-6 lg:pl-33 lg:pr-20 bg-jci-black gap-2'>
+    <div className='min-h-screen font-poppins flex flex-col items-start pt-25 pb-10 px-2 lg:pl-33 lg:pr-20 bg-jci-black gap-2'>
       <ZoneFilterTabs />
 
       <div className="flex flex-col gap-0 lg:ml-20 lg:mr-1 mr-0 md:w-[90%] w-full ">
-        <div className="flex lg:flex-col flex-col md:justify-center md:items-center lg:items-start bg-jci-white gap-5 rounded w-full  p-2  "  >
+        <div className="flex lg:flex-col flex-col md:justify-center md:items-center lg:items-start bg-jci-white gap-5 rounded w-full  p-1  "  >
 
           {/** Zone banner — skeleton while loading, and while empty */}
           {showZoneSkeleton ? (
@@ -222,7 +222,7 @@ useEffect(() => {
             </div>
           ) : (
             <div
-              className=" group flex flex-col gap-4 items-start w-full h-[40vh] p-5 bg-cover bg-center"
+              className=" group flex flex-col gap-4 items-start w-full md:h-[50vh] h-[20vh] p-5 bg-cover bg-center"
               style={{
                 backgroundImage: `linear-gradient(to left, rgba(0, 0, 0, 0),rgba(0, 0, 0, 0), #0e0b21), url(${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${zoneDetails?.imgUrl})`
               }}
@@ -249,14 +249,14 @@ useEffect(() => {
                 <img src={import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE + zonePsdDetails?.imgUrl} alt={`Vice president zone ${zoneDetails?.name}`} className="aspect-[50/50] w-30 rounded-xl object-cover" loading="lazy" />
               </div>
               <div className='flex flex-col gap-1 items-start lg:ml-38 lg:mt-0 mt-20'>
-                <h1 className='text-[16px] font-poppins font-normal text-jci-black flex flex-row items-center justify-between w-full'>
+                <h1 className='md:text-[16px] text-[14px] font-poppins font-normal text-jci-black flex flex-row items-center justify-between w-full'>
                   {zonePsdDetails?.name}
                   <div className="md:hidden flex"> <a href={`tel:${zonePsdDetails?.contact}`}
                     className=' flex flex-row py-1 rounded-xl bg-black/90 text-jci-white gap-2 text-[12px] items-center px-2 mb-1'
                     > <RiSendPlaneFill size={16} className="" />Contact</a>
                   </div>
                 </h1>
-                <p className='text-jci-black/50 text-[12px] text-justify'>
+                <p className='text-jci-black/70 md:text-[12px] text-[12px] text-justify'>
                   {zonePsdDetails?.quote}
                 </p>
 
@@ -310,7 +310,7 @@ useEffect(() => {
                 ))
               ) : (
                 currentOlContentList?.map((content) => (
-                  <p key={content.id} className='text-[12px] font-normal text-jci-black/70 text-justify'>
+                  <p key={content.id} className='md:text-[12px] text-[12px] font-normal text-jci-black/70 text-justify'>
                     {content.content}
                   </p>
                 ))

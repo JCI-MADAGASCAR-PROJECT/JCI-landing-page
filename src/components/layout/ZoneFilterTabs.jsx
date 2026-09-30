@@ -22,7 +22,7 @@ const ZoneFilterTabs = () => {
         </NavLink>
       ))}
     </div>
-     <div className=' lg:hidden w-fit  grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 lg:gap-0 sm:gap-y-3 justify-center rounded-xl items-center  md:mx-12 lg:ml-20 lg:mr-1   font-roboto font-normal text-[10px]  md:text-[14px] lg:text-[14px] lg:border  lg:border-white/10'>
+     <div className=' lg:hidden flex flex-wrap sm:gap-y-3 justify-center rounded-xl items-center  md:mx-12   font-roboto font-normal text-[10px]  md:text-[14px] mb-3 self-center '>
       {zones.map((zone) => (
         <NavLink
           key={zone.path}

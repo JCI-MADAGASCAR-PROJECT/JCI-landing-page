@@ -38,14 +38,14 @@ const listeOl2 = [
 
 const OrganisationsLocalesPage = () => {
   return (
-    <div className='min-h-screen font-poppins flex flex-col items-start pt-25 pb-10 px-6 lg:pl-33 lg:pr-20 bg-jci-black gap-2'>
+    <div className='min-h-screen font-poppins flex flex-col items-start pt-25 pb-10 px-2 lg:pl-33 lg:pr-20 bg-jci-black gap-2'>
       <ZoneFilterTabs />
       <div className="group flex flex-col gap-0 lg:ml-20 lg:mr-1 mr-0">
-        <div className="flex lg:flex-row flex-col md:justify-center md:items-center lg:items-start bg-jci-white gap-10 rounded-xl  md:pl-10 pt-5  px-5 md:pr-10 lg:pr-0">
-          <div className='flex flex-1 md:flex-2 flex-col gap-1 items-start text-start max-w-full '>
+        <div className="flex lg:flex-row flex-col md:justify-center md:items-center lg:items-start bg-jci-white gap-10 rounded-xl  md:pl-10 pt-5  md:pr-10 lg:pr-0 overflow-hidden">
+          <div className='flex flex-1 md:flex-2 flex-col gap-1 items-start text-start max-w-full p-3'>
             
             <LabelTraitSimple Label="Présentation" H1Text="LES 14 ORGANISATIONS LOCALES" />
-            <p className='lg:text-[12px] md:text-[12px] text-[10px] font-normal font-poppins text-jci-black text-justify'>
+            <p className='lg:text-[12px] md:text-[12px] text-[12px] font-normal font-poppins text-jci-black text-justify'>
               Un réseau national, un impact local. Découvrez les 14 Organisations Locales de JCI Madagascar à travers nos zones Nord, Centre et 
               Sud, et rejoignez le mouvement des jeunes leaders engagés sur tout l'île. 
             </p>

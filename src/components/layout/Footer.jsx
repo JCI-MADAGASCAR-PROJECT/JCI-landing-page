@@ -148,21 +148,21 @@ const Footer = () => {
         <div className='grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-2'>
 
           <a
-            href="mailto:contact@jcimada.org"
+            href="mailto:isevenstudio07@gmail.com"
             className='flex flex-row gap-2 items-center'
           >
             <IoMail size={20} />
-            contact@jcimada.org
+             isevenstudio07@gmail.com
           </a>
 
           <a
-            href="https://www.facebook.com/jcimadagascar"
+            href="https://www.facebook.com/share/1RopVUxVKk/"
             target="_blank"
             rel="noopener noreferrer"
             className='flex flex-row gap-2 items-center'
           >
             <RiFacebookCircleFill size={20} />
-            JCI Madagascar
+            iSeven Studio
           </a>
 
           <a
@@ -172,7 +172,7 @@ const Footer = () => {
             className='flex flex-row gap-2 items-center'
           >
             <RiInstagramFill size={20} />
-            JCI Instagram
+            iSeven Studio Instagram
           </a>
 
           <a
@@ -182,7 +182,7 @@ const Footer = () => {
             className='flex flex-row gap-2 items-center'
           >
             <IoLogoLinkedin size={20} />
-            JCI LinkedIn
+            iSeven Studio LinkedIn
           </a>
 
           <a
@@ -192,7 +192,7 @@ const Footer = () => {
             className='flex flex-row gap-2 items-center'
           >
             <SiLinktree size={20} />
-            JCI Linktree
+            iSeven Studio Linktree
           </a>
 
         </div>

@@ -42,7 +42,7 @@ const HistoriquePage = () => {
     fetchPresidents();
   }, [])
   return (
-    <div className='min-h-screen font-poppins flex flex-col items-start pt-25 pb-10 px-6 lg:pl-33 lg:pr-10 bg-jci-black gap-2'>
+    <div className='min-h-screen font-poppins flex flex-col items-start pt-25 pb-10 px-2 lg:pl-33 lg:pr-10 bg-jci-black gap-2'>
       <SubNav />
 
       <div className="flex flex-col gap-0 lg:ml-20 lg:mr-1">
@@ -50,23 +50,23 @@ const HistoriquePage = () => {
           <div className='group flex flex-col flex-1 md:flex-1 lg:flex-2 gap-0 lg:gap-5'>
             <div>
               <LabelTraitSimple Label="HISTORIQUE" H1Text="LA JCI MADAGASCAR" LabelColor="text-jci-teal" H1Color="text-jci-black" />
-              <p className='text-[11px] font-normal text-jci-black text-justify'>
+              <p className='text-[12px] font-normal text-jci-black text-justify'>
                 La JCI Madagascar est affiliée à la JCI depuis 1960 grâce à son Président Fondateur Charles Andriantsitohaina.
                 Après quelques années de sommeil, la renaissance a été initiée par le Président Christian RAZAFIMANDIMBY en 1987,
                 avec le soutien des Organisations Nationales sœurs de La Réunion, de Maurice, de France, de Suisse, et d'autres encore.
               </p>
-              <p className='text-[11px] font-normal text-jci-black text-justify'>
+              <p className='text-[12px] font-normal text-jci-black text-justify'>
                 Retrouvant les membres des premières années et intégrant de nouveaux, plusieurs projets pour booster l'économie ont été
                 mis en place : Opérez Vite et Bien (24 fascicules des secteurs porteurs pour informer les investisseurs), Passeport PME
                 (premier guide de création d'entreprise en 10.000 exemplaires), Trophée JCE (award qui récompensait les entreprises performantes).
               </p>
             </div>
-            <div className='flex flex-col md:flex-row gap-3 mt-10 items-center self-center justify-center lg:w-[60%]'>
-              <div className='flex flex-2 flex-row gap-3'>
-                <StatBlock Value="36" Label="ANS" TextColor2="text-jci-black" BGColor="bg-jci-teal" TextColor3="text-jci-white" />
-                <StatBlock Value="14" Label="OLs" TextColor2="text-jci-black" BGColor="bg-jci-teal" TextColor3="text-jci-white" />
+            <div className='flex flex-col md:flex-row gap-3 mt-10 items-center self-center justify-center lg:w-[60%] w-full'>
+              <div className='flex flex-2 flex-row gap-3 md:w-fit w-full'>
+                <StatBlock Value="36"  WFull={isMobile} Label="ANS" TextColor2="text-jci-black" BGColor="bg-jci-teal" TextColor3="text-jci-white" />
+                <StatBlock Value="14" WFull={isMobile}  Label="OLs" TextColor2="text-jci-black" BGColor="bg-jci-teal" TextColor3="text-jci-white" />
               </div>
-              <div className='flex flex-1 md:w-fit w-full bg-amber-200'>
+              <div className='flex flex-1 md:w-fit w-full'>
                 <StatBlock Value="384" WFull={isMobile} Label="Membres" TextColor2="text-jci-black" BGColor="bg-jci-teal" TextColor3="text-jci-white" />
               </div>
             </div>

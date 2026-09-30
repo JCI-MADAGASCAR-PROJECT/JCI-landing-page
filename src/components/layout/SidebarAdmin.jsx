@@ -169,7 +169,7 @@ const SidebarAdmin = () => {
                                     to="/admin/evenements/national"
                                     className={navActiveClass}
                                 >
-                                    Evenements
+                                    Événements
                                 </NavLink>
 
                                 <NavLink

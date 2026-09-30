@@ -29,6 +29,7 @@ const AcceuilPage = () => {
   const [showPSD, setShowPSD] = useState(false)
   const carouselRefMobile = useRef(null)
 
+  
   const scrollByItemMobile = (direction) => {
     const el = carouselRefMobile.current
     if (!el) return
@@ -95,7 +96,7 @@ const AcceuilPage = () => {
 
       {/* QUI SOMMES-NOUS / CADRES D'ACTION / VALEURS / PROGRAMMES */}
       <section
-        className='hidden md:flex px-6 sm:px-8 md:px-12 lg:pl-20 lg:pr-1 py-20 md:py-14 lg:py-20 bg-cover bg-center bg-no-repeat'
+        className='hidden md:flex px-2 sm:px-2 md:px-12 lg:pl-20 lg:pr-1 py-20 md:py-14 lg:py-20 bg-cover bg-center bg-no-repeat'
         style={{ backgroundImage: `url(${BG})` }}
         name="qui-sommes-nous"
       >
@@ -450,7 +451,7 @@ const AcceuilPage = () => {
 
       {/* MOBILE */}
       <section
-        className='relative md:hidden flex px-6 sm:px-8 pt-10 pb-0 md:py-14 bg-cover bg-center bg-no-repeat flex-col gap-1'
+        className='relative md:hidden flex px-3 sm:px-2 pt-10 pb-0 md:py-14 bg-cover bg-center bg-no-repeat flex-col gap-1'
         style={{ backgroundImage: `url(${BG})` }}
         name="qui-sommes-nous"
       >
@@ -678,7 +679,7 @@ const AcceuilPage = () => {
                   <img
                     src={PSD2026}
                     alt={t("home.president.imageAlt")}
-                    className="h-20 w-20 rounded-full object-cover"
+                    className="h-15 w-15 rounded-full object-cover"
                     loading="lazy"
                   />
 
@@ -694,12 +695,12 @@ const AcceuilPage = () => {
 
 
             {/* STATS */}
-            <div className='flex flex-col  gap-3 items-center self-center justify-center  mb-5'>
-              <div className='flex flex-2 flex-row gap-3 '>
-                <StatBlock Value="36" Label="ANS" TextColor="text-jci-blue"  />
-                <StatBlock Value="14" Label="OLs" TextColor="text-jci-blue"  />
+              <div className='flex flex-col md:flex-row gap-3 mb-5 items-center self-center justify-center lg:w-[60%] w-full'>
+              <div className='flex flex-2 flex-row gap-3 md:w-fit w-full'>
+                <StatBlock Value="36"  WFull={isMobile} Label="ANS" TextColor="text-jci-blue"  />
+                <StatBlock Value="14" WFull={isMobile}  Label="OLs" TextColor="text-jci-blue"  />
               </div>
-              <div className='flex flex-1 md:w-fit w-full '>
+              <div className='flex flex-1 md:w-fit w-full'>
                 <StatBlock Value="384" WFull={isMobile} Label="Membres" TextColor="text-jci-blue"  />
               </div>
             </div>
@@ -855,7 +856,7 @@ const AcceuilPage = () => {
 
 
       {/* PARTENAIRES */}
-      <section className='bg-jci-blue px-6 md:px-16 py-16 flex flex-col items-center gap-10'>
+      <section className='bg-jci-blue px-2 md:px-16 py-16 flex flex-col items-center gap-10'>
 
         <div className='flex flex-col items-center gap-0.5 text-center'>
 
@@ -896,8 +897,8 @@ const AcceuilPage = () => {
                 <img
                   src={MidiMadagascar}
                   alt={t("home.partners.images.midiMadagascar")}
-                  loading="lazy"
-                  decoding="async"
+                  
+                  
                   className="h-15 w-auto"
                 />
               </div>
@@ -906,8 +907,8 @@ const AcceuilPage = () => {
                 <img
                   src={OrangeMadagascar}
                   alt={t("home.partners.images.orangeMadagascar")}
-                  loading="lazy"
-                  decoding="async"
+                  
+                  
                   className="h-17 w-auto"
                 />
               </div>
@@ -916,8 +917,8 @@ const AcceuilPage = () => {
                 <img
                   src={GroupeKentia}
                   alt={t("home.partners.images.kentia")}
-                  loading="lazy"
-                  decoding="async"
+                  
+                  
                   className="h-20 w-auto"
                 />
               </div>
@@ -926,8 +927,8 @@ const AcceuilPage = () => {
                 <img
                   src={ISeven}
                   alt={t("home.partners.images.iseven")}
-                  loading="lazy"
-                  decoding="async"
+                  
+                  
                   className="h-15 w-auto"
                 />
               </div>
@@ -936,8 +937,7 @@ const AcceuilPage = () => {
                 <img
                   src={KoonSpace}
                   alt={t("home.partners.images.koonSpace")}
-                  loading="lazy"
-                  decoding="async"
+                    
                   className="h-16 w-auto"
                 />
               </div>
@@ -952,8 +952,7 @@ const AcceuilPage = () => {
                 <img
                   src={MidiMadagascar}
                   alt={t("home.partners.images.midiMadagascar")}
-                  loading="lazy"
-                  decoding="async"
+                   
                   className="h-15 w-auto"
                 />
               </div>
@@ -962,8 +961,7 @@ const AcceuilPage = () => {
                 <img
                   src={OrangeMadagascar}
                   alt={t("home.partners.images.orangeMadagascar")}
-                  loading="lazy"
-                  decoding="async"
+                   
                   className="h-17 w-auto"
                 />
               </div>
@@ -972,8 +970,7 @@ const AcceuilPage = () => {
                 <img
                   src={GroupeKentia}
                   alt={t("home.partners.images.kentia")}
-                  loading="lazy"
-                  decoding="async"
+                   
                   className="h-20 w-auto"
                 />
               </div>
@@ -982,8 +979,7 @@ const AcceuilPage = () => {
                 <img
                   src={ISeven}
                   alt={t("home.partners.images.iseven")}
-                  loading="lazy"
-                  decoding="async"
+                   
                   className="h-15 w-auto"
                 />
               </div>
@@ -992,13 +988,13 @@ const AcceuilPage = () => {
                 <img
                   src={KoonSpace}
                   alt={t("home.partners.images.koonSpace")}
-                  loading="lazy"
-                  decoding="async"
+                   
                   className="h-16 w-auto"
                 />
               </div>
 
             </div>
+            
 
           </div>
 
@@ -1008,7 +1004,7 @@ const AcceuilPage = () => {
 
 
       {/* ACTUALITÉS & ÉVÉNEMENTS */}
-      <section className='relative bg-jci-blue px-6 md:px-8 lg:px-1 py-10 lg:py-1 flex flex-col items-center md:gap-10 overflow-hidden lg:h-screen md:mt-0 -mt-5'>
+      <section className='relative bg-jci-blue px-2 md:px-8 lg:px-1 py-10 lg:py-1 flex flex-col items-center md:gap-10 overflow-hidden lg:h-screen md:mt-0 -mt-5'>
 
         <div className='flex flex-col items-start justify-between py-7 px-6 lg:pl-7 lg:pr-0 gap-4 lg:gap-1 text-left lg:text-center bg-jci-white h-auto lg:h-[570px] w-full lg:w-[1600px] lg:-mr-200'>
 

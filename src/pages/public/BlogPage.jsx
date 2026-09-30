@@ -136,7 +136,7 @@ const BlogPage = () => {
           </div>
 
             {/* En-tête : décalé pour rester dans la zone blanche */}
-            <div className='flex flex-col items-start lg:pl-[20%] mt-10 lg:mt-0'>
+            <div className='flex flex-col items-start lg:pl-[20%] mt-10 lg:mt-0 pl-0'>
 
               <div className='flex flex-row items-center -mb-1'>
                 <p className='text-jci-blue text-[8px] font-bold font-poppins'>
@@ -155,7 +155,7 @@ const BlogPage = () => {
               </p>
 
               {/* FILTRES */}
-              <div className='flex flex-row gap-3 mt-3'>
+              <div className='flex flex-row gap-3 mt-3  w-full items-center justify-center md:justify-normal'>
 
                 {/* Filtre date */}
                 <select

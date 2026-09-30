@@ -1,7 +1,7 @@
 import LabelTraitSimple from './LabelTraitSimple';
 
 
-const PartnerBlock = ({ Name, Content, Reverse, Logo, ImageFond, BGColor, LabelColor, H1Color, ContentColor }) => {
+const PartnerBlock = ({ Name, Content, Reverse, Logo, ImageFond, BGColor, LabelColor, H1Color, ContentColor, Title }) => {
   console.log(Reverse)
   return (
     <div className={`flex flex-col items-start justify-start  py-15 overflow-hidden w-full max-w-full pb-10 px-6 lg:pl-32  lg:px-35 ${BGColor ? BGColor : ""}`}>
@@ -10,8 +10,11 @@ const PartnerBlock = ({ Name, Content, Reverse, Logo, ImageFond, BGColor, LabelC
           {!Reverse ?
             <div className='group flex flex-col lg:flex-row justify-between items-start w-full  hover:scale-101  transition-all duration-300 md:gap-10 gap-10 lg:gap-15'>
               <div className=' flex flex-col flex-2 min-w-0'>
-                <LabelTraitSimple Label="Partenaire Type" H1Text={Name} LabelColor={LabelColor} H1Color={H1Color}/>
-                <p className={`lg:text-[12px] md:text-[11px] text-[11px] text-justify ${ContentColor ? ContentColor : 'text-jci-black'}`}>
+                <LabelTraitSimple Label="Partenaire National" H1Text={Name} LabelColor={LabelColor} H1Color={H1Color}/>
+                <q className={`lg:text-[14px] md:text-[13px] text-[13px] font-bold mt-2 ${H1Color ? H1Color : 'text-jci-black'}`}>
+                  {Title}
+                </q>
+                <p className={`lg:text-[12px] md:text-[12px] text-[12px] text-justify ${ContentColor ? ContentColor : 'text-jci-black'}`}>
                   {Content}
                 </p>
               </div>
@@ -39,8 +42,11 @@ const PartnerBlock = ({ Name, Content, Reverse, Logo, ImageFond, BGColor, LabelC
                 </div>
               </div>
               <div className=' flex flex-col flex-2 min-w-0'>
-                <LabelTraitSimple Label="Partenaire Type" H1Text={Name} LabelColor={LabelColor} H1Color={H1Color}/>
-                <p className={`lg:text-[12px] md:text-[11px] text-[11px] text-justify  ${ContentColor ? ContentColor : 'text-jci-black'}`}>
+                <LabelTraitSimple Label="Partenaire National" H1Text={Name} LabelColor={LabelColor} H1Color={H1Color}/>
+                <q className={`lg:text-[14px] md:text-[13px] text-[13px] font-bold mt-2 ${H1Color ? H1Color : 'text-jci-black'}`}>
+                  {Title}
+                </q>
+                <p className={`lg:text-[12px] md:text-[12px] text-[12px] text-justify  ${ContentColor ? ContentColor : 'text-jci-black'}`}>
                   {Content}
                 </p>
               </div>

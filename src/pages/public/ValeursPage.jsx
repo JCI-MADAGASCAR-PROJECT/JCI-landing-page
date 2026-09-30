@@ -27,7 +27,7 @@ const ValeursPage = () => {
     }, [])
 
   return (
-    <div className='min-h-screen font-poppins flex flex-col items-start pt-25 pb-10 px-6 lg:pl-33 lg:pr-10 bg-jci-black gap-2'>
+    <div className='min-h-screen font-poppins flex flex-col items-start pt-25 pb-10 px-2 lg:pl-33 lg:pr-10 bg-jci-black gap-2'>
       <SubNav />
       {!isMobile && (
         <div className="flex flex-col gap-0 lg:ml-20 lg:mr-1">
@@ -182,28 +182,28 @@ const ValeursPage = () => {
             </div>
             <div className='group flex flex-col gap-2 items-start text-start '>
               <LabelTraitSimple Label="NOTRE" H1Text="MISSION" />
-              <p className='lg:text-[12px] md:text-[12px] text-[10px] font-normal font-poppins text-jci-black '>
+              <p className='lg:text-[12px] md:text-[12px] text-[12px] font-normal font-poppins text-jci-black '>
                   Offrir aux jeunes des opportunités de développement de leadership en leur donnant la capacité de créer des changements positifs.
               </p>
             </div>
             <div className='group flex flex-col gap-2 items-start text-start '>
               <LabelTraitSimple Label="NOTRE" H1Text="VISION" />
-              <p className='lg:text-[12px] md:text-[12px] text-[10px] font-normal font-poppins text-jci-black text-justify'>
+              <p className='lg:text-[12px] md:text-[12px] text-[12px] font-normal font-poppins text-jci-black text-justify'>
                 Être le principal réseau mondial de jeunes leaders.
               </p>
             </div>
             <LabelTraitSimple Label="Le début d'une grande histoire" H1Text="LE CREDO" />
-            <p className='lg:text-[12px] md:text-[12px] text-[10px] font-normal font-poppins text-jci-black text-justify'>
+            <p className='lg:text-[12px] md:text-[12px] text-[12px] font-normal font-poppins text-jci-black text-justify'>
               C'est en 1946 à Milwaukee, lors de la Convention Nationale des Jaycees des États-Unis qu'est née l'idée du Credo de la JCI.
             </p>
-            <p className='lg:text-[12px] md:text-[12px] text-[10px] font-normal font-poppins text-jci-black text-justify'>
+            <p className='lg:text-[12px] md:text-[12px] text-[12px] font-normal font-poppins text-jci-black text-justify'>
               C.William Brownfield, ancien Président des Jaycees de l’Ohio et vice-président national des Jaycees des États-Unis réalisa lors de cette 
               convention que l’organisation n’avait pas de Credo. Il fut inspiré par le dévouement des membres de la Jeune Chambre «engagés à 
               servir l’humanité de mille façons différentes, au niveau même de la base où la liberté vit ou s’éteint» 
             </p>
             <div className="flex flex-col"> 
               <H2>Nous croyons que</H2>
-              <p className='lg:text-[12px] md:text-[12px] text-[10px] font-normal font-poppins text-jci-black text-justify'>
+              <p className='lg:text-[12px] md:text-[12px] text-[12px] font-normal font-poppins text-jci-black text-justify'>
                 Chacun doit croire à un idéal, à un principe ou à une philosophie particulière. Croire, signifie mettre en application ce que l’on croit être 
                 vrai         
               </p>

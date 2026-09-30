@@ -18,7 +18,6 @@ const BureauNationalPage = () => {
       behavior: "smooth",
       });
   };
-  console.log("PAGE RENDER", performance.now());  
   useEffect(() => {
     const fetchBureauNational = async () => {
       try {
@@ -33,11 +32,11 @@ const BureauNationalPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen w-full max-w-full overflow-x-clip font-poppins flex flex-col items-start pt-25 pb-10 px-6 lg:pl-33 lg:pr-10 bg-jci-black gap-2">
+    <div className="min-h-screen w-full max-w-full overflow-x-clip font-poppins flex flex-col items-start pt-25 pb-10 px-2 lg:pl-33 lg:pr-10 bg-jci-black gap-2">
 
       <SubNav />
 
-      <div className="group flex flex-col gap-0 w-[94%] min-w-0 lg:ml-20 lg:mr-1">
+      <div className="group flex flex-col gap-0 w-full md:w-[94%] min-w-0 lg:ml-20 lg:mr-1">
 
         {/* HEADER */}
         <div className="flex flex-col bg-jci-white gap-2 rounded-t-xl px-6 sm:px-10 pt-5 lg:pr-20">
@@ -46,7 +45,7 @@ const BureauNationalPage = () => {
             H1Text="BUREAU NATIONAL 2026"
           />
 
-          <p className="text-[12px] font-normal font-poppins text-jci-black text-justify">
+          <p className="text-[11px] font-normal font-poppins text-jci-black text-justify">
             Découvrez les membres du Bureau National 2026 de la JCI Madagascar.
             Une équipe engagée de jeunes leaders dédiée à la conduite des
             projets stratégiques, au renforcement des compétences et à la

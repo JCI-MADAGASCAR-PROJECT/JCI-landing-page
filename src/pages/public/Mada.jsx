@@ -516,32 +516,38 @@ const Mada = ({ Width, Height }) => {
                     LABELS DES OL
                 ========================== */}
 
-                {/* =========================
-    LOGOS DES OL
-========================== */}
+                {/* =========================    LOGOS DES OL   ========================== */}
 
             {labelsToShow.length > 0 && (
                 <g className="ol-label-container">
+                    
                     {/* Couche 1 : fonds */}
-                    <g opacity="0.6">
-                        {labelsToShow.map(({ ol, position }, i) => (
+                    <g>
+                        {labelsToShow.map(({ ol, position }) => (
                             <g
                                 key={ol.id}
                                 transform={`translate(${position.x} ${position.y})`}
                             >
-                                <g
-                                    className="ol-label-inner"
-                                    
-                                >
-                                    <rect
-                                        x="-38" y="-38" width="150" height="80" rx="12"
-                                        fill="#0C091F"
+                                <g className="ol-label-inner">
+                                    <foreignObject x="-38" y="-38" width="150" height="80" style={{ overflow: "visible" }}>
+                                    <div
+                                        xmlns="http://www.w3.org/1999/xhtml"
+                                        style={{
+                                            width: "100%",
+                                            height: "100%",
+                                            boxSizing: "border-box",
+                                            borderRadius: 12,
+                                            border: "1px solid rgba(75,85,99,0.2)",
+                                            background: "rgba(12,9,31,0.4)",
+                                            backdropFilter: "blur(8px)",
+                                            WebkitBackdropFilter: "blur(8px)",
+                                        }}
                                     />
+                                </foreignObject>
                                 </g>
                             </g>
                         ))}
                     </g>
-
                     {/* Couche 2 : logos */}
                     {labelsToShow.map(({ ol, position }) => (
                         <g
