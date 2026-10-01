@@ -4,11 +4,11 @@ import PublicLayout from "../layouts/PublicLayout";
 import RoleRoute from "./RoleRoute";
 import AdminLayout from "../layouts/AdminLayout";
 import Ecommercelayout from "../layouts/Ecommercelayout";
-import AnimationLoading from '../images/LoadingLogoJCIM.gif';
+import Loader from '@/components/ui/Loader';
 
 const PageLoader = () => (
   <div className='bg-jci-blue flex flex-col justify-center items-center h-screen text-[20px] text-jci-white gap-3 font-poppins'>
-    <img src={AnimationLoading} alt="Loading..." className='h-50 w-auto' />
+    <Loader />
   </div>
 );
 
@@ -59,7 +59,7 @@ const UnauthorizedPage = () => (
 const AppRoutes = () => {
   
   return (
-  <Suspense fallback={null}>
+  <Suspense fallback={<PageLoader />}>
     <Routes>
         {/*when no user is connected */}
         <Route element={<Ecommercelayout/>}>  

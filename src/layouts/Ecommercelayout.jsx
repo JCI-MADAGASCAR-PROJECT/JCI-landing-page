@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Navigate ,Outlet} from 'react-router'
 import Footer from '../components/layout/Footer'
 import { UserContext } from '../context/UserContext';
-import AnimationLoading from '../images/LoadingLogoJCIM.gif';
+import Loader from '@/components/ui/Loader';
 import ButtonFull from '@/components/ui/ButtonFull';
 import {  House } from 'lucide-react';
 import { Link } from 'react-router'
@@ -25,8 +25,7 @@ const Ecommercelayout = () => {
     if (loading) {
       return (
           <div className='bg-jci-blue flex flex-col justify-center items-center h-screen text-[20px] text-jci-white gap-3 font-poppins'>
-            <img src={AnimationLoading} alt="Loading..." className='h-50 w-auto' />
-            <p>Loading...</p>
+              <Loader />
           </div>
         )
     }

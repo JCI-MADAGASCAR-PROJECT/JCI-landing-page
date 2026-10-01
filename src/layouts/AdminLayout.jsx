@@ -3,14 +3,14 @@ import React, { useContext } from 'react'
 import { Outlet, Navigate } from 'react-router'
 import { UserContext } from '../context/UserContext'
 import SidebarAdmin from './../components/layout/SidebarAdmin';
-import AnimationLoading from '../images/LoadingLogoJCIM.gif';
+import Loader from '@/components/ui/Loader';
 
 const AdminLayout = () => {
       const {user, loading} = useContext(UserContext);
       if (loading) {
       return (
         <div className='bg-jci-blue flex flex-col justify-center items-center h-screen text-[20px] text-jci-white gap-3 font-poppins'>
-          <img src={AnimationLoading} alt="Loading..." className='h-50 w-auto' />
+          <Loader />
         </div>
       )
     }

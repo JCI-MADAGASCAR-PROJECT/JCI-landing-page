@@ -138,7 +138,7 @@ const Navbar = () => {
     </div>
 
     {/* Navbar mobile : barre du haut avec logo + bouton menu, visible en dessous de lg */}
-    <div className='lg:hidden fixed top-4 left-4 right-4 z-50 flex items-center justify-between rounded-xl px-4 py-2 border border-gray-600/20 bg-jci-black/40 backdrop-blur'>
+    <div className={`lg:hidden fixed top-4 left-4 right-4 z-50 flex items-center justify-between rounded-xl px-4 py-2 border  ${isOpen ? "bg-transparent border-transparent" : "bg-jci-black/40 border-gray-600/20 backdrop-blur"}  `}>
        <div className="flex flex-row gap-1">
             <img src={JCILogo} alt="JCI Madagascar Logo" className='h-8 w-auto'/>
             <img src={BuildLegacyLogo} alt="Build Legacy Together Logo" className='h-8 w-auto ml-2'/>
@@ -150,9 +150,15 @@ const Navbar = () => {
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
-                className='text-jci-white'
+                className="text-jci-white transition-transform duration-200 active:scale-90"
             >
-                {isOpen ? <X size={24} /> : <Menu size={24} />}
+                <span
+                    className={`block transition-transform duration-300 ${
+                        isOpen ? "rotate-90 scale-110" : "rotate-0 scale-100"
+                    }`}
+                >
+                    {isOpen ? <X size={24} /> : <Menu size={24} />}
+                </span>
             </button>
         </div>
         

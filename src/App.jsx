@@ -4,12 +4,14 @@ import { useState, useEffect } from 'react';
 import { authAPI } from './services/api';
 import { Toaster } from "sonner";
 import ScrollToTop from './ScrollToTop';
+import Loader from './components/ui/Loader';
 
 import AppRoutes from './routes/index';
 
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  
 
 useEffect(()=>{
   const fetchUser = async () =>{
@@ -28,7 +30,11 @@ useEffect(()=>{
   fetchUser();
 
 },[])
-
+if (loading) return (
+<div className='bg-jci-blue flex flex-col justify-center items-center h-screen text-[20px] text-jci-white gap-3 font-poppins'>
+  <Loader />
+</div>
+)
 
   return (
     <UserContext value={{user, setUser, loading}}>

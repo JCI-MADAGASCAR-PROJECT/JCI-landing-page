@@ -254,7 +254,7 @@ useEffect(() => {
                 </Reveal>
               </div>
               <div className='flex flex-col gap-1 items-start lg:ml-38 lg:mt-0 mt-20 pr-10'>
-                <Reveal from="right" duration={1000} threshold={0.05}>
+                <Reveal from="right" duration={1000} threshold={0.05} className='w-full'>
                 <h1 className='md:text-[16px] text-[14px] font-poppins font-normal text-jci-black flex flex-row items-center justify-between w-full'>
                   {zonePsdDetails?.name}
                   <div className="md:hidden flex"> <a href={`tel:${zonePsdDetails?.contact}`}
