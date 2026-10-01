@@ -15,7 +15,10 @@ const UserManager = () => {
   const [organisationLocales, setOrganisationLocales] = useState([]);
   const [isPending, setIsPending] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const userForm = useForm();
+  const userForm = useForm({
+        mode: 'onChange',
+        reValidateMode: 'onChange',
+      });
   const superAdmin = user?.role === 'SUPER_ADMIN';
   const selectedRole = userForm.watch('role');
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
