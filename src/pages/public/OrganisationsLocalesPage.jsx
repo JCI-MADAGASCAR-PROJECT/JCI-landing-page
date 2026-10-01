@@ -15,6 +15,7 @@ import JCINosyBe from "../../images/JCI/JCI Nosy Be/JCI Nosy Be color logo.webp"
 import JCISambava from "../../images/JCI/JCI Sambava/JCI Sambava background marine blue logo.webp"
 import JCIToamasina from "../../images/JCI/JCI Toamasina/JCI Toamasina background blue logo.webp"
 import JCIToliara from "../../images/JCI/JCI Toliara/JCI Toliara color logo.webp"
+import Reveal from "../../components/ui/Reveal"
 
 const listeOl1 =[
   { name: "JCI Ambilobe", logo: JCIAmbilobe },
@@ -44,30 +45,38 @@ const OrganisationsLocalesPage = () => {
         <div className="flex lg:flex-row flex-col md:justify-center md:items-center lg:items-start bg-jci-white gap-10 rounded-xl  md:pl-10 pt-5  md:pr-10 lg:pr-0 overflow-hidden">
           <div className='flex flex-1 md:flex-2 flex-col gap-1 items-start text-start max-w-full p-3'>
             
+            <Reveal from="left" duration={1000} threshold={0.05}>
             <LabelTraitSimple Label="Présentation" H1Text="LES 14 ORGANISATIONS LOCALES" />
-            <p className='lg:text-[12px] md:text-[12px] text-[12px] font-normal font-poppins text-jci-black text-justify'>
+            </Reveal>
+            <Reveal from="left" duration={1000} threshold={0.05}>
+              <p className='lg:text-[12px] md:text-[12px] text-[12px] font-normal font-poppins text-jci-black text-justify'>
               Un réseau national, un impact local. Découvrez les 14 Organisations Locales de JCI Madagascar à travers nos zones Nord, Centre et 
               Sud, et rejoignez le mouvement des jeunes leaders engagés sur tout l'île. 
-            </p>
-            <div className='flex flex-col gap-0 mt-10 items-center justify-center w-full'>
-              <div className='flex flex-row'>
+              </p>
+            </Reveal>
+            
+            <Reveal from="left" duration={1000} threshold={0.05}>
+            <div className='flex flex-wrap gap-0 mt-10 items-center justify-center w-full'>
+
                 {listeOl1.map((ol, index) => (
                   <div key={index} className="flex flex-col items-center">
-                    <img src={ol.logo} alt={ol.name} className="w-30 aspect-[50/50] object-cover"/>
+                    <img src={ol.logo} alt={ol.name} className="md:w-25 w-20 aspect-[50/50] object-cover"/>
                   </div>
                 ))}
-              </div>
-              <div className='flex flex-row'>
+
                 {listeOl2.map((ol, index) => (
                   <div key={index} className="flex flex-col items-center">
-                    <img src={ol.logo} alt={ol.name} className="w-30 object-cover aspect-[50/50]"/>
+                    <img src={ol.logo} alt={ol.name} className="md:w-25 w-20 object-cover aspect-[50/50]"/>
                   </div>
                 ))}
-              </div>
+
             </div>
+            </Reveal>
           </div>
           <div className='flex flex-1 rounded-b-xl '>
+            <Reveal from="right" duration={1000} threshold={0.05}>
             <img src={Mada} alt="Madagascar Map" className="h-full w-auto object-cover rounded-none lg:rounded-b-xl "/>
+            </Reveal>
           </div>
         </div>
       </div>

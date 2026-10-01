@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { eventAPI, eventFileAPI, eventImageAPI } from '../../services/api';
 import { IoClose, IoAdd, IoDocumentText ,IoImages } from "react-icons/io5";
 import LabelTraitSimple from '@/components/ui/LabelTraitSimple'
+import Reveal from "../../components/ui/Reveal"
+
 
 const EventsDetails = () => {
   const { eventId } = useParams();
@@ -70,25 +72,36 @@ const EventsDetails = () => {
     <div className='flex flex-col w-full min-h-screen bg-jci-black'>
       
       {/* Actualités & évènements */}
-      <section className='relative bg-jci-blue px-2 md:px-8 lg:px-1 py-20 lg:py-0 flex flex-col items-center gap-10 lg:pl-70  overflow-hidden '>
+      <section className='relative bg-jci-blue px-2 md:px-8 lg:px-1 pt-20 lg:py-0 flex flex-col items-center gap-10 lg:pl-70  overflow-hidden '>
         {/*Fonds blanc */}
         <div className='flex flex-col items-start py-3 md:py-15 px-2 lg:px-7 gap-4 lg:gap-1 text-left lg:text-center bg-jci-white  w-full h-auto min-h-screen mr-0 md:-mr-2'>          
-          <div className="flex flex-col items-start">
-            <LabelTraitSimple Label="Actualités JCI" H1Text="NE MANQUEZ RIEN" LabelColor="text-jci-blue" H1Color="text-jci-black" H1TextSize="text-2xl" />
-            <p className='text-[12px] mt-0 font-poppins font-medium  text-jci-black/80'>Retrouvez les temps forts de la JCI et les prochains rendez-vous à ne pas manquer.</p>
-          </div>
+          <Reveal from="left" duration={1000} threshold={0.05}>
+            <div className="flex flex-col items-start">
+              <LabelTraitSimple Label="Actualités JCI" H1Text="NE MANQUEZ RIEN" LabelColor="text-jci-blue" H1Color="text-jci-black" H1TextSize="lg:text-2xl md:text-[16px] text-[14px]" />
+              <p className='text-[12px] mt-0 font-poppins font-medium  text-jci-black/80'>Retrouvez les temps forts de la JCI et les prochains rendez-vous à ne pas manquer.</p>
+            </div>
+          </Reveal>
           <div
-            className="group flex flex-col gap-2 items-start w-full md:h-[50vh] h-[20vh]  p-5 bg-cover bg-center uppercase "
+            className="group flex flex-col gap-2 items-start w-full md:h-[50vh] h-[20vh]  p-5 bg-cover bg-center uppercase overflow-hidden"
             style={{
                 backgroundImage: `linear-gradient(to left, rgba(0, 0, 0, 0),rgba(0, 0, 0, 0),rgba(0, 0, 0, 0), #111111), url(${`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${eventDetails?.imgUrl}`})`
             }}
-          >
-            <p className='  p-1 bg-jci-yellow w-fit text-jci-black font-bold text-[15px] '>{eventDetails?.type}</p>
-            <p className=' bg-jci-blue text-white px-1.5 py-1 md:px-2 font-roboto font-bold flex flex-row justify-center items-center gap-1'>
-                <span className='text-[20px] font-bold'>{day}</span> {month} {year}
-            </p>
-            <h2 className=' text-2xl  font-poppins font-semibold text-white '>{eventDetails?.title} </h2>
+          > 
+            <Reveal from="left" duration={1000} threshold={0.05}>
+              <p className='  p-1 bg-jci-yellow w-fit text-jci-black font-bold text-[10px] md:text-[12px] lg:text-[15px] '>{eventDetails?.type}</p>
+            </Reveal>
+            <Reveal from="left" duration={1000} threshold={0.05}>
+              <p className=' bg-jci-blue text-white px-1.5 py-1 md:px-2 font-roboto font-bold flex flex-row justify-center items-center gap-1 text-[10px] md:text-[12px] lg:text-[15px] '>
+                <span className='text-[10px] md:text-[12px] lg:text-[15px]  font-bold'>{day}</span> {month} {year}
+              </p>
+            </Reveal>
+            <Reveal from="left" duration={1000} threshold={0.05}>
+              <h2 className=' text-[10px] md:text-[12px] lg:text-2xl   font-poppins font-semibold text-white '>{eventDetails?.title} </h2>
+            </Reveal>
+
+
           </div>
+          <Reveal from="left" duration={1000} threshold={0.05}>
           <div className='flex flex-col gap-2 items-start lg:mt-10 mt-2 w-full' >
               <h1 className='text-jci-black font-bold font-poppins lg:text-[20px] md:text-[18px] text-[16px]'>Ce qu'il faut savoir</h1>
               <div className='flex flex-row gap-4 text-justify'>
@@ -96,6 +109,8 @@ const EventsDetails = () => {
                 <p className='text-jci-black/80 text-[12px] lg:text-[14px]  leading-relaxed font-poppins text-left '>{eventDetails?.content}</p>
               </div>
           </div>
+          </Reveal>
+          <Reveal from="left" duration={1000} threshold={0.05}>
           <div className="flex flex-col gap-3 items-start lg:mt-10 mt-6 w-full">
             <h1 className='text-jci-black font-bold font-poppins lg:text-[20px] md:text-[18px] text-[16px]'>Ressources de l'événement</h1>
 
@@ -126,7 +141,9 @@ const EventsDetails = () => {
               <p className="text-[13px] text-jci-black/50 italic">Aucun fichier disponible pour cet événement.</p>
             )}
           </div>
-          <div className="flex flex-col gap-3 items-start lg:mt-10 mt-6 w-full">
+          </Reveal>
+          <Reveal from="left" duration={1000} threshold={0.05}>
+          <div className="flex flex-col gap-3 items-start lg:mt-10 mt-6 w-full ">
             <div className="flex flex-row items-baseline gap-2">
               <h1 className='text-jci-black font-bold font-poppins lg:text-[20px] md:text-[18px] text-[16px]'>Retour en images</h1>
               {eventImages && eventImages.length > 0 && (
@@ -200,6 +217,7 @@ const EventsDetails = () => {
               </div>
             )}
           </div>
+          </Reveal>
         </div>
         <div className='relative lg:absolute lg:top-35 lg:left-60 flex flex-col lg:flex-row w-full lg:w-auto lg:px-0  '>
           <div name="text" className='hidden lg:block relative h-[400px] w-[60px] -ml-10 mr-5'>

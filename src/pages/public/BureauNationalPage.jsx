@@ -3,7 +3,8 @@ import LabelTraitSimple from "../../components/ui/LabelTraitSimple";
 import BNCard from "../../components/ui/BNCard";
 import { useState, useEffect, useRef } from "react";
 import { bnAPI } from "../../services/api.js";
-import ScrollStack,{ScrollStackItem } from '@/hooks/ScrollStack'
+import Reveal from "../../components/ui/Reveal"
+
 
 const BureauNationalPage = () => {
   const [bnList, setBnList] = useState([]);
@@ -39,12 +40,15 @@ const BureauNationalPage = () => {
       <div className="group flex flex-col gap-0 w-full md:w-[94%] min-w-0 lg:ml-20 lg:mr-1">
 
         {/* HEADER */}
+        
         <div className="flex flex-col bg-jci-white gap-2 rounded-t-xl px-6 sm:px-10 pt-5 lg:pr-20">
+          <Reveal from="left" duration={1000} threshold={0.05}>
           <LabelTraitSimple
             Label="LES MEMBRES DU"
             H1Text="BUREAU NATIONAL 2026"
           />
-
+          </Reveal>
+          <Reveal from="left" duration={1000} threshold={0.05}>
           <p className="text-[11px] font-normal font-poppins text-jci-black text-justify">
             Découvrez les membres du Bureau National 2026 de la JCI Madagascar.
             Une équipe engagée de jeunes leaders dédiée à la conduite des
@@ -52,6 +56,7 @@ const BureauNationalPage = () => {
             création d'impacts positifs à travers toutes les organisations
             locales de la Grande Île.
           </p>
+          </Reveal>
         </div>
 
         {/* MEMBRES */}
@@ -90,12 +95,14 @@ const BureauNationalPage = () => {
                       key={member.id}
                       className="shrink-0 w-full min-w-0 snap-center snap-always px-6"
                     >
+                      <Reveal from="fade" duration={1000} threshold={0.05}>
                       <BNCard
                         image={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${member.imgUrl}`}
                         firstName={member.firstName}
                         lastName={member.name}
                         role={member.title}
                       />
+                      </Reveal>
                     </div>
                   ))
                 ) : (
@@ -218,6 +225,7 @@ const BureauNationalPage = () => {
 
             {bnList.length > 0 ? (
               bnList.map((member) => (
+                <Reveal from="zoom" duration={1000} threshold={0.05}>
                 <BNCard
                   key={member.id}
                   image={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${member.imgUrl}`}
@@ -225,6 +233,7 @@ const BureauNationalPage = () => {
                   lastName={member.name}
                   role={member.title}
                 />
+                </Reveal>
               ))
             ) : (
               <div className="w-full p-3 pb-2 border border-gray-400/50 rounded-xl flex flex-col justify-between bg-gray-200 animate-pulse">

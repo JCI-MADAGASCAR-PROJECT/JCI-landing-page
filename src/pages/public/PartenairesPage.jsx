@@ -1,6 +1,7 @@
 import H1 from "../../components/ui/H1"
-import LabelTrait from "../../components/ui/LabelTrait"
 import PartnerBlock from "../../components/ui/PartnerBlock"
+import Reveal from "../../components/ui/Reveal"
+
 
 import MidiMadagascarLogo from "../../images/LOGO-OTHER/logo_midi_madagasikara.webp"
 import MidiMadagascarFond from "../../images/Partenariat/MidiMadagascar.webp"
@@ -19,6 +20,7 @@ import Logo2424 from "../../images/LOGO-OTHER/2424Logo.webp"
 import LogoVitafoam from "../../images/LOGO-OTHER/LogoVitafoam.webp"
 
 import LogoMasae from "../../images/LOGO-OTHER/logo-sae.svg"
+
 
 // Données de démonstration en attendant le contenu officiel des partenaires
 const partners = [
@@ -157,11 +159,13 @@ Pour nos membres, cette alliance ouvre des opportunités de visibilité, de form
 const PartenairesPage = () => {
   return (
     <div className='min-h-screen font-poppins flex flex-col items-center pt-5  bg-jci-white gap-0'>
-      <div className="w-fit -ml-120 mt-10 border-l-6 pl-3 border-jci-yellow hover:scale-105 transition-all duration-300">
-        <H1 TextSize="text-4xl" TextColor="text-jci-blue">
-          Nos Partenaires Nationaux
-        </H1>
-      </div>
+      <Reveal from="left" duration={1000} threshold={0.05}>
+        <div className="w-fit md:-ml-120 ml-7 mt-15 md:mt-10 border-l-6 pl-3 border-jci-yellow hover:scale-105 transition-all duration-300">
+          <H1 TextSize="text-4xl" TextColor="text-jci-blue">
+            Nos Partenaires Nationaux
+          </H1>
+        </div>
+      </Reveal>
       <div className='flex flex-col w-full'>
         {partners.map((partner, index) => (
           <PartnerBlock key={partner.Name} 

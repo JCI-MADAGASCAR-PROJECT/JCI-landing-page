@@ -6,7 +6,7 @@ import Timeline from "../../images/timeline.svg"
 import LabelTraitSimple from './../../components/ui/LabelTraitSimple';
 import { useEffect, useState } from "react"
 import { pastPresidentAPI } from "../../services/api.js";
-
+import Reveal from "../../components/ui/Reveal"
 
 const HistoriquePage = () => {
   const [presidentsList, setPresidentsList] = useState([])
@@ -46,8 +46,9 @@ const HistoriquePage = () => {
       <SubNav />
 
       <div className="flex flex-col gap-0 lg:ml-20 lg:mr-1">
-        <div className='flex flex-col lg:flex-row gap-20 items-start text-start max-w-full  bg-jci-white  rounded-t-xl lg:px-10 p-5 lg:pr-20'>
+        <div className='flex flex-col lg:flex-row gap-20 items-start text-start max-w-full  bg-jci-white  rounded-t-xl lg:px-10 p-5 lg:pr-20 overflow-hidden'>
           <div className='group flex flex-col flex-1 md:flex-1 lg:flex-2 gap-0 lg:gap-5'>
+            <Reveal from="left" duration={1000} threshold={0.05}>
             <div>
               <LabelTraitSimple Label="HISTORIQUE" H1Text="LA JCI MADAGASCAR" LabelColor="text-jci-teal" H1Color="text-jci-black" />
               <p className='text-[12px] font-normal text-jci-black text-justify'>
@@ -61,22 +62,36 @@ const HistoriquePage = () => {
                 (premier guide de création d'entreprise en 10.000 exemplaires), Trophée JCE (award qui récompensait les entreprises performantes).
               </p>
             </div>
+            </Reveal>
+            
             <div className='flex flex-col md:flex-row gap-3 mt-10 items-center self-center justify-center lg:w-[60%] w-full'>
               <div className='flex flex-2 flex-row gap-3 md:w-fit w-full'>
-                <StatBlock Value="36"  WFull={isMobile} Label="ANS" TextColor2="text-jci-black" BGColor="bg-jci-teal" TextColor3="text-jci-white" />
-                <StatBlock Value="14" WFull={isMobile}  Label="OLs" TextColor2="text-jci-black" BGColor="bg-jci-teal" TextColor3="text-jci-white" />
+                <Reveal from="fade" duration={1000} threshold={0.05} className="w-full">
+                  <StatBlock Value="36"  WFull={isMobile} Label="ANS" TextColor2="text-jci-black" BGColor="bg-jci-teal" TextColor3="text-jci-white" />
+                </Reveal>
+                <Reveal from="fade" duration={1000} threshold={0.05} className="w-full">
+                  <StatBlock Value="14" WFull={isMobile}  Label="OLs" TextColor2="text-jci-black" BGColor="bg-jci-teal" TextColor3="text-jci-white" />
+                </Reveal>
               </div>
               <div className='flex flex-1 md:w-fit w-full'>
-                <StatBlock Value="384" WFull={isMobile} Label="Membres" TextColor2="text-jci-black" BGColor="bg-jci-teal" TextColor3="text-jci-white" />
+                <Reveal from="fade" duration={1000} threshold={0.05} className="w-full">
+                  <StatBlock Value="384" WFull={isMobile} Label="Membres" TextColor2="text-jci-black" BGColor="bg-jci-teal" TextColor3="text-jci-white" />
+                </Reveal>
               </div>
             </div>
             <div className='w-full mt-5 lg:0 items-center  flex justify-center'>
-              <img src={Timeline} alt="" className="h-auto w-[90%] " />
+              <Reveal from="fade" duration={1000} threshold={0.05}>
+                <img src={Timeline} alt="" className="h-auto w-[90%] " />
+              </Reveal>
             </div>
           </div>
           <div className='flex flex-1 flex-col gap-1 w-full'>
-            <img src={HistoriqueImg1} alt="" className="h-auto w-full rounded object-cover hover:scale-105  transition-all duration-300" loading="lazy" />
-            <img src={HistoriqueImg2} alt="" className="h-auto w-full rounded object-cover hover:scale-105  transition-all duration-300" loading="lazy" />
+            <Reveal from="right" duration={1000} threshold={0.05}>
+              <img src={HistoriqueImg1} alt="" className="h-auto w-full rounded object-cover hover:scale-105  transition-all duration-300" loading="lazy" />
+            </Reveal>
+            <Reveal from="right" duration={1000} threshold={0.05}>
+              <img src={HistoriqueImg2} alt="" className="h-auto w-full rounded object-cover hover:scale-105  transition-all duration-300" loading="lazy" />
+            </Reveal>
           </div>
         </div>
 
@@ -86,6 +101,7 @@ const HistoriquePage = () => {
           </div>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1 items-start'>
             {presidentsList?.length > 0 ? presidentsList?.map((president) => (
+              <Reveal from="fade" duration={1000} threshold={0.05}>
               <div key={president?.id} className='relative flex flex-col gap-1 p-2 border border-[#F9F9F9] bg-[#F9F9F9] rounded'>
                 <div className="flex flex-row gap-3">
                   <div>
@@ -101,6 +117,7 @@ const HistoriquePage = () => {
                   {president?.year}
                 </div>
               </div>  
+              </Reveal>
             )) : (
               <div className='relative flex flex-col gap-1 p-2 border border-[#F9F9F9] bg-[#F9F9F9] rounded animate-pulse'>
                 <div className="flex flex-row gap-3">

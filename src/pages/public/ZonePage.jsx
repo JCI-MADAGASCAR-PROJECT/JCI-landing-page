@@ -8,6 +8,7 @@ import EventCard from "../../components/ui/EventCard"
 import ProfilePh from "../../images/profilePlaceHolder.jpeg"
 import Pagination from "../../components/ui/Pagination"
 import ContactInfoBlock from '@/components/ui/ContactInfoBlock';
+import Reveal from "../../components/ui/Reveal"
 
 
 const ZonePage = () => {
@@ -227,7 +228,9 @@ useEffect(() => {
                 backgroundImage: `linear-gradient(to left, rgba(0, 0, 0, 0),rgba(0, 0, 0, 0), #0e0b21), url(${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${zoneDetails?.imgUrl})`
               }}
             >
-              <LabelTraitSimple Label="présentation" H1Text={zoneDetails?.name} H1Color="text-jci-white" LabelColor="text-jci-teal"/>
+              <Reveal from="left" duration={1000} threshold={0.05}>
+                <LabelTraitSimple Label="présentation" H1Text={zoneDetails?.name} H1Color="text-jci-white" LabelColor="text-jci-teal"/>
+              </Reveal>
             </div>
           )}
 
@@ -246,9 +249,12 @@ useEffect(() => {
           ) : (
             <div className='relative lg:pl-15 px-3 items-end gap-3 lg:px-0'>
               <div className='absolute border-4 bg-white border-jci-white rounded-2xl -top-15'>
+                <Reveal from="zoom" duration={1000} threshold={0.05}>
                 <img src={import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE + zonePsdDetails?.imgUrl} alt={`Vice president zone ${zoneDetails?.name}`} className="aspect-[50/50] w-30 rounded-xl object-cover" loading="lazy" />
+                </Reveal>
               </div>
-              <div className='flex flex-col gap-1 items-start lg:ml-38 lg:mt-0 mt-20'>
+              <div className='flex flex-col gap-1 items-start lg:ml-38 lg:mt-0 mt-20 pr-10'>
+                <Reveal from="right" duration={1000} threshold={0.05}>
                 <h1 className='md:text-[16px] text-[14px] font-poppins font-normal text-jci-black flex flex-row items-center justify-between w-full'>
                   {zonePsdDetails?.name}
                   <div className="md:hidden flex"> <a href={`tel:${zonePsdDetails?.contact}`}
@@ -256,9 +262,12 @@ useEffect(() => {
                     > <RiSendPlaneFill size={16} className="" />Contact</a>
                   </div>
                 </h1>
+                </Reveal>
+                <Reveal from="right" duration={1000} threshold={0.05}>
                 <p className='text-jci-black/70 md:text-[12px] text-[12px] text-justify'>
                   {zonePsdDetails?.quote}
                 </p>
+                </Reveal>
 
               </div>
             </div>
@@ -276,6 +285,7 @@ useEffect(() => {
               <div className='md:flex  md:flex-row gap-5 grid grid-cols-3 items-end'>
                   {OlListByZone?.map((ol) =>
                     currentOl?.id === ol.id ? (
+                      <Reveal from="fade" duration={1000} threshold={0.05}>
                       <h2
                         key={ol.id}
                         className="text-[12px] font-poppins font-semibold text-jci-blue border-b-4 border-b-jci-blue"
@@ -283,7 +293,9 @@ useEffect(() => {
                       >
                         JCI {ol.name}
                       </h2>
+                      </Reveal>
                     ) : (
+                      <Reveal from="fade" duration={1000} threshold={0.05}>
                       <h2
                         key={ol.id}
                         className="text-[12px] font-poppins font-semibold text-jci-black hover:text-jci-blue hover:cursor-pointer hover:border-b-4 hover:border-b-jci-blue transition-all duration-300"
@@ -291,14 +303,17 @@ useEffect(() => {
                       >
                         JCI {ol.name}
                       </h2>
+                      </Reveal>
                     )
                   )}
               </div>
             )}
+            <Reveal from="right" duration={1000} threshold={0.05}>
             <div className="hidden md:flex"> <a href={`tel:${zonePsdDetails?.contact}`}
               className=' flex flex-row py-1 rounded-xl bg-black/90 text-jci-white gap-2 text-[12px] items-center px-2 mb-1'
               > <RiSendPlaneFill size={16} className="" />Contact</a>
             </div>
+            </Reveal>
           </div>
 
           {/** OL content + map — skeleton while loading, and while empty */}
@@ -310,9 +325,11 @@ useEffect(() => {
                 ))
               ) : (
                 currentOlContentList?.map((content) => (
+                  <Reveal from="left" duration={1000} threshold={0.05}>
                   <p key={content.id} className='md:text-[12px] text-[12px] font-normal text-jci-black/70 text-justify'>
                     {content.content}
                   </p>
+                  </Reveal>
                 ))
               )}
             </div>
@@ -320,20 +337,25 @@ useEffect(() => {
               {showMapSkeleton ? (
                 <div className="w-full h-100 bg-gray-200 rounded animate-pulse" />
               ) : (
+                <Reveal from="right" duration={1000} threshold={0.05}>
                 <img src={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${currentOl?.mapImgUrl}`} alt={`Logo ${currentOl?.name}`} className=" w-full h-100 object-contain " />
+                </Reveal>
               )}
             </div>
 
           </div>
+          <Reveal from="left" duration={1000} threshold={0.05}>
           <div className='group  lg:w-[90%] lg:ml-15 w-full ml-0 px-3 lg:px-0 -mt-10'>
             <LabelTraitSimple Label="listes" H1Text="Les membres du bureau local" H1Color="text-jci-black" LabelColor="text-jci-teal"/>
           </div>
+          </Reveal>
 
           {/** Section for displaying the members of the local office */}
           <div className='flex flex-col lg:flex-row gap-1 lg:w-[90%] lg:ml-15 w-full ml-0 px-3 lg:px-0'>
             {/** Section for displaying the President*/}
             <div className={`flex flex-1 ${showMembersSkeleton ? 'animate-pulse' : ''}`}>
               <div className='relative p-2 border-[#F9F9F9] bg-[#F9F9F9] w-full'>
+                <Reveal from="left" duration={1000} threshold={0.05}>
                 <div className="w-[60%]  aspect-square rounded-full border border-jci-black/30 ">
                   <div className="w-full aspect-square rounded-full  border-[8px] border-[#E0F8F7]">
                     <div className="w-full aspect-square rounded-full border-[2px] border-green-900 overflow-hidden">
@@ -350,6 +372,7 @@ useEffect(() => {
                     </div>
                   </div>
                 </div>
+                </Reveal>
                 <div className=" top-2 right-2 px-3 uppercase md:px-2 py-0.5 bg-jci-yellow text-[7px] md:text-[9px] text-jci-black font-extrabold font-roboto text-center absolute ">
                   { !showMembersSkeleton ? currentOlMemberList?.[0]?.ticket : <div className='h-2 w-5 bg-gray-300 rounded'></div>}
                 </div>
@@ -375,22 +398,24 @@ useEffect(() => {
                 ))
               ) : (
                 currentOlMemberList?.slice(1).map((member) => (
-                <div key={member?.id} className='relative flex flex-col gap-1 p-2 border border-[#F9F9F9] bg-[#F9F9F9]  h-fit'>
-                  <div className="flex flex-row gap-3">
-                    <div className=" ">
-                      <div className="rounded-full border-2 border-green-500">
-                        <img src={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${member?.imgUrl}`} alt={member.name} className="h-10 w-10 rounded-full object-cover" loading="lazy"/>
+                  <Reveal from="right" duration={1000} threshold={0.05}>
+                  <div key={member?.id} className='relative flex flex-col gap-1 p-2 border border-[#F9F9F9] bg-[#F9F9F9]  h-fit'>
+                    <div className="flex flex-row gap-3">
+                      <div className=" ">
+                        <div className="rounded-full border-2 border-green-500">
+                          <img src={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${member?.imgUrl}`} alt={member.name} className="h-10 w-10 rounded-full object-cover" loading="lazy"/>
+                        </div>
+                      </div>
+                      <div className="flex flex-col justify-center gap-[0.5px]">
+                        <p className='text-[12px] font-bold text-jci-black'>{member.name}</p>
+                        <p className='text-[11px] font-normal text-jci-black/50'>{member.title}</p>
                       </div>
                     </div>
-                    <div className="flex flex-col justify-center gap-[0.5px]">
-                      <p className='text-[12px] font-bold text-jci-black'>{member.name}</p>
-                      <p className='text-[11px] font-normal text-jci-black/50'>{member.title}</p>
+                    <div className="px-3 md:px-2 py-0.5 bg-jci-yellow text-[7px] md:text-[9px] text-jci-black font-extrabold font-roboto text-center absolute bottom-1 right-0">
+                      {member.ticket}
                     </div>
                   </div>
-                  <div className="px-3 md:px-2 py-0.5 bg-jci-yellow text-[7px] md:text-[9px] text-jci-black font-extrabold font-roboto text-center absolute bottom-1 right-0">
-                    {member.ticket}
-                  </div>
-                </div>
+                </Reveal>
               ))
               )}
             </div>
@@ -415,7 +440,9 @@ useEffect(() => {
                   const month = date.toLocaleString('default', { month: 'short' });
                   const year = date.getFullYear();
                   return (
+                    <Reveal from="fade" duration={1000} threshold={0.05}>
                     <EventCard key={event?.id} Img={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${event?.imgUrl}`} Title={event?.title} Content={event?.content} Day={day} Month={month} Type={event?.type} Year={year} Id={event?.id} />
+                    </Reveal>
                   )
                 })}
               </div>

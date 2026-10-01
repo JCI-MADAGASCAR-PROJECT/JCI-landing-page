@@ -10,16 +10,21 @@ import LogoJCIMNoBg from "../../images/JCI/JCI Madagascar/JCI Madagascar backgro
 import LogoBLTNoBgRow from "../../images/Charte Build Legacy Together/BLT Blanc/BLT-05.webp"
 import LogoBLTNoBgRowWhite from "../../images/Charte Build Legacy Together/BLT Monochrome Blanc/BLT-11.webp"
 import PSD2026 from "../../images/Photos corporate BN/DN2026.webp"
-import MidiMadagascar from "../../images/LOGO-OTHER/logo_midi_madagasikara.webp"
-import OrangeMadagascar from "../../images/LOGO-OTHER/OrangeLogo.webp"
-import GroupeKentia from "../../images/LOGO-OTHER/Logo Kentia.webp"
-import KoonSpace from "../../images/LOGO-OTHER/Logo Koonspace.webp"
-import ISeven from "../../images/LOGO-OTHER/I0SevenStudio.webp"
+
+import MidiMadagascarLogo from "../../images/LOGO-OTHER/logo_midi_madagasikara.webp"
+import GroupeKentiaLogo from "../../images/LOGO-OTHER/Logo Koonspace.webp"
+import OrangeLogo from "../../images/LOGO-OTHER/OrangeLogo.webp"
+import ISevenLogo from "../../images/LOGO-OTHER/I0SevenStudio.webp"
+import Logo2424 from "../../images/LOGO-OTHER/2424Logo.webp"
+import LogoVitafoam from "../../images/LOGO-OTHER/LogoVitafoam.webp"
+import LogoMasae from "../../images/LOGO-OTHER/logo-sae.svg"
+
 import { IoArrowDownCircle } from "react-icons/io5"
 import { eventAPI } from "../../services/api"
 import { useState, useEffect, useRef } from "react"
 import { useTranslation } from "react-i18next"
 import Typewriter from "../../hooks/Typewriter"
+import Reveal from "../../components/ui/Reveal"
 
 
 const AcceuilPage = () => {
@@ -94,7 +99,7 @@ const AcceuilPage = () => {
   return (
     <div className='flex flex-col w-full min-h-screen bg-jci-black'>
 
-      {/* QUI SOMMES-NOUS / CADRES D'ACTION / VALEURS / PROGRAMMES */}
+      {/* DESKTOP*/}
       <section
         className='hidden md:flex px-2 sm:px-2 md:px-12 lg:pl-20 lg:pr-1 py-20 md:py-14 lg:py-20 bg-cover bg-center bg-no-repeat'
         style={{ backgroundImage: `url(${BG})` }}
@@ -107,7 +112,7 @@ const AcceuilPage = () => {
           <div className='flex flex-col h-full gap-12'>
 
             <div className='flex flex-col gap-8'>
-
+              <Reveal from="left" duration={1000} threshold={0.05}>
               {/* QUI SOMMES-NOUS */}
               <div className='group flex flex-col opacity-100 lg:opacity-40 lg:hover:opacity-100 transition-opacity duration-300'>
 
@@ -135,9 +140,11 @@ const AcceuilPage = () => {
 
                 </div>
               </div>
+              </Reveal>
 
 
               {/* CADRES D'ACTIONS */}
+              <Reveal from="left" duration={1000} threshold={0.05}>
               <div className='group flex flex-col gap-1 opacity-100 lg:opacity-40 lg:hover:opacity-100 transition-opacity duration-300'>
 
                 <LabelTrait>
@@ -173,16 +180,18 @@ const AcceuilPage = () => {
                 </ButtonVoid>
 
               </div>
+              </Reveal>
 
 
               {/* MESSAGE PRESIDENT */}
               <div className='relative flex flex-col lg:flex-row items-start lg:items-center gap-4'>
-
+              <Reveal from="left" duration={1000} threshold={0.05}>
                 <img
                   src={PSD2026}
                   alt={t("home.president.imageAlt")}
                   className='peer h-10 w-10 rounded-full object-cover transition-all duration-300 ease-out hover:h-24 hover:w-24'
                 />
+              </Reveal>
 
                 <div className='relative lg:absolute w-full lg:w-[500px] lg:left-25 top-0 z-55 mt-3 lg:mt-0 lg:ml-3 max-w-full max-h-fit overflow-visible lg:overflow-hidden lg:max-w-0 lg:max-h-0 rounded border border-jci-blue/40 bg-jci-black/40 backdrop-blur-xl p-5 lg:p-0 opacity-100 lg:opacity-0 shadow-lg transition-all duration-300 ease-out lg:peer-hover:max-w-[10000px] lg:peer-hover:max-h-fit lg:peer-hover:p-5 lg:peer-hover:opacity-100'>
 
@@ -269,6 +278,7 @@ const AcceuilPage = () => {
 
 
             {/* STATS */}
+            <Reveal from="left" duration={1000} threshold={0.05}>
             <div className='grid grid-cols-3 gap-5'>
 
               <StatBlock
@@ -290,15 +300,18 @@ const AcceuilPage = () => {
               />
 
             </div>
+            </Reveal>
             
 
           </div>
 
 
           {/* CARTE */}
+          <Reveal from="zoom" duration={1000} threshold={0.05}>
           <div className='flex justify-center md:row-span-2 md:self-center -mt-15 lg:row-span-1 lg:self-start z-50'>
             <Mada Width="350" Height="755" />
           </div>
+          </Reveal>
 
 
           {/* COLONNE 3 */}
@@ -307,6 +320,7 @@ const AcceuilPage = () => {
             <div className='flex flex-col gap-5'>
 
               {/* VALEURS */}
+              <Reveal from="right" duration={1000} threshold={0.05}>
               <div className='group flex flex-col gap-7 opacity-100 lg:opacity-40 lg:hover:opacity-100 transition-opacity duration-300'>
 
                 <div>
@@ -370,9 +384,11 @@ const AcceuilPage = () => {
                 </div>
 
               </div>
+              </Reveal>
 
 
               {/* PROGRAMMES */}
+              <Reveal from="right" duration={1000} threshold={0.05}>
               <div className='group flex flex-col gap-5 opacity-100 lg:opacity-40 lg:hover:opacity-100 transition-opacity duration-300'>
 
                 <div className='flex flex-col gap-1'>
@@ -410,13 +426,14 @@ const AcceuilPage = () => {
                 </ButtonVoid>
 
               </div>
+              </Reveal>
 
             </div>
 
 
             {/* LOGO BLT */}
             <div className="w-full h-full mt-5 relative">
-
+              <Reveal from="right" duration={1000} threshold={0.05}>
               <div className="group relative flex justify-start">
 
                 <img
@@ -432,6 +449,7 @@ const AcceuilPage = () => {
                 />
 
               </div>
+              </Reveal>
 
               <div className="absolute bottom-0 right-2">
                 <IoArrowDownCircle
@@ -464,14 +482,17 @@ const AcceuilPage = () => {
             onClick={() => setShowSecondImage((prev) => !prev)}
           >
 
+            <Reveal from="zoom" duration={1000} threshold={0.05}>
             <div className="relative flex items-center justify-center -ml-10">
 
               <Mada Width="290" Height="755" />
 
             </div>
+            </Reveal>
+
 
             <div className="absolute top-10 left-0 w-32 h-14">
-
+               <Reveal from="left" duration={1000} threshold={0.05}>
               <img
                 src={LogoBLTNoBgRowWhite}
                 alt="Logo Build Legacy Together"
@@ -491,6 +512,7 @@ const AcceuilPage = () => {
                     : "opacity-0"
                 }`}
               />
+              </Reveal>
 
             </div>
 
@@ -503,39 +525,39 @@ const AcceuilPage = () => {
             <div className='relative flex flex-col gap-8'>
 
               {/* QUI SOMMES-NOUS */}
-              <div className='group flex flex-col opacity-100 lg:opacity-40 lg:hover:opacity-100 transition-opacity duration-300'>
+              <Reveal from="left" duration={1000} threshold={0.05}>
+                <div className='group flex flex-col opacity-100 lg:opacity-40 lg:hover:opacity-100 transition-opacity duration-300'>
 
-                <LabelTrait>
-                  {t("home.about.label")}
-                </LabelTrait>
+                  <LabelTrait>
+                    {t("home.about.label")}
+                  </LabelTrait>
 
-                <H1 TextColor="text-jci-white">
-                  {t("home.about.title")}
-                </H1>
+                  <H1 TextColor="text-jci-white">
+                    {t("home.about.title")}
+                  </H1>
 
-                <div className='flex flex-col gap-2'>
+                  <div className='flex flex-col gap-2'>
 
-                  <p className='text-[10px] text-jci-white font-poppins leading-relaxed text-justify'>
-                      <Typewriter
-                      text={t("home.about.description")}
-                      speed={20}
-                    />
-                  </p>
+                    <p className='text-[10px] text-jci-white font-poppins leading-relaxed text-justify'>
+                        {t("home.about.description")}
+                    </p>
 
-                  <ButtonVoid
-                    TextColor="text-jci-white"
-                    path="/jci-madagascar"
-                  >
-                    {t("home.about.readMore")}
-                    <LogIn size={20}/>
-                  </ButtonVoid>
+                    <ButtonVoid
+                      TextColor="text-jci-white"
+                      path="/jci-madagascar"
+                    >
+                      {t("home.about.readMore")}
+                      <LogIn size={20}/>
+                    </ButtonVoid>
+
+                  </div>
 
                 </div>
-
-              </div>
+              </Reveal>
 
 
               {/* CADRES D'ACTIONS */}
+              <Reveal from="left" duration={1000} threshold={0.05}>
               <div className='group flex flex-col gap-1 opacity-100 lg:opacity-40 lg:hover:opacity-100 transition-opacity duration-300'>
 
                 <LabelTrait>
@@ -547,10 +569,7 @@ const AcceuilPage = () => {
                 </H1>
 
                 <p className='text-[10px] text-jci-white font-poppins leading-relaxed text-justify'>
-                  <Typewriter
-                      text={t("home.actions.description")}
-                      speed={20}
-                    />
+                  {t("home.actions.description")}
                 </p>
 
                 <div className='ml-3 flex flex-col gap-1 text-[10px] text-jci-white font-poppins leading-relaxed'>
@@ -559,10 +578,7 @@ const AcceuilPage = () => {
 
                     {cadresAction.map((item) => (
                       <li key={item}>
-                        <Typewriter
-                          text={item}
-                          speed={20}
-                        />
+                        {item}
                       </li>
                     ))}
 
@@ -579,6 +595,7 @@ const AcceuilPage = () => {
                 </ButtonVoid>
 
               </div>
+              </Reveal>
 
 
               {/* MESSAGE MOBILE */}
@@ -668,7 +685,7 @@ const AcceuilPage = () => {
 
                 </div>
 
-
+                
                 <button
                   type="button"
                   onClick={() => setShowPSD((prev) => !prev)}
@@ -688,6 +705,7 @@ const AcceuilPage = () => {
                   <span className="absolute inset-0 rounded-full border-2 border-jci-blue" />
 
                 </button>
+                
 
               </div>
 
@@ -697,11 +715,17 @@ const AcceuilPage = () => {
             {/* STATS */}
               <div className='flex flex-col md:flex-row gap-3 mb-5 items-center self-center justify-center lg:w-[60%] w-full'>
               <div className='flex flex-2 flex-row gap-3 md:w-fit w-full'>
+                <Reveal from="left" duration={1000} threshold={0.05} className="w-full">
                 <StatBlock Value="36"  WFull={isMobile} Label="ANS" TextColor="text-jci-blue"  />
+                </Reveal>
+                <Reveal from="left" duration={1000} threshold={0.05} className="w-full">
                 <StatBlock Value="14" WFull={isMobile}  Label="OLs" TextColor="text-jci-blue"  />
+                </Reveal>
               </div>
               <div className='flex flex-1 md:w-fit w-full'>
+                <Reveal from="left" duration={1000} threshold={0.05} className="w-full">
                 <StatBlock Value="384" WFull={isMobile} Label="Membres" TextColor="text-jci-blue"  />
+                </Reveal>
               </div>
             </div>
 
@@ -715,7 +739,7 @@ const AcceuilPage = () => {
 
               {/* VALEURS */}
               <div className='group flex flex-col gap-7 opacity-100 lg:opacity-40 lg:hover:opacity-100 transition-opacity duration-300'>
-
+                  <Reveal from="left" duration={1000} threshold={0.05} className="w-full">
                 <div>
 
                   <H1 TextColor="text-jci-white">
@@ -727,15 +751,14 @@ const AcceuilPage = () => {
                   </LabelTrait>
 
                   <p className='text-[10px] text-jci-white font-poppins leading-relaxed'>
-                    <Typewriter
-                      text={t("home.values.mission.content")}
-                      speed={20}
-                    />
+                    {t("home.values.mission.content")}
                   </p>
 
                 </div>
+                </Reveal>
 
 
+                <Reveal from="left" duration={1000} threshold={0.05} className="w-full">
                 <div>
 
                   <LabelTrait>
@@ -743,14 +766,12 @@ const AcceuilPage = () => {
                   </LabelTrait>
 
                   <p className='text-[10px] text-jci-white font-poppins leading-relaxed'>
-                    <Typewriter
-                      text={t("home.values.vision.content")}
-                      speed={20}
-                    />
+                    {t("home.values.vision.content")}
                   </p>
                 </div>
+                </Reveal>
 
-
+                <Reveal from="left" duration={1000} threshold={0.05} className="w-full">
                 <div className='flex flex-col gap-3'>
 
                   <div className='flex flex-col gap-1'>
@@ -763,10 +784,7 @@ const AcceuilPage = () => {
 
                       {credoItems.map((item, index) => (
                         <li key={index}>
-                          <Typewriter
-                            text={item}
-                            speed={20}
-                          />
+                          {item}
                         </li>
                       ))}
 
@@ -783,11 +801,13 @@ const AcceuilPage = () => {
                   </ButtonVoid>
 
                 </div>
+                </Reveal>
 
               </div>
 
 
               {/* PROGRAMMES */}
+              <Reveal from="left" duration={1000} threshold={0.05}>
               <div className='group flex flex-col gap-5 opacity-100 lg:opacity-40 lg:hover:opacity-100 transition-opacity duration-300'>
 
                 <div className='flex flex-col gap-1'>
@@ -797,10 +817,7 @@ const AcceuilPage = () => {
                   </H1>
 
                   <p className='ml-1 text-[10px] font-poppins text-jci-white'>
-                    <Typewriter
-                      text={t("home.programs.intro")}
-                      speed={20}
-                    />
+                    {t("home.programs.intro")}
                   </p>
 
                   <div className='flex flex-col gap-1'>
@@ -809,10 +826,7 @@ const AcceuilPage = () => {
 
                       {programmes.map((item) => (
                         <li key={item}>
-                          <Typewriter
-                            text={item}
-                            speed={20}
-                          />
+                          {item}
                         </li>
                       ))}
 
@@ -831,6 +845,7 @@ const AcceuilPage = () => {
                 </ButtonVoid>
 
               </div>
+              </Reveal>
 
             </div>
 
@@ -856,10 +871,10 @@ const AcceuilPage = () => {
 
 
       {/* PARTENAIRES */}
-      <section className='bg-jci-blue px-2 md:px-16 py-16 flex flex-col items-center gap-10'>
+      <section className='bg-jci-blue px-2 md:px-16 py-16 flex flex-col items-center gap-5'>
 
         <div className='flex flex-col items-center gap-0.5 text-center'>
-
+          <Reveal from="left" duration={1000} threshold={0.05} >
           <div className='flex flex-row items-center'>
 
             <div className='mr-2 h-[0.5px] w-10 bg-jci-yellow'></div>
@@ -871,31 +886,34 @@ const AcceuilPage = () => {
             <div className='ml-2 h-[0.5px] w-10 bg-jci-yellow'></div>
 
           </div>
-
+          </Reveal>
+          <Reveal from="left" duration={1000} threshold={0.05} >
           <H1
             TextColor="text-jci-white"
             TextSize="text-2xl"
           >
             {t("home.partners.title")}
           </H1>
-
+          </Reveal>
+          <Reveal from="left" duration={1000} threshold={0.05} >
           <p className='text-jci-white/80 font-semibold text-[13px] italic'>
             {t("home.partners.subtitle")}
           </p>
+          </Reveal>
 
         </div>
 
 
-        <div className="w-full overflow-hidden">
+        <div className="w-full overflow-x-hidden  py-5">
 
           <div className="flex w-max animate-scroll-horizontal">
 
             {/* PREMIER GROUPE */}
             <div className="flex items-center gap-6 lg:gap-10 pr-6 lg:pr-10">
 
-              <div className="flex items-center justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white py-3 shrink-0">
+              <div className="flex items-center justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white py-3 shrink-0 hover:-translate-y-2 transition-transform duration-300">
                 <img
-                  src={MidiMadagascar}
+                  src={LogoMasae}
                   alt={t("home.partners.images.midiMadagascar")}
                   
                   
@@ -903,9 +921,9 @@ const AcceuilPage = () => {
                 />
               </div>
 
-              <div className="flex items-start justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white pt-1 md:pt-5 shrink-0">
+              <div className="flex items-start justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white pt-1 md:pt-5 shrink-0 hover:-translate-y-2 transition-transform duration-300">
                 <img
-                  src={OrangeMadagascar}
+                  src={LogoVitafoam}
                   alt={t("home.partners.images.orangeMadagascar")}
                   
                   
@@ -913,9 +931,9 @@ const AcceuilPage = () => {
                 />
               </div>
 
-              <div className="flex items-center justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white py-3 shrink-0">
+              <div className="flex items-center justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white py-3 shrink-0 hover:-translate-y-2 transition-transform duration-300">
                 <img
-                  src={GroupeKentia}
+                  src={Logo2424}
                   alt={t("home.partners.images.kentia")}
                   
                   
@@ -923,9 +941,9 @@ const AcceuilPage = () => {
                 />
               </div>
 
-              <div className="flex items-center justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white py-3 shrink-0">
+              <div className="flex items-center justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white py-3 shrink-0 hover:-translate-y-2 transition-transform duration-300">
                 <img
-                  src={ISeven}
+                  src={ISevenLogo}
                   alt={t("home.partners.images.iseven")}
                   
                   
@@ -933,9 +951,25 @@ const AcceuilPage = () => {
                 />
               </div>
 
-              <div className="flex items-center justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white py-3 shrink-0">
+              <div className="flex items-center justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white py-3 shrink-0 hover:-translate-y-2 transition-transform duration-300">
                 <img
-                  src={KoonSpace}
+                  src={OrangeLogo}
+                  alt={t("home.partners.images.koonSpace")}
+                    
+                  className="h-16 w-auto"
+                />
+              </div>
+              <div className="flex items-center justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white py-3 shrink-0 hover:-translate-y-2 transition-transform duration-300">
+                <img
+                  src={GroupeKentiaLogo}
+                  alt={t("home.partners.images.koonSpace")}
+                    
+                  className="h-16 w-auto"
+                />
+              </div>
+              <div className="flex items-center justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white py-3 shrink-0 hover:-translate-y-2 transition-transform duration-300">
+                <img
+                  src={MidiMadagascarLogo}
                   alt={t("home.partners.images.koonSpace")}
                     
                   className="h-16 w-auto"
@@ -948,47 +982,67 @@ const AcceuilPage = () => {
             {/* DEUXIÈME GROUPE */}
             <div className="flex items-center gap-6 lg:gap-10 pr-6 lg:pr-10">
 
-              <div className="flex items-center justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white py-3 shrink-0">
+               <div className="flex items-center justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white py-3 shrink-0 hover:-translate-y-2 transition-transform duration-300">
                 <img
-                  src={MidiMadagascar}
+                  src={LogoMasae}
                   alt={t("home.partners.images.midiMadagascar")}
-                   
+                  
+                  
                   className="h-15 w-auto"
                 />
               </div>
 
-              <div className="flex items-start justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white pt-5 shrink-0">
+              <div className="flex items-start justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white pt-1 md:pt-5 shrink-0 hover:-translate-y-2 transition-transform duration-300">
                 <img
-                  src={OrangeMadagascar}
+                  src={LogoVitafoam}
                   alt={t("home.partners.images.orangeMadagascar")}
-                   
+                  
+                  
                   className="h-17 w-auto"
                 />
               </div>
 
-              <div className="flex items-center justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white py-3 shrink-0">
+              <div className="flex items-center justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white py-3 shrink-0 hover:-translate-y-2 transition-transform duration-300">
                 <img
-                  src={GroupeKentia}
+                  src={Logo2424}
                   alt={t("home.partners.images.kentia")}
-                   
+                  
+                  
                   className="h-20 w-auto"
                 />
               </div>
 
-              <div className="flex items-center justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white py-3 shrink-0">
+              <div className="flex items-center justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white py-3 shrink-0 hover:-translate-y-2 transition-transform duration-300">
                 <img
-                  src={ISeven}
+                  src={ISevenLogo}
                   alt={t("home.partners.images.iseven")}
-                   
+                  
+                  
                   className="h-15 w-auto"
                 />
               </div>
 
-              <div className="flex items-center justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white py-3 shrink-0">
+              <div className="flex items-center justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white py-3 shrink-0 hover:-translate-y-2 transition-transform duration-300">
                 <img
-                  src={KoonSpace}
+                  src={OrangeLogo}
                   alt={t("home.partners.images.koonSpace")}
-                   
+                    
+                  className="h-16 w-auto"
+                />
+              </div>
+              <div className="flex items-center justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white py-3 shrink-0 hover:-translate-y-2 transition-transform duration-300">
+                <img
+                  src={GroupeKentiaLogo}
+                  alt={t("home.partners.images.koonSpace")}
+                    
+                  className="h-16 w-auto"
+                />
+              </div>
+              <div className="flex items-center justify-center rounded-xl w-[180px] sm:w-[200px] h-[80px] sm:h-[100px] overflow-hidden bg-jci-white py-3 shrink-0 hover:-translate-y-2 transition-transform duration-300">
+                <img
+                  src={MidiMadagascarLogo}
+                  alt={t("home.partners.images.koonSpace")}
+                    
                   className="h-16 w-auto"
                 />
               </div>
@@ -1009,7 +1063,7 @@ const AcceuilPage = () => {
         <div className='flex flex-col items-start justify-between py-7 px-6 lg:pl-7 lg:pr-0 gap-4 lg:gap-1 text-left lg:text-center bg-jci-white h-auto lg:h-[570px] w-full lg:w-[1600px] lg:-mr-200'>
 
           <div className="flex flex-col items-start">
-
+            <Reveal from="left" duration={1000} threshold={0.05} className="w-full">
             <div className='flex flex-row items-center -mb-1'>
 
               <p className='text-jci-blue text-[8px] font-bold font-poppins'>
@@ -1019,20 +1073,23 @@ const AcceuilPage = () => {
               <div className='ml-2 h-[0.5px] w-10 bg-jci-yellow'></div>
 
             </div>
-
+            </Reveal>
+            <Reveal from="left" duration={1000} threshold={0.05} className="w-full">
             <H1 TextSize="text-2xl">
               {t("home.news.title")}
             </H1>
-
+            </Reveal>
+            <Reveal from="left" duration={1000} threshold={0.05} className="w-full">
             <p className='text-[12px] -mt-0 font-poppins font-medium text-jci-black/80'>
               {t("home.news.subtitle")}
             </p>
+            </Reveal>
 
           </div>
 
 
+            <Reveal from="right" duration={1000} threshold={0.05} className="w-full">
           <div className='flex justify-end lg:w-[68%] w-full'>
-
             <ButtonVoid
               nVoid
               BgColors="hover:bg-jci-blue border-jci-blue"
@@ -1042,8 +1099,8 @@ const AcceuilPage = () => {
               {t("home.news.more")}
               <LogIn size={20}/>
             </ButtonVoid>
-
           </div>
+            </Reveal>
 
         </div>
 

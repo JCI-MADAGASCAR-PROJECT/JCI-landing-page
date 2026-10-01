@@ -3,6 +3,7 @@ import H1 from "../../components/ui/H1"
 import EventCard from "../../components/ui/EventCard"
 import Pagination from "../../components/ui/Pagination"
 import { eventAPI } from "../../services/api"
+import Reveal from "../../components/ui/Reveal"
 
 const PAGE_SIZE = 12
 
@@ -137,7 +138,7 @@ const BlogPage = () => {
 
             {/* En-tête : décalé pour rester dans la zone blanche */}
             <div className='flex flex-col items-start lg:pl-[20%] mt-10 lg:mt-0 pl-0'>
-
+            <Reveal from="left" duration={1000} threshold={0.05}>
               <div className='flex flex-row items-center -mb-1'>
                 <p className='text-jci-blue text-[8px] font-bold font-poppins'>
                   ACTUALITÉS & ÉVÉNEMENTS
@@ -145,16 +146,20 @@ const BlogPage = () => {
 
                 <div className='ml-2 h-[0.5px] w-10 bg-jci-yellow'></div>
               </div>
-
+              </Reveal>
+              <Reveal from="left" duration={1000} threshold={0.05}>
               <H1 TextSize="text-2xl">
                 RESTEZ CONNECTÉ
               </H1>
-
+              </Reveal>
+              <Reveal from="left" duration={1000} threshold={0.05}>
               <p className='text-[12px] font-poppins font-medium text-jci-black/80'>
                 Découvrez toutes les actualités autour de la JCI et les évènements à venir.
               </p>
+              </Reveal>
 
               {/* FILTRES */}
+              <Reveal from="left" duration={1000} threshold={0.05}>
               <div className='flex flex-row gap-3 mt-3  w-full items-center justify-center md:justify-normal'>
 
                 {/* Filtre date */}
@@ -180,14 +185,19 @@ const BlogPage = () => {
                 </select>
 
               </div>
+              </Reveal>
             </div>
 
             {/* DESKTOP */}
+            <Reveal from="left" duration={1000} threshold={0.05}>
             <div className='hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-6 w-full lg:max-w-6xl lg:ml-[10%] max-w-full'>
+              
               {filteredEvents.map(renderCard)}
             </div>
+            </Reveal>
 
             {/* MOBILE */}
+            <Reveal from="left" duration={1000} threshold={0.05}>
             <div className='sm:hidden relative self-center w-full'>
 
               {/* ARROW LEFT */}
@@ -231,6 +241,7 @@ const BlogPage = () => {
               </button>
 
             </div>
+            </Reveal>
 
             {/* Pagination */}
             <div className='flex justify-center w-full lg:pl-[10%]'>

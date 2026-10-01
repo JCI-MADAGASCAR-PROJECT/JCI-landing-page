@@ -6,6 +6,7 @@ import CWilliam from "../../images/JCI/JCI Madagascar/C.-William-Brownfield.webp
 import DecoFond from "../../images/Vector.png"
 import { useState, useEffect } from "react"
 import ScrollStack,{ScrollStackItem } from '@/hooks/ScrollStack'
+import Reveal from "../../components/ui/Reveal"
 
 const ValeursPage = () => {
     const [isMobile, setIsMobile] = useState(
@@ -31,25 +32,54 @@ const ValeursPage = () => {
       <SubNav />
       {!isMobile && (
         <div className="flex flex-col gap-0 lg:ml-20 lg:mr-1">
-        <div className="group flex lg:flex-row flex-col  bg-jci-white gap-10 rounded-t-xl px-10 pt-5 lg:pr-20">
+        <div className="group flex lg:flex-row flex-col  bg-jci-white gap-10 rounded-t-xl px-10 pt-5 lg:pr-20 overflow-hidden">
           <div className='flex flex-1 md:flex-2 flex-col gap-1 items-start text-start max-w-full '>
-            <LabelTraitSimple Label="Le début d'une grande histoire" H1Text="LE CREDO" />
-            <p className='text-[12px] font-normal font-poppins text-jci-black text-justify'>
-              C'est en 1946 à Milwaukee, lors de la Convention Nationale des Jaycees des États-Unis qu'est née l'idée du Credo de la JCI.
-            </p>
-            <p className='text-[12px] font-normal font-poppins text-jci-black text-justify'>
-              C.William Brownfield, ancien Président des Jaycees de l’Ohio et vice-président national des Jaycees des États-Unis réalisa lors de cette 
-              convention que l’organisation n’avait pas de Credo. Il fut inspiré par le dévouement des membres de la Jeune Chambre «engagés à 
-              servir l’humanité de mille façons différentes, au niveau même de la base où la liberté vit ou s’éteint» 
-            </p>
-            <div className="flex flex-col mt-5"> 
-              <H2>Nous croyons que</H2>
+            
+            <Reveal from="left" duration={1000} threshold={0.05}>
+              <LabelTraitSimple Label="Le début d'une grande histoire" H1Text="LE CREDO" />
+            </Reveal>
+            
+            <Reveal from="left" duration={1000} threshold={0.05}>
               <p className='text-[12px] font-normal font-poppins text-jci-black text-justify'>
-                Chacun doit croire à un idéal, à un principe ou à une philosophie particulière. Croire, signifie mettre en application ce que l’on croit être 
-                vrai         
+                C'est en 1946 à Milwaukee, lors de la Convention Nationale des Jaycees des États-Unis qu'est née l'idée du Credo de la JCI.
               </p>
-            </div>
+            </Reveal>
+            <Reveal from="left" duration={1000} threshold={0.05}>
+              <p className='text-[12px] font-normal font-poppins text-jci-black text-justify'>
+                C.William Brownfield, ancien Président des Jaycees de l’Ohio et vice-président national des Jaycees des États-Unis réalisa lors de cette 
+                convention que l’organisation n’avait pas de Credo. Il fut inspiré par le dévouement des membres de la Jeune Chambre «engagés à 
+                servir l’humanité de mille façons différentes, au niveau même de la base où la liberté vit ou s’éteint» 
+              </p>
+            </Reveal>
+            <Reveal from="left" duration={1000} threshold={0.05}>
+            <div className='group flex flex-col gap-2 items-start text-start '>
+            
+            <LabelTraitSimple Label="NOTRE" H1Text="MISSION" />
+            <p className='text-[12px] font-normal font-poppins text-jci-black '>
+                Offrir aux jeunes des opportunités de développement de leadership en leur donnant la capacité de créer des changements positifs.
+            </p>
+          </div>
+            </Reveal>
+            <Reveal from="left" duration={1000} threshold={0.05}>
+          <div className='group flex flex-col gap-2 items-start text-start '>
+            <LabelTraitSimple Label="NOTRE" H1Text="VISION" />
+            <p className='text-[12px] font-normal font-poppins text-jci-black text-justify'>
+              Être le principal réseau mondial de jeunes leaders.
+            </p>
+          </div>
+          </Reveal>
+            <Reveal from="left" duration={1000} threshold={0.05}>
+              <div className="flex flex-col mt-5"> 
+                <H2>Nous croyons que</H2>
+                <p className='text-[12px] font-normal font-poppins text-jci-black text-justify'>
+                  Chacun doit croire à un idéal, à un principe ou à une philosophie particulière. Croire, signifie mettre en application ce que l’on croit être 
+                  vrai         
+                </p>
+              </div>
+            </Reveal>
+            <Reveal from="left" duration={1000} threshold={0.05}>
             <div className='flex md:flex-row flex-col md:gap-10 gap-5'>
+              
               <div className="flex flex-col flex-1 gap-5 md:gap-10">
                 <ValueCredoBlock 
                   Title="Que la foi en Dieu donne à la vie son véritable sens" 
@@ -120,11 +150,15 @@ const ValeursPage = () => {
               </div>
 
             </div>
+            </Reveal>
           </div>
           <div className='flex flex-1 md:flex-col flex-col gap-10'>
+            <Reveal from="right" duration={1000} threshold={0.05}>
             <div className="rounded-2xl border-5 border-jci-teal/50 ">
               <img src={CWilliam} alt="C. William Brownfield" className="h-auto w-full object-cover rounded-xl" />
             </div>
+            </Reveal>
+            <Reveal from="right" duration={1000} threshold={0.05}>
             <div  className="flex flex-1 flex-col gap-5 md:gap-10">
               <ValueCredoBlock 
                 Title="Et que servir l’humanité constitue l’œuvre la plus noble 
@@ -152,12 +186,13 @@ const ValeursPage = () => {
                   de la manière suivante: « seulement dans l’action, les mots 
                   peuvent devenir réalité »" />
             </div>
+            </Reveal>
           </div>
         </div>
 
         <div className='relative flex flex-col gap-5 items-start text-start max-w-full  bg-jci-white  rounded-b-xl px-10 lg:pr-20 pb-20'>
           <img src={DecoFond} alt="" className="absolute bottom-0 right-0 lg:w-80 lg:h-80 opacity-100 " />
-          <div className='group flex flex-col gap-2 items-start text-start '>
+          {/* <div className='group flex flex-col gap-2 items-start text-start '>
             
             <LabelTraitSimple Label="NOTRE" H1Text="MISSION" />
             <p className='text-[12px] font-normal font-poppins text-jci-black '>
@@ -169,38 +204,53 @@ const ValeursPage = () => {
             <p className='text-[12px] font-normal font-poppins text-jci-black text-justify'>
               Être le principal réseau mondial de jeunes leaders.
             </p>
-          </div>
+          </div> */}
         </div>
 
       </div>)}
       {isMobile && (
-        <div className="flex flex-col gap-0 w-full bg-jci-white  rounded-xl">
+        <div className="flex flex-col gap-0 w-full bg-jci-white  rounded-xl overflow-hidden">
           <div className="group flex  flex-col   gap-5  px-5 py-5 w-full">
+            <Reveal from="left" duration={1000} threshold={0.05}>
             <LabelTraitSimple Label="Le début d'une grande histoire"  />
+            </Reveal>
+            <Reveal from="right" duration={1000} threshold={0.05}>
             <div className="rounded-2xl border-5 border-jci-teal/50 ">
               <img src={CWilliam} alt="C. William Brownfield" className="h-auto w-full object-cover rounded-xl" />
             </div>
+            </Reveal>
+            <Reveal from="left" duration={1000} threshold={0.05}>
             <div className='group flex flex-col gap-2 items-start text-start '>
               <LabelTraitSimple Label="NOTRE" H1Text="MISSION" />
               <p className='lg:text-[12px] md:text-[12px] text-[12px] font-normal font-poppins text-jci-black '>
                   Offrir aux jeunes des opportunités de développement de leadership en leur donnant la capacité de créer des changements positifs.
               </p>
             </div>
+            </Reveal>
+            <Reveal from="left" duration={1000} threshold={0.05}>
             <div className='group flex flex-col gap-2 items-start text-start '>
               <LabelTraitSimple Label="NOTRE" H1Text="VISION" />
               <p className='lg:text-[12px] md:text-[12px] text-[12px] font-normal font-poppins text-jci-black text-justify'>
                 Être le principal réseau mondial de jeunes leaders.
               </p>
             </div>
+            </Reveal>
+            <Reveal from="left" duration={1000} threshold={0.05}>
             <LabelTraitSimple Label="Le début d'une grande histoire" H1Text="LE CREDO" />
+            </Reveal>
+            <Reveal from="left" duration={1000} threshold={0.05}>
             <p className='lg:text-[12px] md:text-[12px] text-[12px] font-normal font-poppins text-jci-black text-justify'>
               C'est en 1946 à Milwaukee, lors de la Convention Nationale des Jaycees des États-Unis qu'est née l'idée du Credo de la JCI.
             </p>
+            </Reveal>
+            <Reveal from="left" duration={1000} threshold={0.05}>
             <p className='lg:text-[12px] md:text-[12px] text-[12px] font-normal font-poppins text-jci-black text-justify'>
               C.William Brownfield, ancien Président des Jaycees de l’Ohio et vice-président national des Jaycees des États-Unis réalisa lors de cette 
               convention que l’organisation n’avait pas de Credo. Il fut inspiré par le dévouement des membres de la Jeune Chambre «engagés à 
               servir l’humanité de mille façons différentes, au niveau même de la base où la liberté vit ou s’éteint» 
             </p>
+            </Reveal>
+            <Reveal from="left" duration={1000} threshold={0.05}>
             <div className="flex flex-col"> 
               <H2>Nous croyons que</H2>
               <p className='lg:text-[12px] md:text-[12px] text-[12px] font-normal font-poppins text-jci-black text-justify'>
@@ -208,6 +258,7 @@ const ValeursPage = () => {
                 vrai         
               </p>
             </div>
+            </Reveal>
             
 
           </div>
@@ -215,6 +266,7 @@ const ValeursPage = () => {
             <ScrollStack top={90} cardHeight="60vh" maxWidth="420px" gap="30vh" >
                   <ScrollStackItem BGColor="bg-jci-white">
                     <div className=" w-full h-full">
+                      <Reveal from="fade" duration={1000} threshold={0.05}>
                       <ValueCredoBlock 
                         Title="Que la foi en Dieu donne à la vie son véritable sens" 
                         Content="Dans cette phrase, « Dieu » ne fait référence à aucun Dieu 
@@ -227,6 +279,7 @@ const ValeursPage = () => {
                           l’Homme vit selon la volonté de son Dieu, que la volonté de Dieu 
                           à l’égard de l’Homme est bonne et qu’une vie utile est vécue en 
                           harmonie avec son dessein éternel »" />
+                      </Reveal>
                     </div>
                   </ScrollStackItem>
                   <ScrollStackItem BGColor="bg-jci-white">
