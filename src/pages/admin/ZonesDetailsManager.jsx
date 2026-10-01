@@ -366,12 +366,12 @@ const handleCropCancel = () => {
     return (
         <div className='relative p-10 flex flex-col items-start gap-5 bg-gray-100 w-full md:pt-10 pt-20'>
             {isPending && (
-                <div className='absolute inset-0 flex flex-col items-center justify-center gap-3 bg-white/60 backdrop-blur-sm z-10'>
-                <div className='w-8 h-8 border-4 border-jci-yellow border-t-transparent rounded-full animate-spin' />
-                <span className='text-sm font-medium text-jci-black/60'>
-                {pendingAction === 'delete'
-                    ? 'Suppression en cours...'
-                    : 'Chargement en cours...'}
+                <div className='fixed inset-0 flex flex-col items-center justify-start pt-80 gap-3 bg-white/60 backdrop-blur-sm z-10'>
+                    <div className='w-8 h-8 border-4 border-jci-yellow border-t-transparent rounded-full animate-spin' />
+                    <span className='text-sm font-medium text-jci-black/60'>
+                        {pendingAction === 'delete'
+                        ? 'Suppression en cours...'
+                        : 'Chargement en cours...'}
                     </span>
                 </div>
             )}
@@ -1061,6 +1061,21 @@ const handleCropCancel = () => {
                         Les organisations locales de cette zone
                     </p>
                 </div>
+                <p className="text-xs text-jci-blue">
+                    * Veuillez utiliser de préférence le logo officiel de votre OL sur un fond transparent afin de garantir un affichage optimal.
+                </p>
+                <p className="text-xs text-jci-blue">
+                    * Pour une meilleure qualité et un affichage optimal, veuillez redimensionner votre photo au format PNG avant de l’ajouter. Vous pouvez utiliser gratuitement{" "}
+                    <a
+                        href="https://pixhaul.com/tools/image-resize"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-semibold underline hover:opacity-80"
+                    >
+                        PixHaul – Free Image Resizer
+                    </a>
+                    .
+                </p>
 
                 <div className="flex md:flex-row  flex-col items-center gap-3 w-full">
 
@@ -1236,7 +1251,6 @@ const handleCropCancel = () => {
                         </button>
 
                     </div>
-
                 )}
                 {cropper && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
@@ -1261,20 +1275,20 @@ const handleCropCancel = () => {
                         step={0.1}
                         value={zoom}
                         onChange={(e) => setZoom(Number(e.target.value))}
-                        className="w-full accent-jci-yellow"
+                        className="w-full accent-jci-yellow cursor-pointer"
                     />
                     <div className="flex gap-2 justify-end">
                         <button
                         type="button"
                         onClick={handleCropCancel}
-                        className="px-4 py-2 text-sm rounded-lg border border-gray-300"
+                        className="px-4 py-2 text-sm rounded-lg border border-gray-300 cursor-pointer hover:bg-gray-100"
                         >
                         Annuler
                         </button>
                         <button
                         type="button"
                         onClick={handleCropConfirm}
-                        className="px-4 py-2 text-sm rounded-lg bg-jci-yellow text-jci-white font-semibold"
+                        className='mt-2 px-5 py-3 bg-jci-yellow rounded-lg text-jci-white font-semibold text-sm hover:text-jci-black hover:bg-jci-white border border-jci-yellow cursor-pointer transition-colors duration-300'
                         >
                         Valider
                         </button>

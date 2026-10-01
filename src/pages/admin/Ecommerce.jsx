@@ -166,7 +166,7 @@ const Ecommerce = () => {
 
     {/* Loading */}
     {isPending && (
-      <div className='fixed lg:absolute inset-0 flex flex-col items-center justify-center gap-3 bg-white/60 backdrop-blur-sm z-30'>
+      <div className='fixed inset-0 flex flex-col items-center justify-start pt-80 gap-3 bg-white/60 backdrop-blur-sm z-10'>
         <div className='w-8 h-8 border-4 border-jci-yellow border-t-transparent rounded-full animate-spin' />
 
         <span className='text-sm font-medium text-jci-black/60'>

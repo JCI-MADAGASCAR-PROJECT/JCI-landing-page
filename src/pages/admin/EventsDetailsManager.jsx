@@ -367,13 +367,13 @@ const handleCropCancel = () => {
                         to={`/admin/evenements/national`}
                         className=' py-2  rounded-lg text-jci-black/50 font-semibold text-sm hover:underline cursor-pointer transition-colors duration-300 flex justify-center items-center'
                         >
-                        Tous les evenements national  <MdArrowForwardIos size={16} />
+                        Tous les événements nationaux  <MdArrowForwardIos size={16} />
                         </NavLink>
                         <NavLink
                         
                         className=' py-2  rounded-lg text-jci-yellow font-semibold text-sm hover:underline cursor-pointer transition-colors duration-300 flex justify-center items-center'
                         >
-                        Evenement {eventDetails?.title}  <MdArrowForwardIos size={16} />
+                        Événement {eventDetails?.title}  <MdArrowForwardIos size={16} />
                         </NavLink>
                     </div>
                 )}
@@ -389,7 +389,7 @@ const handleCropCancel = () => {
                         
                         className=' py-2  rounded-lg text-jci-yellow font-semibold text-sm hover:underline cursor-pointer transition-colors duration-300 flex justify-center items-center'
                         >
-                        Evenement {eventDetails?.title}  <MdArrowForwardIos size={16} />
+                        Événement {eventDetails?.title}  <MdArrowForwardIos size={16} />
                         </NavLink>
                     </div>
                 )}
@@ -407,7 +407,7 @@ const handleCropCancel = () => {
                 <h2 className=' text-2xl  font-poppins font-semibold text-white '>{eventDetails.title} </h2>
             </div>
             <div>
-                <h1 className='text-jci-black font-bold font-poppins text-[20px]'>Description de l'evenement</h1>
+                <h1 className='text-jci-black font-bold font-poppins text-[20px]'>Description de l'événement</h1>
                 <p className='text-jci-black text-[14px] font-poppins'>{eventDetails.content}</p>
             </div>
             <div>
@@ -419,7 +419,20 @@ const handleCropCancel = () => {
                   >
                       Modifier
                 </button>
+                <p className="text-xs text-jci-blue mt-3">
+                * Pour une meilleure qualité et un affichage optimal, veuillez redimensionner votre photo au format PNG avant de l’ajouter. Vous pouvez utiliser gratuitement{" "}
+                <a
+                    href="https://pixhaul.com/tools/image-resize"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold underline hover:opacity-80"
+                >
+                    PixHaul – Free Image Resizer
+                </a>
+                .
+            </p>
             </div>
+            
         </div>   
         <div className="flex flex-col gap-5">
 
@@ -548,7 +561,18 @@ const handleCropCancel = () => {
                     <p className="text-jci-black/50 text-[13px] font-poppins">
                         Ajoutez les images associées à cet événement
                     </p>
-
+                <p className="text-xs text-jci-blue mt-3">
+                * Pour une meilleure qualité et un affichage optimal, veuillez redimensionner votre photo au format PNG avant de l’ajouter. Vous pouvez utiliser gratuitement{" "}
+                <a
+                    href="https://pixhaul.com/tools/image-resize"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold underline hover:opacity-80"
+                >
+                    PixHaul – Free Image Resizer
+                </a>
+                .
+            </p>
                 </div>
 
                 {eventImages.length < 5 && (
@@ -845,7 +869,7 @@ const handleCropCancel = () => {
           </div>
         )}
     {isPending && (
-    <div className='absolute inset-0 flex flex-col items-center justify-center gap-3 bg-white/60 backdrop-blur-sm z-10'>
+      <div className='fixed inset-0 flex flex-col items-center justify-start pt-80 gap-3 bg-white/60 backdrop-blur-sm z-10'>
         <div className='w-8 h-8 border-4 border-jci-yellow border-t-transparent rounded-full animate-spin' />
         <span className='text-sm font-medium text-jci-black/60'>
         {pendingAction === 'delete'
@@ -1204,13 +1228,15 @@ const handleCropCancel = () => {
                 step={0.1}
                 value={zoom}
                 onChange={(e) => setZoom(Number(e.target.value))}
-                className="w-full accent-jci-yellow"
+                className="w-full accent-jci-yellow cursor-pointer"
                 />
                 <div className="flex gap-2 justify-end">
-                <button type="button" onClick={handleCropCancel} className="px-4 py-2 text-sm rounded-lg border border-gray-300">
+                <button type="button" onClick={handleCropCancel} className="px-4 py-2 text-sm rounded-lg border border-gray-300 cursor-pointer hover:bg-gray-100">
                     Annuler
                 </button>
-                <button type="button" onClick={handleCropConfirm} className="px-4 py-2 text-sm rounded-lg bg-jci-yellow text-jci-white font-semibold">
+                <button type="button" onClick={handleCropConfirm} 
+                className=' px-5 py-3 bg-jci-yellow rounded-lg text-jci-white font-semibold text-sm hover:text-jci-black hover:bg-jci-white border border-jci-yellow cursor-pointer transition-colors duration-300'
+                >
                     Valider
                 </button>
                 </div>

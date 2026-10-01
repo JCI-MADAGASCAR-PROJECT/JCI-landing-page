@@ -190,7 +190,7 @@ const BlogPage = () => {
 
             {/* DESKTOP */}
             <Reveal from="left" duration={1000} threshold={0.05}>
-            <div className='hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-6 w-full lg:max-w-6xl lg:ml-[10%] max-w-full'>
+            <div className='hidden sm:flex flex-wrap gap-2 lg:gap-2 w-full lg:max-w-6xl lg:ml-[10%] max-w-full'>
               
               {filteredEvents.map(renderCard)}
             </div>

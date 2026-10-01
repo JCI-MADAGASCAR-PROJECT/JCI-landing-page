@@ -197,9 +197,21 @@ const BnManager = () => {
       <p className="text-xs text-jci-blue">
      * L’ordre d’ajout suivra l’ordre d’apparition : première entrée, première apparue.
     </p>
+    <p className="text-xs text-jci-blue">
+    * Pour une meilleure qualité et un affichage optimal, veuillez redimensionner votre photo au format PNG avant de l’ajouter. Vous pouvez utiliser gratuitement{" "}
+    <a
+        href="https://pixhaul.com/tools/image-resize"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-semibold underline hover:opacity-80"
+    >
+        PixHaul – Free Image Resizer
+    </a>
+    .
+</p>
     {/* Loading indicator */}
     {isPending && (
-      <div className='absolute inset-0 flex flex-col items-center justify-center gap-3 bg-white/60 backdrop-blur-sm z-10'>
+      <div className='fixed inset-0 flex flex-col items-center justify-start pt-80 gap-3 bg-white/60 backdrop-blur-sm z-10'>
         <div className='w-8 h-8 border-4 border-jci-yellow border-t-transparent rounded-full animate-spin' />
         <span className='text-sm font-medium text-jci-black/60'>
           {pendingAction === 'delete'
@@ -496,20 +508,20 @@ const BnManager = () => {
                   step={0.1}
                   value={zoom}
                   onChange={(e) => setZoom(Number(e.target.value))}
-                  className="w-full accent-jci-yellow"
+                  className="w-full accent-jci-yellow cursor-pointer"
                 />
                 <div className="flex gap-2 justify-end">
                   <button
                     type="button"
                     onClick={handleCropCancel}
-                    className="px-4 py-2 text-sm rounded-lg border border-gray-300"
+                    className="px-4 py-2 text-sm rounded-lg border border-gray-300 cursor-pointer hover:bg-gray-100"
                   >
                     Annuler
                   </button>
                   <button
                     type="button"
                     onClick={handleCropConfirm}
-                    className="px-4 py-2 text-sm rounded-lg bg-jci-yellow text-jci-white font-semibold"
+                    className=' px-5 py-3 bg-jci-yellow rounded-lg text-jci-white font-semibold text-sm hover:text-jci-black hover:bg-jci-white border border-jci-yellow cursor-pointer transition-colors duration-300'
                   >
                     Valider
                   </button>
