@@ -525,7 +525,7 @@ const AcceuilPage = () => {
             <div className='relative flex flex-col gap-8'>
 
               {/* QUI SOMMES-NOUS */}
-              <Reveal from="left" duration={1000} threshold={0.05}>
+              <Reveal from="bottom" duration={1000} threshold={0.05}>
                 <div className='group flex flex-col opacity-100 lg:opacity-40 lg:hover:opacity-100 transition-opacity duration-300'>
 
                   <LabelTrait>
@@ -557,7 +557,7 @@ const AcceuilPage = () => {
 
 
               {/* CADRES D'ACTIONS */}
-              <Reveal from="left" duration={1000} threshold={0.05}>
+              <Reveal from="bottom" duration={1000} threshold={0.05}>
               <div className='group flex flex-col gap-1 opacity-100 lg:opacity-40 lg:hover:opacity-100 transition-opacity duration-300'>
 
                 <LabelTrait>
@@ -577,9 +577,9 @@ const AcceuilPage = () => {
                   <ul className='list-disc list-inside'>
 
                     {cadresAction.map((item) => (
-                      <li key={item}>
-                        {item}
-                      </li>
+                      <Reveal as="li" from="left" duration={1000} threshold={0.05} key={item}>
+                          {item}
+                      </Reveal>
                     ))}
 
                   </ul>
@@ -715,15 +715,15 @@ const AcceuilPage = () => {
             {/* STATS */}
               <div className='flex flex-col md:flex-row gap-3 mb-5 items-center self-center justify-center lg:w-[60%] w-full'>
               <div className='flex flex-2 flex-row gap-3 md:w-fit w-full'>
-                <Reveal from="left" duration={1000} threshold={0.05} className="w-full">
+                <Reveal from="bottom" duration={1000} threshold={0.05} className="w-full">
                 <StatBlock Value="36"  WFull={isMobile} Label="ANS" TextColor="text-jci-blue"  />
                 </Reveal>
-                <Reveal from="left" duration={1000} threshold={0.05} className="w-full">
+                <Reveal from="bottom" duration={1000} threshold={0.05} className="w-full">
                 <StatBlock Value="14" WFull={isMobile}  Label="OLs" TextColor="text-jci-blue"  />
                 </Reveal>
               </div>
               <div className='flex flex-1 md:w-fit w-full'>
-                <Reveal from="left" duration={1000} threshold={0.05} className="w-full">
+                <Reveal from="bottom" duration={1000} threshold={0.05} className="w-full">
                 <StatBlock Value="384" WFull={isMobile} Label="Membres" TextColor="text-jci-blue"  />
                 </Reveal>
               </div>
@@ -739,7 +739,7 @@ const AcceuilPage = () => {
 
               {/* VALEURS */}
               <div className='group flex flex-col gap-7 opacity-100 lg:opacity-40 lg:hover:opacity-100 transition-opacity duration-300'>
-                  <Reveal from="left" duration={1000} threshold={0.05} className="w-full">
+                  <Reveal from="bottom" duration={1000} threshold={0.05} className="w-full">
                 <div>
 
                   <H1 TextColor="text-jci-white">
@@ -758,7 +758,7 @@ const AcceuilPage = () => {
                 </Reveal>
 
 
-                <Reveal from="left" duration={1000} threshold={0.05} className="w-full">
+                <Reveal from="bottom" duration={1000} threshold={0.05} className="w-full">
                 <div>
 
                   <LabelTrait>
@@ -771,7 +771,7 @@ const AcceuilPage = () => {
                 </div>
                 </Reveal>
 
-                <Reveal from="left" duration={1000} threshold={0.05} className="w-full">
+                <Reveal from="bottom" duration={1000} threshold={0.05} className="w-full">
                 <div className='flex flex-col gap-3'>
 
                   <div className='flex flex-col gap-1'>
@@ -807,7 +807,7 @@ const AcceuilPage = () => {
 
 
               {/* PROGRAMMES */}
-              <Reveal from="left" duration={1000} threshold={0.05}>
+              <Reveal from="bottom" duration={1000} threshold={0.05}>
               <div className='group flex flex-col gap-5 opacity-100 lg:opacity-40 lg:hover:opacity-100 transition-opacity duration-300'>
 
                 <div className='flex flex-col gap-1'>
@@ -874,7 +874,7 @@ const AcceuilPage = () => {
       <section className='bg-jci-blue px-2 md:px-16 py-16 flex flex-col items-center gap-5'>
 
         <div className='flex flex-col items-center gap-0.5 text-center'>
-          <Reveal from="left" duration={1000} threshold={0.05} >
+          <Reveal from="bottom" duration={1000} threshold={0.05} >
           <div className='flex flex-row items-center'>
 
             <div className='mr-2 h-[0.5px] w-10 bg-jci-yellow'></div>
@@ -887,7 +887,7 @@ const AcceuilPage = () => {
 
           </div>
           </Reveal>
-          <Reveal from="left" duration={1000} threshold={0.05} >
+          <Reveal from="bottom" duration={1000} threshold={0.05} >
           <H1
             TextColor="text-jci-white"
             TextSize="text-2xl"
@@ -895,7 +895,7 @@ const AcceuilPage = () => {
             {t("home.partners.title")}
           </H1>
           </Reveal>
-          <Reveal from="left" duration={1000} threshold={0.05} >
+          <Reveal from="bottom" duration={1000} threshold={0.05} >
           <p className='text-jci-white/80 font-semibold text-[13px] italic'>
             {t("home.partners.subtitle")}
           </p>
@@ -1063,7 +1063,7 @@ const AcceuilPage = () => {
         <div className='flex flex-col items-start justify-between py-7 px-6 lg:pl-7 lg:pr-0 gap-4 lg:gap-1 text-left lg:text-center bg-jci-white h-auto lg:h-[570px] w-full lg:w-[1600px] lg:-mr-200'>
 
           <div className="flex flex-col items-start">
-            <Reveal from="left" duration={1000} threshold={0.05} className="w-full">
+            <Reveal from="bottom" duration={1000} threshold={0.05} className="w-full">
             <div className='flex flex-row items-center -mb-1'>
 
               <p className='text-jci-blue text-[8px] font-bold font-poppins'>
@@ -1074,12 +1074,12 @@ const AcceuilPage = () => {
 
             </div>
             </Reveal>
-            <Reveal from="left" duration={1000} threshold={0.05} className="w-full">
+            <Reveal from="bottom" duration={1000} threshold={0.05} className="w-full">
             <H1 TextSize="text-2xl">
               {t("home.news.title")}
             </H1>
             </Reveal>
-            <Reveal from="left" duration={1000} threshold={0.05} className="w-full">
+            <Reveal from="bottom" duration={1000} threshold={0.05} className="w-full">
             <p className='text-[12px] -mt-0 font-poppins font-medium text-jci-black/80'>
               {t("home.news.subtitle")}
             </p>
@@ -1088,7 +1088,7 @@ const AcceuilPage = () => {
           </div>
 
 
-            <Reveal from="right" duration={1000} threshold={0.05} className="w-full">
+            <Reveal from="bottom" duration={1000} threshold={0.05} className="w-full">
           <div className='flex justify-end lg:w-[68%] w-full'>
             <ButtonVoid
               nVoid

@@ -41,7 +41,7 @@ const BureauNationalPage = () => {
 
         {/* HEADER */}
         
-        <div className="flex flex-col bg-jci-white gap-2 rounded-t-xl px-6 sm:px-10 pt-5 lg:pr-20">
+        <div className="hidden md:flex flex-col bg-jci-white gap-2 rounded-t-xl px-6 sm:px-10 pt-5 lg:pr-20">
           <Reveal from="left" duration={1000} threshold={0.05}>
           <LabelTraitSimple
             Label="LES MEMBRES DU"
@@ -49,6 +49,23 @@ const BureauNationalPage = () => {
           />
           </Reveal>
           <Reveal from="left" duration={1000} threshold={0.05}>
+          <p className="text-[11px] font-normal font-poppins text-jci-black text-justify">
+            Découvrez les membres du Bureau National 2026 de la JCI Madagascar.
+            Une équipe engagée de jeunes leaders dédiée à la conduite des
+            projets stratégiques, au renforcement des compétences et à la
+            création d'impacts positifs à travers toutes les organisations
+            locales de la Grande Île.
+          </p>
+          </Reveal>
+        </div>
+        <div className="md:hidden flex flex-col bg-jci-white gap-2 rounded-t-xl px-6 sm:px-10 pt-5 lg:pr-20">
+          <Reveal from="bottom" duration={1000} threshold={0.05}>
+          <LabelTraitSimple
+            Label="LES MEMBRES DU"
+            H1Text="BUREAU NATIONAL 2026"
+          />
+          </Reveal>
+          <Reveal from="bottom" duration={1000} threshold={0.05}>
           <p className="text-[11px] font-normal font-poppins text-jci-black text-justify">
             Découvrez les membres du Bureau National 2026 de la JCI Madagascar.
             Une équipe engagée de jeunes leaders dédiée à la conduite des

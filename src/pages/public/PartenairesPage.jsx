@@ -12,7 +12,7 @@ import GroupeKentiaFond from "../../images/Partenariat/Kentia.webp"
 import OrangeLogo from "../../images/LOGO-OTHER/OrangeLogo.webp"
 import OrangeFond from "../../images/Partenariat/Orange.webp" 
 
-import ISevenLogo from "../../images/LOGO-OTHER/I0SevenStudio.webp"
+import ISevenLogo from "../../images/LOGO-OTHER/I0SevenStudio.png"
 import ISevenFond from "../../images/Partenariat/iSeven.webp"
 
 import Logo2424 from "../../images/LOGO-OTHER/2424Logo.webp"

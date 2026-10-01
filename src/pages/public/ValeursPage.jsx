@@ -209,17 +209,17 @@ const ValeursPage = () => {
 
       </div>)}
       {isMobile && (
-        <div className="flex flex-col gap-0 w-full bg-jci-white  rounded-xl overflow-hidden">
-          <div className="group flex  flex-col   gap-5  px-5 py-5 w-full">
-            <Reveal from="left" duration={1000} threshold={0.05}>
+        <div className="flex flex-col gap-0 w-full bg-jci-white  rounded-xl ">
+          <div className="group flex  flex-col   gap-5  px-5 py-5 w-full overflow-hidden">
+            <Reveal from="bottom" duration={1000} threshold={0.05}>
             <LabelTraitSimple Label="Le début d'une grande histoire"  />
             </Reveal>
-            <Reveal from="right" duration={1000} threshold={0.05}>
+            <Reveal from="bottom" duration={1000} threshold={0.05}>
             <div className="rounded-2xl border-5 border-jci-teal/50 ">
               <img src={CWilliam} alt="C. William Brownfield" className="h-auto w-full object-cover rounded-xl" />
             </div>
             </Reveal>
-            <Reveal from="left" duration={1000} threshold={0.05}>
+            <Reveal from="bottom" duration={1000} threshold={0.05}>
             <div className='group flex flex-col gap-2 items-start text-start '>
               <LabelTraitSimple Label="NOTRE" H1Text="MISSION" />
               <p className='lg:text-[12px] md:text-[12px] text-[12px] font-normal font-poppins text-jci-black '>
@@ -227,7 +227,7 @@ const ValeursPage = () => {
               </p>
             </div>
             </Reveal>
-            <Reveal from="left" duration={1000} threshold={0.05}>
+            <Reveal from="bottom" duration={1000} threshold={0.05}>
             <div className='group flex flex-col gap-2 items-start text-start '>
               <LabelTraitSimple Label="NOTRE" H1Text="VISION" />
               <p className='lg:text-[12px] md:text-[12px] text-[12px] font-normal font-poppins text-jci-black text-justify'>
@@ -235,22 +235,22 @@ const ValeursPage = () => {
               </p>
             </div>
             </Reveal>
-            <Reveal from="left" duration={1000} threshold={0.05}>
+            <Reveal from="bottom" duration={1000} threshold={0.05}>
             <LabelTraitSimple Label="Le début d'une grande histoire" H1Text="LE CREDO" />
             </Reveal>
-            <Reveal from="left" duration={1000} threshold={0.05}>
+            <Reveal from="bottom" duration={1000} threshold={0.05}>
             <p className='lg:text-[12px] md:text-[12px] text-[12px] font-normal font-poppins text-jci-black text-justify'>
               C'est en 1946 à Milwaukee, lors de la Convention Nationale des Jaycees des États-Unis qu'est née l'idée du Credo de la JCI.
             </p>
             </Reveal>
-            <Reveal from="left" duration={1000} threshold={0.05}>
+            <Reveal from="bottom" duration={1000} threshold={0.05}>
             <p className='lg:text-[12px] md:text-[12px] text-[12px] font-normal font-poppins text-jci-black text-justify'>
               C.William Brownfield, ancien Président des Jaycees de l’Ohio et vice-président national des Jaycees des États-Unis réalisa lors de cette 
               convention que l’organisation n’avait pas de Credo. Il fut inspiré par le dévouement des membres de la Jeune Chambre «engagés à 
               servir l’humanité de mille façons différentes, au niveau même de la base où la liberté vit ou s’éteint» 
             </p>
             </Reveal>
-            <Reveal from="left" duration={1000} threshold={0.05}>
+            <Reveal from="bottom" duration={1000} threshold={0.05}>
             <div className="flex flex-col"> 
               <H2>Nous croyons que</H2>
               <p className='lg:text-[12px] md:text-[12px] text-[12px] font-normal font-poppins text-jci-black text-justify'>
@@ -265,8 +265,6 @@ const ValeursPage = () => {
           <div className="w-full px-4 -mt-5 pb-5">
             <ScrollStack top={90} cardHeight="60vh" maxWidth="420px" gap="30vh" >
                   <ScrollStackItem BGColor="bg-jci-white">
-                    <div className=" w-full h-full">
-                      <Reveal from="fade" duration={1000} threshold={0.05}>
                       <ValueCredoBlock 
                         Title="Que la foi en Dieu donne à la vie son véritable sens" 
                         Content="Dans cette phrase, « Dieu » ne fait référence à aucun Dieu 
@@ -279,8 +277,6 @@ const ValeursPage = () => {
                           l’Homme vit selon la volonté de son Dieu, que la volonté de Dieu 
                           à l’égard de l’Homme est bonne et qu’une vie utile est vécue en 
                           harmonie avec son dessein éternel »" />
-                      </Reveal>
-                    </div>
                   </ScrollStackItem>
                   <ScrollStackItem BGColor="bg-jci-white">
                       <ValueCredoBlock  
