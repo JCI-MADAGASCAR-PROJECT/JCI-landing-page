@@ -4,6 +4,9 @@ import { useForm } from 'react-hook-form';
 import { pastPresidentAPI } from '../../services/api.js';
 import { IoClose, IoAdd, IoImages } from "react-icons/io5";
 import { toast } from 'sonner';
+import {useCallback } from 'react';
+import Cropper from 'react-easy-crop';
+import { getCroppedFile } from '../../services/cropImage.js';
 
 const PastPresidentManager = () => {
   const {user} = useContext(UserContext);
@@ -16,7 +19,21 @@ const PastPresidentManager = () => {
   const [pendingAction, setPendingAction] = useState(null);
   const [search, setSearch] = useState('');
 
-  const pastPresidentForm = useForm();
+  //IMAGE CROPER//
+  const ASPECT = 1; // 1 = carré, 4/3, 16/9, 3/4...
+
+  // états du cropper
+  const [cropSrc, setCropSrc] = useState(null);
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const [croppedPixels, setCroppedPixels] = useState(null);
+
+  const onCropComplete = useCallback((_, pixels) => setCroppedPixels(pixels), []);
+
+  const pastPresidentForm = useForm({
+      mode: 'onChange',
+      reValidateMode: 'onChange',
+    });
   const image = pastPresidentForm.watch('image');
 
   const openAddModal = () => {
@@ -132,6 +149,48 @@ const PastPresidentManager = () => {
     );
   });
 
+    useEffect(() => {
+      pastPresidentForm.register('image', {
+        required: pastPresidentId ? false : "L'image est obligatoire",
+        validate: {
+          validSize: (files) => {
+            const file = files?.[0];
+            if (!file) return true;
+            return file.size <= 5 * 1024 * 1024 || "L'image ne doit pas dépasser 5 Mo.";
+          },
+        },
+      });
+    }, [pastPresidentForm, pastPresidentId]);
+  
+    const handleFileSelect = (e) => {
+      const file = e.target.files?.[0];
+      e.target.value = ''; // permet de re-sélectionner le même fichier
+      if (!file) return;
+  
+      if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+        return pastPresidentForm.setError('image', { type: 'validate', message: 'Formats acceptés : JPG, PNG ou WebP.' });
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        return pastPresidentForm.setError('image', { type: 'validate', message: "L'image ne doit pas dépasser 5 Mo." });
+      }
+  
+      pastPresidentForm.clearErrors('image');
+      setCrop({ x: 0, y: 0 });
+      setZoom(1);
+      setCropSrc(URL.createObjectURL(file));
+    };
+  
+    const handleCropConfirm = async () => {
+      const file = await getCroppedFile(cropSrc, croppedPixels, 'photo.jpg');
+      pastPresidentForm.setValue('image', [file], { shouldValidate: true, shouldDirty: true });
+      URL.revokeObjectURL(cropSrc);
+      setCropSrc(null);
+    };
+  
+    const handleCropCancel = () => {
+      URL.revokeObjectURL(cropSrc);
+      setCropSrc(null);
+    };
   return (
     <div className='relative p-10 flex flex-col items-start gap-5 bg-gray-100 min-h-screen w-full md:pt-10 pt-20'>
       <h1 className='text-4xl font-bold text-jci-black'>Gestion des Past Presidents</h1>
@@ -268,39 +327,12 @@ const PastPresidentManager = () => {
                 </label>
 
                 <input
-                  id='image'
-                  type='file'
-                  accept='image/*'
-                  {...pastPresidentForm.register('image', {
-                    required: pastPresidentId
-                      ? false
-                      : "L'image est obligatoire"
-                      , validate: {
-                      validType: (files) => {
-                      const file = files?.[0];
-
-                      if (!file) return true;
-
-                      return (
-                          ["image/jpeg", "image/png", "image/webp"].includes(file.type) ||
-                          "Formats acceptés : JPG, PNG ou WebP."
-                      );
-                      },
-
-                      validSize: (files) => {
-                      const file = files?.[0];
-
-                      if (!file) return true;
-
-                      return (
-                          file.size <= 5 * 1024 * 1024 ||
-                          "L'image ne doit pas dépasser 5 Mo."
-                      );
-                      },
-                  },
-                  })}
-                  className='hidden'
-                />
+                id="image"
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                onChange={handleFileSelect}
+                className="hidden"
+              />
 
                 {pastPresidentForm.formState.errors.image && (
                   <span className='text-red-500 text-sm'>
@@ -548,6 +580,52 @@ const PastPresidentManager = () => {
 
               </div>
             }
+            {cropSrc && (
+                      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+                        <div className="bg-white rounded-xl w-full max-w-md overflow-hidden">
+                          <div className="relative w-full h-80 bg-gray-900">
+                            <Cropper
+                              image={cropSrc}
+                              crop={crop}
+                              zoom={zoom}
+                              aspect={ASPECT}
+                              // cropShape="round"   // aperçu rond (le fichier reste carré)
+                              onCropChange={setCrop}
+                              onZoomChange={setZoom}
+                              onCropComplete={onCropComplete}
+                            />
+                          </div>
+            
+                          <div className="p-4 flex flex-col gap-4">
+                            <input
+                              type="range"
+                              min={1}
+                              max={3}
+                              step={0.1}
+                              value={zoom}
+                              onChange={(e) => setZoom(Number(e.target.value))}
+                              className="w-full accent-jci-yellow"
+                            />
+                            <div className="flex gap-2 justify-end">
+                              <button
+                                type="button"
+                                onClick={handleCropCancel}
+                                className="px-4 py-2 text-sm rounded-lg border border-gray-300"
+                              >
+                                Annuler
+                              </button>
+                              <button
+                                type="button"
+                                onClick={handleCropConfirm}
+                                className="px-4 py-2 text-sm rounded-lg bg-jci-yellow text-jci-white font-semibold"
+                              >
+                                Valider
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
             
 
       </div>

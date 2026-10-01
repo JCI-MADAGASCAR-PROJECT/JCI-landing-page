@@ -10,6 +10,9 @@ import { MdArrowForwardIos } from "react-icons/md";
 import { toast } from "sonner";
 import { FaUsers } from "react-icons/fa";
 import Pagination from "../../components/ui/Pagination"
+import {useCallback } from 'react';
+import Cropper from 'react-easy-crop';
+import { getCroppedFile } from '../../services/cropImage.js';
 
 
 const OLDetainsManager = () => {
@@ -24,7 +27,10 @@ const OLDetainsManager = () => {
     zone = useParams().zone;
   }
   const [olDetails, setOlDetails] = useState(null);
-  const olForm = useForm();
+  const olForm = useForm({
+      mode: 'onChange',
+      reValidateMode: 'onChange',
+    });
   const [isOlOpen, setIsOlOpen] = useState(false);
   const [isPending, setIsPending] = useState(false);
   const [pendingAction, setPendingAction] = useState(null);
@@ -34,7 +40,10 @@ const OLDetainsManager = () => {
   const [isContentEdit, setIsContentEdit] = useState(false);
   const [contentId, setContentId] = useState(null);
   const [isContentDeleteOpen, setIsContentDeleteOpen] = useState(false);
-  const contentForm = useForm();
+  const contentForm = useForm({
+      mode: 'onChange',
+      reValidateMode: 'onChange',
+    });
 
   const [members, setMembers] = useState([]);
   const [isMemberOpen, setIsMemberOpen] = useState(false);
@@ -43,7 +52,10 @@ const OLDetainsManager = () => {
   const [isMemberDeleteOpen, setIsMemberDeleteOpen] = useState(false);
   const [deleteMemberId, setDeleteMemberId] = useState(null);
   const [memberSearch, setMemberSearch] = useState("");
-  const memberForm = useForm();
+  const memberForm = useForm({
+      mode: 'onChange',
+      reValidateMode: 'onChange',
+    });
   const memberImage = memberForm.watch("image");
 
   const [events, setEvents] = useState([]);
@@ -52,15 +64,32 @@ const OLDetainsManager = () => {
   const [isEventDeleteOpen, setIsEventDeleteOpen] = useState(false);
   const [deleteEventId, setDeleteEventId] = useState(null);
   const [eventSearch, setEventSearch] = useState("");
-  const eventForm = useForm();
+  const eventForm = useForm({
+      mode: 'onChange',
+      reValidateMode: 'onChange',
+    });
   const eventImage = eventForm.watch("image");
   const [eventStartDate, setEventStartDate] = useState("");
   const [eventEndDate, setEventEndDate] = useState("");
   const [currentPage, setCurrentPage] = useState(1)
   
   const PAGE_SIZE = 9 
+    // IMAGE CROPPER CONFIGURATION
+    const [cropper, setCropper] = useState(null); // { src, key }
+    const [crop, setCrop] = useState({ x: 0, y: 0 });
+    const [zoom, setZoom] = useState(1);
+    const [croppedPixels, setCroppedPixels] = useState(null);
 
+    const onCropComplete = useCallback((_, pixels) => setCroppedPixels(pixels), []);
 
+    const forms = { ol: olForm, member: memberForm, event: eventForm };
+
+    const CROP_CONFIG = {
+      logo:   { form: 'ol',     field: 'logoImg', aspect: 423 / 205, fileName: 'logo.png' },
+      map:    { form: 'ol',     field: 'mapImg',  aspect: 453 / 441, fileName: 'map.png' },
+      member: { form: 'member', field: 'image',   aspect: 1,         fileName: 'member.png' },
+      event:  { form: 'event',  field: 'image',   aspect: 1073.51 / 349, fileName: 'event.png' },
+    };
   
   const openEditOlModal = (ol) => {
     olForm.reset({
@@ -490,6 +519,69 @@ useEffect(() => {
   });
   const TOTAL_PAGES = filteredEvents.length % PAGE_SIZE === 0 ? Math.floor(filteredEvents.length / PAGE_SIZE) : Math.floor(filteredEvents.length / PAGE_SIZE) + 1 || 1
   const eventsPagination = filteredEvents.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE)
+
+
+  // Champs "virtuels" (valeur définie via setValue après le crop)
+    useEffect(() => {
+      olForm.register('logoImg');
+      olForm.register('mapImg');
+    }, [olForm]);
+
+    useEffect(() => {
+      memberForm.register('image', {
+        required: memberId ? false : "L'image est obligatoire",
+      });
+    }, [memberForm, memberId]);
+
+    useEffect(() => {
+      eventForm.register('image', {
+        required: eventId ? false : "L'image est obligatoire",
+      });
+    }, [eventForm, eventId]);
+
+    const handleFileSelect = (e, key) => {
+      const file = e.target.files?.[0];
+      e.target.value = '';
+      if (!file) return;
+
+      const { form, field } = CROP_CONFIG[key];
+      const f = forms[form];
+
+      if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+        return f.setError(field, { type: 'validate', message: 'Formats acceptés : JPG, PNG ou WebP.' });
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        return f.setError(field, { type: 'validate', message: "L'image ne doit pas dépasser 5 Mo." });
+      }
+
+      f.clearErrors(field);
+      setCrop({ x: 0, y: 0 });
+      setZoom(1);
+      setCropper({ src: URL.createObjectURL(file), key });
+    };
+
+    const handleCropConfirm = async () => {
+      if (!cropper || !croppedPixels) return;
+
+      const { src, key } = cropper;
+      const { form, field, fileName } = CROP_CONFIG[key];
+
+      try {
+        const file = await getCroppedFile(src, croppedPixels, fileName);
+        forms[form].setValue(field, [file], { shouldValidate: true, shouldDirty: true });
+        URL.revokeObjectURL(src);
+        setCropper(null);
+        setCroppedPixels(null);
+      } catch (error) {
+        console.error('Erreur de crop :', error);
+        toast.error("Impossible de rogner l'image");
+      }
+    };
+
+    const handleCropCancel = () => {
+      URL.revokeObjectURL(cropper.src);
+      setCropper(null);
+    };
   return (
     <div className='relative p-5 flex flex-col items-start bg-gray-100 w-full min-h-screen'>
       
@@ -1216,37 +1308,11 @@ useEffect(() => {
                         </label>
 
                         <input
-                            id="logoImg"
-                            type="file"
-                            accept="image/*"
-                            {...olForm.register("logoImg", {
-                                required: false
-
-                            , validate: {
-                                validType: (files) => {
-                                const file = files?.[0];
-
-                                if (!file) return true;
-
-                                return (
-                                    ["image/jpeg", "image/png", "image/webp"].includes(file.type) ||
-                                    "Formats acceptés : JPG, PNG ou WebP."
-                                );
-                                },
-
-                                validSize: (files) => {
-                                const file = files?.[0];
-
-                                if (!file) return true;
-
-                                return (
-                                    file.size <= 5 * 1024 * 1024 ||
-                                    "L'image ne doit pas dépasser 5 Mo."
-                                );
-                                },
-                            },
-                        })}
-                            className="hidden"
+                          id="logoImg"
+                          type="file"
+                          accept="image/jpeg,image/png,image/webp"
+                          onChange={(e) => handleFileSelect(e, 'logo')}
+                          className="hidden"
                         />
 
                         {olForm.formState.errors.logoImg && (
@@ -1287,38 +1353,11 @@ useEffect(() => {
                         </label>
 
                         <input
-                            id="mapImg"
-                            type="file"
-                            accept="image/*"
-                            {...olForm.register("mapImg", {
-                                required: false
-                                    ,
-                                    validate: {
-                                        validType: (files) => {
-                                        const file = files?.[0];
-
-                                        if (!file) return true;
-
-                                        return (
-                                            ["image/jpeg", "image/png", "image/webp"].includes(file.type) ||
-                                            "Formats acceptés : JPG, PNG ou WebP."
-                                        );
-                                        },
-
-                                        validSize: (files) => {
-                                        const file = files?.[0];
-
-                                        if (!file) return true;
-
-                                        return (
-                                            file.size <= 5 * 1024 * 1024 ||
-                                            "L'image ne doit pas dépasser 5 Mo."
-                                        );
-                                        },
-                                    },
-                                    })}
-                            
-                            className="hidden"
+                          id="mapImg"
+                          type="file"
+                          accept="image/jpeg,image/png,image/webp"
+                          onChange={(e) => handleFileSelect(e, 'map')}
+                          className="hidden"
                         />
 
                         {olForm.formState.errors.mapImg && (
@@ -1672,35 +1711,8 @@ useEffect(() => {
                 <input
                   id="memberImage"
                   type="file"
-                  accept="image/*"
-                  {...memberForm.register("image", {
-                    required: memberId
-                      ? false
-                      : "L'image est obligatoire"
-                      , validate: {
-                          validType: (files) => {
-                          const file = files?.[0];
-
-                          if (!file) return true;
-
-                          return (
-                              ["image/jpeg", "image/png", "image/webp"].includes(file.type) ||
-                              "Formats acceptés : JPG, PNG ou WebP."
-                          );
-                          },
-
-                          validSize: (files) => {
-                          const file = files?.[0];
-
-                          if (!file) return true;
-
-                          return (
-                              file.size <= 5 * 1024 * 1024 ||
-                              "L'image ne doit pas dépasser 5 Mo."
-                          );
-                          },
-                      },
-                  })}
+                  accept="image/jpeg,image/png,image/webp"
+                  onChange={(e) => handleFileSelect(e, 'member')}
                   className="hidden"
                 />
 
@@ -1962,35 +1974,8 @@ useEffect(() => {
               <input
                 id="eventImage"
                 type="file"
-                accept="image/*"
-                {...eventForm.register("image", {
-                  required: eventId
-                    ? false
-                    : "L'image est obligatoire"
-                    , validate: {
-                      validType: (files) => {
-                      const file = files?.[0];
-
-                      if (!file) return true;
-
-                      return (
-                          ["image/jpeg", "image/png", "image/webp"].includes(file.type) ||
-                          "Formats acceptés : JPG, PNG ou WebP."
-                      );
-                      },
-
-                      validSize: (files) => {
-                      const file = files?.[0];
-
-                      if (!file) return true;
-
-                      return (
-                          file.size <= 5 * 1024 * 1024 ||
-                          "L'image ne doit pas dépasser 5 Mo."
-                      );
-                      },
-                  },
-                })}
+                accept="image/jpeg,image/png,image/webp"
+                onChange={(e) => handleFileSelect(e, 'event')}
                 className="hidden"
               />
 
@@ -2197,6 +2182,43 @@ useEffect(() => {
 
       </div>
     )}
+    {cropper && (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+      <div className="bg-white rounded-xl w-full max-w-md overflow-hidden">
+        <div className="relative w-full h-80 bg-gray-900">
+          <Cropper
+            image={cropper.src}
+            crop={crop}
+            zoom={zoom}
+            aspect={CROP_CONFIG[cropper.key].aspect}
+            onCropChange={setCrop}
+            onZoomChange={setZoom}
+            onCropComplete={onCropComplete}
+          />
+        </div>
+
+        <div className="p-4 flex flex-col gap-4">
+          <input
+            type="range"
+            min={1}
+            max={3}
+            step={0.1}
+            value={zoom}
+            onChange={(e) => setZoom(Number(e.target.value))}
+            className="w-full accent-jci-yellow"
+          />
+          <div className="flex gap-2 justify-end">
+            <button type="button" onClick={handleCropCancel} className="px-4 py-2 text-sm rounded-lg border border-gray-300">
+              Annuler
+            </button>
+            <button type="button" onClick={handleCropConfirm} className="px-4 py-2 text-sm rounded-lg bg-jci-yellow text-jci-white font-semibold">
+              Valider
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )}
     </div>
   )
 }

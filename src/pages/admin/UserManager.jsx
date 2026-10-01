@@ -285,7 +285,7 @@ const UserManager = () => {
                   pattern: {
                     value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{12,}$/,
                     message:
-                      "Le mot de passe doit contenir une majuscule, une minuscule, un chiffre et un caractère spécial. Exemple: JciMadagascar@2026",
+                      "Le mot de passe doit contenir une majuscule, une minuscule, un chiffre et un caractère spécial.",
                   },
                  })}
                 className='px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-jci-yellow focus:border-jci-yellow transition-colors duration-200'
@@ -384,7 +384,7 @@ const UserManager = () => {
                   pattern: {
                     value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{12,}$/,
                     message:
-                      "Le mot de passe doit contenir une majuscule, une minuscule, un chiffre et un caractère spécial. Exemple: JciMadagascar@2026",
+                      "Le mot de passe doit contenir une majuscule, une minuscule, un chiffre et un caractère spécial.",
                   },
                  })}
                 className='px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-jci-yellow focus:border-jci-yellow transition-colors duration-200'

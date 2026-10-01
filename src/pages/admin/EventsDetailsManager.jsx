@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
+import Cropper from 'react-easy-crop';
+import { getCroppedFile } from '../../services/cropImage.js';
 import { useParams } from 'react-router';
-import { useState } from 'react';
 import { eventAPI, eventFileAPI, eventImageAPI } from '../../services/api';
 import { useForm } from 'react-hook-form';
 import { IoClose, IoAdd, IoDocumentText ,IoImages } from "react-icons/io5";
@@ -8,6 +9,11 @@ import { FaRegTrashCan } from "react-icons/fa6";
 import { NavLink } from 'react-router';
 import { MdArrowForwardIos } from "react-icons/md";
 import { toast } from "sonner";
+
+    const CROP_CONFIG = {
+    event:      { form: 'event', field: 'image', aspect: 1073.51 / 349, fileName: 'event.png' },
+    eventExtra: { form: 'extra', field: 'image', aspect: 4 / 3,     fileName: 'event-extra.png' },
+    };
 
 const EventsDetailsManager = () => {
     const {olId, zone, eventId} = useParams();   
@@ -17,7 +23,10 @@ const EventsDetailsManager = () => {
     const day = date ? date.getDate() : '';
     const month = date ? date.toLocaleString('default', { month: 'short' }) : '';
     const year = date ? date.getFullYear() : '';
-    const eventForm = useForm();
+    const eventForm = useForm({
+      mode: 'onChange',
+      reValidateMode: 'onChange',
+    });
     const eventImage = eventForm.watch("image");
     const [isEventOpen, setIsEventOpen] = useState(false);
     const [isPending, setIsPending] = useState(false);
@@ -27,14 +36,20 @@ const EventsDetailsManager = () => {
     const [isFileOpen, setIsFileOpen] = useState(false);
     const [isFileDeleteOpen, setIsFileDeleteOpen] = useState(false);
     const [deleteFileId, setDeleteFileId] = useState(null);
-    const fileForm = useForm();
+    const fileForm = useForm({
+      mode: 'onChange',
+      reValidateMode: 'onChange',
+    });
     const eventFile = fileForm.watch("file");
     /** EVENT IMAGES STATE */
     const [eventImages, setEventImages] = useState([]);
     const [isImageOpen, setIsImageOpen] = useState(false);
     const [isImageDeleteOpen, setIsImageDeleteOpen] = useState(false);
     const [deleteImageId, setDeleteImageId] = useState(null);
-    const imageForm = useForm();
+    const imageForm = useForm({
+      mode: 'onChange',
+      reValidateMode: 'onChange',
+    });
     const eventImageDetails = imageForm.watch("image");    
     
 
@@ -250,6 +265,67 @@ const EventsDetailsManager = () => {
             setPendingAction("");
         }
     };
+    const [cropper, setCropper] = useState(null); // { src, key }
+const [crop, setCrop] = useState({ x: 0, y: 0 });
+const [zoom, setZoom] = useState(1);
+const [croppedPixels, setCroppedPixels] = useState(null);
+
+const onCropComplete = useCallback((_, pixels) => setCroppedPixels(pixels), []);
+
+const forms = { event: eventForm, extra: imageForm };
+
+// Champs "virtuels" : la valeur est définie via setValue après le crop
+useEffect(() => {
+  eventForm.register('image', { required: false });
+}, [eventForm]);
+
+useEffect(() => {
+  imageForm.register('image', { required: "L'image est obligatoire" });
+}, [imageForm]);
+
+const handleFileSelect = (e, key) => {
+  const file = e.target.files?.[0];
+  e.target.value = '';
+  if (!file) return;
+
+  const { form, field } = CROP_CONFIG[key];
+  const f = forms[form];
+
+  if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+    return f.setError(field, { type: 'validate', message: 'Formats acceptés : JPG, PNG ou WebP.' });
+  }
+  if (file.size > 5 * 1024 * 1024) {
+    return f.setError(field, { type: 'validate', message: "L'image ne doit pas dépasser 5 Mo." });
+  }
+
+  f.clearErrors(field);
+  setCrop({ x: 0, y: 0 });
+  setZoom(1);
+  setCropper({ src: URL.createObjectURL(file), key });
+};
+
+const handleCropConfirm = async () => {
+  if (!cropper || !croppedPixels) return;
+
+  const { src, key } = cropper;
+  const { form, field, fileName } = CROP_CONFIG[key];
+
+  try {
+    const file = await getCroppedFile(src, croppedPixels, fileName);
+    forms[form].setValue(field, [file], { shouldValidate: true, shouldDirty: true });
+    URL.revokeObjectURL(src);
+    setCropper(null);
+    setCroppedPixels(null);
+  } catch (error) {
+    console.error('Erreur de crop :', error);
+    toast.error("Impossible de rogner l'image");
+  }
+};
+
+const handleCropCancel = () => {
+  URL.revokeObjectURL(cropper.src);
+  setCropper(null);
+};
 
   return (
     <div className='relative p-5 md:p-10 flex flex-col items-start bg-gray-100 w-full min-h-screen md:pt-10 pt-20'>
@@ -434,31 +510,30 @@ const EventsDetailsManager = () => {
 
             </div>
 
-        ) : (
+            ) : (
 
-            <div className="w-full py-10 bg-gray-50 rounded-xl border border-dashed border-gray-300 flex flex-col items-center justify-center gap-3">
+                <div className="w-full py-10 bg-gray-50 rounded-xl border border-dashed border-gray-300 flex flex-col items-center justify-center gap-3">
 
-            <div className="w-12 h-12 flex items-center justify-center">
-                <IoDocumentText
-                size={24}
-                className="text-gray-400"
-                />
-            </div>
+                <div className="w-12 h-12 flex items-center justify-center">
+                    <IoDocumentText
+                    size={24}
+                    className="text-gray-400"
+                    />
+                </div>
 
-            <p className="text-sm text-jci-black/50">
-                Aucun fichier pour cet événement
-            </p>
+                <p className="text-sm text-jci-black/50">
+                    Aucun fichier pour cet événement
+                </p>
 
-            <button
-                type="button"
-                onClick={openAddFileModal}
-                className="text-sm font-semibold text-jci-teal hover:underline cursor-pointer"
-            >
-                Ajouter un fichier
-            </button>
+                <button
+                    type="button"
+                    onClick={openAddFileModal}
+                    className="text-sm font-semibold text-jci-teal hover:underline cursor-pointer"
+                >
+                    Ajouter un fichier
+                </button>
 
-            </div>
-
+                </div>
         )}
 
         </div>
@@ -612,35 +687,10 @@ const EventsDetailsManager = () => {
               <input
                 id="eventImage"
                 type="file"
-                accept="image/*"
-                {...eventForm.register("image", {
-                  required: false
-                    , validate: {
-                      validType: (files) => {
-                      const file = files?.[0];
-
-                      if (!file) return true;
-
-                      return (
-                          ["image/jpeg", "image/png", "image/webp"].includes(file.type) ||
-                          "Formats acceptés : JPG, PNG ou WebP."
-                      );
-                      },
-
-                      validSize: (files) => {
-                      const file = files?.[0];
-
-                      if (!file) return true;
-
-                      return (
-                          file.size <= 5 * 1024 * 1024 ||
-                          "L'image ne doit pas dépasser 5 Mo."
-                      );
-                      },
-                  },
-                })}
+                accept="image/jpeg,image/png,image/webp"
+                onChange={(e) => handleFileSelect(e, 'event')}
                 className="hidden"
-              />
+                />
 
               {eventForm.formState.errors.image && (
                 <span className="text-red-500 text-sm">
@@ -979,7 +1029,7 @@ const EventsDetailsManager = () => {
 
     </div>
     )}
-{isImageOpen && (
+    {isImageOpen && (
         <div
             className="fixed top-0 left-0 w-full h-full bg-jci-black/30 bg-opacity-50 flex items-center justify-center z-20"
             onClick={(e) => {
@@ -1053,35 +1103,10 @@ const EventsDetailsManager = () => {
                         <input
                             id="eventAdditionalImage"
                             type="file"
-                            accept="image/*"
-                            {...imageForm.register("image", {
-                                required: "L'image est obligatoire"
-                                , validate: {
-                                    validType: (files) => {
-                                    const file = files?.[0];
-
-                                    if (!file) return true;
-
-                                    return (
-                                        ["image/jpeg", "image/png", "image/webp"].includes(file.type) ||
-                                        "Formats acceptés : JPG, PNG ou WebP."
-                                    );
-                                    },
-
-                                    validSize: (files) => {
-                                    const file = files?.[0];
-
-                                    if (!file) return true;
-
-                                    return (
-                                        file.size <= 5 * 1024 * 1024 ||
-                                        "L'image ne doit pas dépasser 5 Mo."
-                                    );
-                                    },
-                                },
-                            })}
+                            accept="image/jpeg,image/png,image/webp"
+                            onChange={(e) => handleFileSelect(e, 'eventExtra')}
                             className="hidden"
-                        />
+                            />
 
                         {imageForm.formState.errors.image && (
                             <span className="text-red-500 text-sm">
@@ -1156,6 +1181,43 @@ const EventsDetailsManager = () => {
 
     </div>
     )}
+    {cropper && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+            <div className="bg-white rounded-xl w-full max-w-md overflow-hidden">
+            <div className="relative w-full h-80 bg-gray-900">
+                <Cropper
+                image={cropper.src}
+                crop={crop}
+                zoom={zoom}
+                aspect={CROP_CONFIG[cropper.key].aspect}
+                onCropChange={setCrop}
+                onZoomChange={setZoom}
+                onCropComplete={onCropComplete}
+                />
+            </div>
+
+            <div className="p-4 flex flex-col gap-4">
+                <input
+                type="range"
+                min={1}
+                max={3}
+                step={0.1}
+                value={zoom}
+                onChange={(e) => setZoom(Number(e.target.value))}
+                className="w-full accent-jci-yellow"
+                />
+                <div className="flex gap-2 justify-end">
+                <button type="button" onClick={handleCropCancel} className="px-4 py-2 text-sm rounded-lg border border-gray-300">
+                    Annuler
+                </button>
+                <button type="button" onClick={handleCropConfirm} className="px-4 py-2 text-sm rounded-lg bg-jci-yellow text-jci-white font-semibold">
+                    Valider
+                </button>
+                </div>
+            </div>
+            </div>
+        </div>
+        )}
     </div>
   )
 }

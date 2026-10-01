@@ -9,6 +9,9 @@ import { LuExternalLink } from "react-icons/lu";
 import { NavLink } from "react-router";
 import { MdArrowForwardIos } from "react-icons/md";
 import {toast} from "sonner";
+import {useCallback } from 'react';
+import Cropper from 'react-easy-crop';
+import { getCroppedFile } from '../../services/cropImage.js';
 
 const ZonesDetailsManager = () => {
     const [zoneDetails, setZoneDetails] = useState(null);
@@ -25,8 +28,31 @@ const ZonesDetailsManager = () => {
     const [isOlDeleteOpen, setIsOlDeleteOpen] = useState(false);
     const [searchOl, setSearchOl] = useState("");
     const { zone } = useParams();
-    const psdForm = useForm();
-    const olForm = useForm();
+
+    //IMAGE CROPER//
+    const [cropper, setCropper] = useState(null); 
+    const CROP_CONFIG = {
+        image: { aspect: 1, fileName: 'photo.jpg'},
+        mapImg: { aspect: 453/441, fileName: 'map.jpg'},
+        logoImg: { aspect: 423/205, fileName: 'logo.jpg'}
+    };
+
+// quel formulaire possède quel champ
+    const getForm = (field) => (field === 'image' ? psdForm : olForm);
+    const [crop, setCrop] = useState({ x: 0, y: 0 });
+    const [zoom, setZoom] = useState(1);
+    const [croppedPixels, setCroppedPixels] = useState(null);
+
+    const onCropComplete = useCallback((_, pixels) => setCroppedPixels(pixels), []);
+
+    const psdForm = useForm({
+      mode: 'onChange',
+      reValidateMode: 'onChange',
+    });
+    const olForm = useForm({
+      mode: 'onChange',
+      reValidateMode: 'onChange',
+    });
 
 
      const openAddModal = () => {
@@ -95,6 +121,7 @@ const ZonesDetailsManager = () => {
 //================================Zone President Management Handling action ==============================
     const handleSubmit = async (data) => {
         setPendingAction(isEdit ? 'edit' : 'create');
+        setIsOpen(false);
         setIsPending(true);
 
         try {
@@ -121,7 +148,6 @@ const ZonesDetailsManager = () => {
             const response = await zonesAPI.getPsdByZoneId(zoneDetails.id);
             setZonePsd(response.data);
 
-            setIsOpen(false);
             psdForm.reset();
 
         } catch (error) {
@@ -280,6 +306,61 @@ const ZonesDetailsManager = () => {
     const filteredOls = zoneOls.filter((ol) =>
         ol.name.toLowerCase().includes(searchOl.toLowerCase())
     );
+   /*=============image cropper states and handlers=============*/
+     useEffect(() => {
+       psdForm.register('image', {
+         required: zonePsd ? false : "L'image est obligatoire",
+         validate: {
+           validSize: (files) => {
+             const file = files?.[0];
+             if (!file) return true;
+             return file.size <= 5 * 1024 * 1024 || "L'image ne doit pas dépasser 5 Mo.";
+           },
+         },
+       });
+     }, [psdForm, zonePsd]);
+
+     useEffect(() => {
+        olForm.register('logoImg', {
+            required: isOlEdit ? false : 'Le logo est obligatoire',
+        });
+        olForm.register('mapImg', {
+            required: isOlEdit ? false : "L'image de localisation est obligatoire",
+        });
+        }, [olForm, isOlEdit]);
+   
+     const handleFileSelect = (e, field) => {
+  const file = e.target.files?.[0];
+  e.target.value = '';
+  if (!file) return;
+
+  const form = getForm(field);
+
+  if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+    return form.setError(field, { type: 'validate', message: 'Formats acceptés : JPG, PNG ou WebP.' });
+  }
+  if (file.size > 5 * 1024 * 1024) {
+    return form.setError(field, { type: 'validate', message: "L'image ne doit pas dépasser 5 Mo." });
+  }
+
+  form.clearErrors(field);
+  setCrop({ x: 0, y: 0 });
+  setZoom(1);
+  setCropper({ src: URL.createObjectURL(file), field, ...CROP_CONFIG[field] });
+};
+
+const handleCropConfirm = async () => {
+  const { src, field, fileName } = cropper;
+  const file = await getCroppedFile(src, croppedPixels, fileName);
+  getForm(field).setValue(field, [file], { shouldValidate: true, shouldDirty: true });
+  URL.revokeObjectURL(src);
+  setCropper(null);
+};
+
+const handleCropCancel = () => {
+  URL.revokeObjectURL(cropper.src);
+  setCropper(null);
+};
    
 
     return (
@@ -313,7 +394,7 @@ const ZonesDetailsManager = () => {
 
                 </div>
                 <div
-                    className="group mt-5 flex flex-col gap-4 items-start w-full h-[40vh] p-5 bg-cover bg-center rounded-t-xl"
+                    className="group mt-5 flex flex-col gap-4 items-start w-full md:h-[50vh] h-[20vh] p-5 bg-cover bg-center rounded-t-xl"
                     style={{
                         backgroundImage: `linear-gradient(to left, rgba(0, 0, 0, 0),rgba(0, 0, 0, 0), #0e0b21), url(${`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${zoneDetails?.imgUrl}`})`
                     }}
@@ -513,33 +594,8 @@ const ZonesDetailsManager = () => {
                                     <input
                                         id="image"
                                         type="file"
-                                        accept="image/*"
-                                        {...psdForm.register("image", {
-                                            required: isEdit ? false : "L'image est obligatoire",
-                                            validate: {
-                                                validType: (files) => {
-                                                const file = files?.[0];
-
-                                                if (!file) return true;
-
-                                                return (
-                                                    ["image/jpeg", "image/png", "image/webp"].includes(file.type) ||
-                                                    "Formats acceptés : JPG, PNG ou WebP."
-                                                );
-                                                },
-
-                                                validSize: (files) => {
-                                                const file = files?.[0];
-
-                                                if (!file) return true;
-
-                                                return (
-                                                    file.size <= 5 * 1024 * 1024 ||
-                                                    "L'image ne doit pas dépasser 5 Mo."
-                                                );
-                                                },
-                                            },
-                                        })}
+                                        accept="image/jpeg,image/png,image/webp"
+                                        onChange={(e) => handleFileSelect(e, 'image')}
                                         className="hidden"
                                     />
                                     {psdForm.formState.errors.image && (
@@ -752,37 +808,10 @@ const ZonesDetailsManager = () => {
                                     <input
                                         id="logoImg"
                                         type="file"
-                                        accept="image/*"
-                                        {...olForm.register("logoImg", {
-                                            required: isOlEdit
-                                                ? false
-                                                : "Le logo est obligatoire"
-                                        , validate: {
-                                            validType: (files) => {
-                                            const file = files?.[0];
-
-                                            if (!file) return true;
-
-                                            return (
-                                                ["image/jpeg", "image/png", "image/webp"].includes(file.type) ||
-                                                "Formats acceptés : JPG, PNG ou WebP."
-                                            );
-                                            },
-
-                                            validSize: (files) => {
-                                            const file = files?.[0];
-
-                                            if (!file) return true;
-
-                                            return (
-                                                file.size <= 5 * 1024 * 1024 ||
-                                                "L'image ne doit pas dépasser 5 Mo."
-                                            );
-                                            },
-                                        },
-                                    })}
+                                        accept="image/jpeg,image/png,image/webp"
+                                        onChange={(e) => handleFileSelect(e, 'logoImg')}
                                         className="hidden"
-                                    />
+                                        />
 
                                     {olForm.formState.errors.logoImg && (
                                         <span className="text-red-500 text-sm">
@@ -822,39 +851,11 @@ const ZonesDetailsManager = () => {
                                     </label>
 
                                     <input
-                                        id="mapImg"
-                                        type="file"
-                                        accept="image/*"
-                                        {...olForm.register("mapImg", {
-                                            required: isOlEdit
-                                                ? false
-                                                : "L'image de localisation est obligatoire",
-                                                validate: {
-                                                    validType: (files) => {
-                                                    const file = files?.[0];
-
-                                                    if (!file) return true;
-
-                                                    return (
-                                                        ["image/jpeg", "image/png", "image/webp"].includes(file.type) ||
-                                                        "Formats acceptés : JPG, PNG ou WebP."
-                                                    );
-                                                    },
-
-                                                    validSize: (files) => {
-                                                    const file = files?.[0];
-
-                                                    if (!file) return true;
-
-                                                    return (
-                                                        file.size <= 5 * 1024 * 1024 ||
-                                                        "L'image ne doit pas dépasser 5 Mo."
-                                                    );
-                                                    },
-                                                },
-                                                })}
-                                       
-                                        className="hidden"
+                                    id="mapImg"
+                                    type="file"
+                                    accept="image/jpeg,image/png,image/webp"
+                                    onChange={(e) => handleFileSelect(e, 'mapImg')}
+                                    className="hidden"
                                     />
 
                                     {olForm.formState.errors.mapImg && (
@@ -1237,7 +1238,51 @@ const ZonesDetailsManager = () => {
                     </div>
 
                 )}
-
+                {cropper && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+                    <div className="bg-white rounded-xl w-full max-w-md overflow-hidden">
+                    <div className="relative w-full h-80 bg-gray-900">
+                        <Cropper
+                        image={cropper.src}
+                        crop={crop}
+                        zoom={zoom}
+                        aspect={cropper.aspect}
+                        onCropChange={setCrop}
+                        onZoomChange={setZoom}
+                        onCropComplete={onCropComplete}
+                        />
+                    </div>
+    
+                    <div className="p-4 flex flex-col gap-4">
+                    <input
+                        type="range"
+                        min={1}
+                        max={3}
+                        step={0.1}
+                        value={zoom}
+                        onChange={(e) => setZoom(Number(e.target.value))}
+                        className="w-full accent-jci-yellow"
+                    />
+                    <div className="flex gap-2 justify-end">
+                        <button
+                        type="button"
+                        onClick={handleCropCancel}
+                        className="px-4 py-2 text-sm rounded-lg border border-gray-300"
+                        >
+                        Annuler
+                        </button>
+                        <button
+                        type="button"
+                        onClick={handleCropConfirm}
+                        className="px-4 py-2 text-sm rounded-lg bg-jci-yellow text-jci-white font-semibold"
+                        >
+                        Valider
+                        </button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                )}
             </div>
         </div>
     );

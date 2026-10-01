@@ -13,7 +13,10 @@ const Ecommerce = () => {
   const [itemLists, setItemLists] = useState([])
   const [itemId, setItemId] = useState(null)
 
-  const itemForm = useForm()
+  const itemForm = useForm({
+        mode: 'onChange',
+        reValidateMode: 'onChange',
+      });
   const image = itemForm.watch('image')
 
   const [isDeleteOpen, setIsDeleteOpen] = useState(false)
