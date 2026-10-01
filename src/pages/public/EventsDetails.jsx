@@ -5,6 +5,7 @@ import { eventAPI, eventFileAPI, eventImageAPI } from '../../services/api';
 import { IoClose, IoAdd, IoDocumentText ,IoImages } from "react-icons/io5";
 import LabelTraitSimple from '@/components/ui/LabelTraitSimple'
 import Reveal from "../../components/ui/Reveal"
+import { createPortal } from 'react-dom';
 
 
 const EventsDetails = () => {
@@ -72,9 +73,9 @@ const EventsDetails = () => {
     <div className='flex flex-col w-full min-h-screen bg-jci-black'>
       
       {/* Actualités & évènements */}
-      <section className='relative bg-jci-blue px-2 md:px-8 lg:px-1 pt-20 lg:py-0 flex flex-col items-center gap-10 lg:pl-70  overflow-hidden '>
+      <section className='relative bg-jci-blue px-2 md:px-8 lg:px-1 pt-20 lg:py-0 flex flex-col items-center gap-10 lg:pl-70   '>
         {/*Fonds blanc */}
-        <div className='flex flex-col items-start py-3 md:py-15 px-2 lg:px-7 gap-4 lg:gap-1 text-left lg:text-center bg-jci-white  w-full h-auto min-h-screen mr-0 md:-mr-2'>          
+        <div className='flex flex-col items-start py-3 md:py-15 px-2 lg:px-7 gap-4 lg:gap-1 text-left lg:text-center bg-jci-white  w-full h-auto min-h-screen mr-0 md:-mr-2 '>          
           <Reveal from="left" duration={1000} threshold={0.05}>
             <div className="flex flex-col items-start">
               <LabelTraitSimple Label="Actualités JCI" H1Text="NE MANQUEZ RIEN" LabelColor="text-jci-blue" H1Color="text-jci-black" H1TextSize="lg:text-2xl md:text-[16px] text-[14px]" />
@@ -82,7 +83,7 @@ const EventsDetails = () => {
             </div>
           </Reveal>
           <div
-            className="group flex flex-col gap-2 items-start w-full md:h-[50vh] h-[20vh]  p-5 bg-cover bg-center uppercase overflow-hidden"
+            className="group flex flex-col gap-2 items-start w-full md:h-[50vh] h-[20vh]  p-5 bg-cover bg-center uppercase "
             style={{
                 backgroundImage: `linear-gradient(to left, rgba(0, 0, 0, 0),rgba(0, 0, 0, 0),rgba(0, 0, 0, 0), #111111), url(${`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${eventDetails?.imgUrl}`})`
             }}
@@ -195,9 +196,9 @@ const EventsDetails = () => {
             ) : (
               <p className="lg:text-[14px] md:text-[12px] text-[10px] text-jci-black/50 italic">Aucune photo disponible pour cet événement.</p>
             )}
-            {selectedImage && (
+            {selectedImage && createPortal(
               <div
-                className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 md:p-10"
+                className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 p-4 md:p-10"
                 onClick={() => setSelectedImage(null)}
               >
                 <button
@@ -212,11 +213,12 @@ const EventsDetails = () => {
                   src={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${selectedImage.imgUrl}`}
                   alt="Image événement en plein écran"
                   onClick={(e) => e.stopPropagation()}
-                  className="max-h-[90vh] h-[80vh] max-w-[90vw] object-contain"
+                  className="max-h-[90vh] max-w-[90vw] object-contain"
                 />
-              </div>
+              </div>,
+              document.body
             )}
-          </div>
+                      </div>
           </Reveal>
         </div>
         <div className='relative lg:absolute lg:top-35 lg:left-60 flex flex-col lg:flex-row w-full lg:w-auto lg:px-0  '>
