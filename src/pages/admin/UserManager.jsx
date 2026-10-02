@@ -314,7 +314,7 @@ const UserManager = () => {
     )}
      {/* Modal for adding a user   */}
       {isOpen && (
-        <div className='fixed top-0 left-0 w-full h-full bg-jci-black/30 bg-opacity-50 flex items-center justify-center'
+        <div className='fixed top-0 left-0 w-full h-full bg-jci-black/30 bg-opacity-50 flex items-center justify-center z-10'
          onClick={(e) => {
           if (e.target === e.currentTarget) {
             setIsOpen(false);
@@ -473,7 +473,7 @@ const UserManager = () => {
       <div className='w-full overflow-x-auto rounded border border-gray-200 shadow-sm max-h-[400px] overflow-y-auto'>
         {filteredUsers && filteredUsers.length > 0 ? (
           <table className='w-full border-collapse text-sm'>
-          <thead className={` ${user.role === 'SUPER_ADMIN' ? 'bg-red-900' : user.role === 'ADMIN_NATIONAL' ? 'bg-jci-black' : user.role === 'ADMIN_LOCAL' ? 'bg-green-900' : 'bg-yellow-900'} text-jci-white font-poppins font-semibold sticky top-0 z-10`}>
+          <thead className={` ${user.role === 'SUPER_ADMIN' ? 'bg-red-900' : user.role === 'ADMIN_NATIONAL' ? 'bg-jci-black' : user.role === 'ADMIN_LOCAL' ? 'bg-green-900' : 'bg-yellow-900'} text-jci-white font-poppins font-semibold sticky top-0 `}>
             <tr className='text-left'>
               <th className='px-4 py-3 text-left font-semibold text-[13px] uppercase tracking-wide whitespace-nowrap'>ID</th>
               <th className='px-4 py-3 text-left font-semibold text-[13px] uppercase tracking-wide whitespace-nowrap'>Email</th>
