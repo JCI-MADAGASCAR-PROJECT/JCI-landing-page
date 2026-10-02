@@ -79,3 +79,17 @@
         transform 1.4s cubic-bezier(0.22, 1, 0.36, 1),
         filter 1.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* .mada-region-hint {
+    animation: regionPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes regionPulse {
+    0%, 100% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(0.7);
+    }
+} */

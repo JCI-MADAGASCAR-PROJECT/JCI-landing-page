@@ -10,7 +10,7 @@ import i18n from 'i18next';
 import France from "../../images/flags/Flag_of_France.svg";
 import Us from "../../images/flags/Flag_of_the_United_States.svg";
 
-import JCILogo from "../../images/JCI/JCI Madagascar/JCI_Madagascar_background_marine_blue_name_blue_logo-removebg-preview.webp";
+import JCILogo from "../../images/JCI/JCI Madagascar/JCI_Madagascar_background_blue_logo-removebg-preview.png";
 import BuildLegacyLogo from "../../images/Charte Build Legacy Together/BLT Blanc/BLT-07.webp";
 
 const navActiveClass = ({ isActive }) => isActive ? "text-jci-yellow scale-105 " : "text-jci-white hover:scale-105 transition-transform duration-300 hover:text-jci-yellow";
@@ -166,7 +166,7 @@ const Navbar = () => {
 
     {/* Menu mobile plein écran, affiché quand isOpen est vrai */}
     {isOpen && (
-        <div className='lg:hidden fixed inset-0 z-40 bg-jci-black/40 backdrop-blur flex flex-col items-center justify-center gap-8 text-jci-white text-[16px] font-roboto font-bold'>
+        <div className='lg:hidden fixed inset-0 z-40 bg-jci-black/40 backdrop-blur flex flex-col items-start pl-8 justify-start pt-25 gap-8 text-jci-white text-[16px] font-roboto font-bold'>
             <div className="flex flex-col items-start gap-6">
                 {navLinks.map((link) => (
                     <NavLink key={link.to} to={link.to} className={navActiveClass} end={link.end} onClick={() => setIsOpen(false)}>{link.label}</NavLink>

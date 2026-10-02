@@ -1,6 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
 import { authAPI } from '../../services/api';
 import JciLogo from "../../images/JCI/JCI Madagascar/JCI_Madagascar_background_blue_logo-removebg-preview.png"
@@ -9,19 +9,30 @@ import H1 from './../../components/ui/H1';
 import { toast } from "sonner";
 import Reveal from "../../components/ui/Reveal";
 
+
 const LoginPage = () => {
 
   const { setUser } = useContext(UserContext);
-  const loginFormDesktop = useForm()
-  const loginFormMobile = useForm()
+  const loginFormDesktop = useForm({
+      mode: 'onChange',
+      reValidateMode: 'onChange',
+    });
+  const loginFormMobile = useForm({
+      mode: 'onChange',
+      reValidateMode: 'onChange',
+    });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (dataform) =>{
   try {
+    setIsSubmitting(true);
     const res = await authAPI.login(dataform);
     setUser(res.data);
     toast.success("Connexion réussie! Bienvenue sur le site de JCI Madagascar");
   } catch (e) {
     toast.error("Connexion échouée");
+  } finally {
+    setIsSubmitting(false);
   }
 }
 
@@ -170,10 +181,11 @@ return (
       {/* Bouton */}
       <button
         type="submit"
-        className="group relative font-poppins w-full h-12 overflow-hidden rounded-[10px] bg-jci-blue text-white text-[13px] font-semibold uppercase tracking-[0.12em] border border-jci-blue transition-all duration-300 hover:bg-transparent hover:text-jci-blue cursor-pointer"
+        className={`group relative font-poppins w-full h-12 overflow-hidden rounded-[10px] bg-jci-blue text-white text-[13px] font-semibold uppercase tracking-[0.12em] border border-jci-blue transition-all duration-300 hover:bg-transparent hover:text-jci-blue cursor-pointer ${isSubmitting ? "opacity-50 pointer-events-none disabled" : ""}`} 
+        disabled={isSubmitting}
       >
         <span className="relative z-10">
-          Se connecter
+          {isSubmitting ? "Connexion en cours..." : "Se connecter"}
         </span>
 
         <span className="absolute left-0 bottom-0 h-[3px] w-0 bg-jci-yellow transition-all duration-300 group-hover:w-full" />
@@ -287,9 +299,10 @@ return (
       {/* Bouton */}
       <button
         type="submit"
-        className="mt-2 w-full h-14 rounded-2xl bg-jci-blue text-white text-[14px] font-semibold font-poppins tracking-wide transition-all duration-200 active:scale-[0.98] cursor-pointer"
+        className={`mt-2 w-full h-14 rounded-2xl bg-jci-blue text-white text-[14px] font-semibold font-poppins tracking-wide transition-all duration-200 active:scale-[0.98] cursor-pointer ${isSubmitting ? "opacity-50 pointer-events-none disabled" : ""}`} 
+        disabled={isSubmitting}
       >
-        Se connecter
+        {isSubmitting ? "Connexion en cours..." : "Se connecter"}
       </button>
     </form>
   </Reveal>

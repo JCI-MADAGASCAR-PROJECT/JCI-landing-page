@@ -391,3 +391,166 @@
 .animate-scroll-horizontal {
   animation: scroll-horizontal 20s linear infinite;
 }
+
+
+.mada-interaction-container {
+    position: relative;
+}
+
+.mada-interaction-hint,
+.mada-interaction-hint.mobile {
+    position: absolute;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: rgba(246, 244, 244, 0.549);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+
+    z-index: 10;
+    pointer-events: none;
+
+    /* flottement doux, démarre après l'apparition */
+    animation: madaHintFloat 3s ease-in-out 0.8s infinite;
+    will-change: transform;
+}
+
+.mada-interaction-hint {
+    top: 80px;
+    left: 30px;
+}
+
+.mada-interaction-hint.mobile {
+    top: 150px;
+    left: 40px;
+}
+
+.mada-interaction-hint span {
+    max-width: 180px;
+    line-height: 1.4;
+
+    /* apparition unique + léger pulse de la lueur */
+    animation:
+        madaHintIn 1.8s cubic-bezier(0.22, 1, 0.36, 1) both,
+        madaHintGlow 3s ease-in-out 0.8s infinite;
+}
+
+.mada-interaction-arrow {
+    width: 100px;
+    height: 80px;
+    margin-top: 4px;
+    overflow: visible;
+
+    color: rgba(246, 244, 244, 0.549);
+}
+
+/* La flèche se dessine, reste visible, puis s'efface et recommence */
+.mada-arrow-line,
+.mada-arrow-head {
+    stroke-dasharray: 1 1;
+    stroke-dashoffset: 1;
+}
+
+.mada-arrow-line {
+    animation: madaArrowDraw 4.5s ease-in-out 1.6s infinite;
+}
+
+.mada-arrow-head {
+    animation: madaArrowHead 4.5s ease-in-out 1.6s infinite;
+}
+
+@keyframes madaHintIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes madaHintFloat {
+    0%,
+    100% {
+        transform: translateY(0) rotate(-0.5deg);
+    }
+    50% {
+        transform: translateY(-6px) rotate(0.5deg);
+    }
+}
+
+@keyframes madaHintGlow {
+    0%,
+    100% {
+        text-shadow: 0 0 0 rgba(246, 244, 244, 0);
+    }
+    50% {
+        text-shadow: 0 0 12px rgba(246, 244, 244, 0.205);
+    }
+}
+
+@keyframes madaArrowDraw {
+    0% {
+        stroke-dashoffset: 1;
+        opacity: 1;
+    }
+    35%,
+    85% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes madaArrowHead {
+    0%,
+    30% {
+        stroke-dashoffset: 1;
+        opacity: 1;
+    }
+    42%,
+    85% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 0;
+    }
+}
+
+/* Accessibilité : pas d'animation si l'utilisateur la désactive */
+@media (prefers-reduced-motion: reduce) {
+    .mada-interaction-hint,
+    .mada-interaction-hint span,
+    .mada-arrow-line,
+    .mada-arrow-head {
+        animation: none;
+    }
+
+    .mada-arrow-line,
+    .mada-arrow-head {
+        stroke-dashoffset: 0;
+    }
+}
+
+.mada-swipe-hint {
+    animation: madaSwipeHint 1.4s ease-in-out infinite;
+}
+
+@keyframes madaSwipeHint {
+    0%, 100% { transform: translateX(0); }
+    50%      { transform: translateX(-8px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mada-swipe-hint { animation: none; }
+}

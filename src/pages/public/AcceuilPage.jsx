@@ -6,7 +6,7 @@ import StatBlock from "../../components/ui/StatBlock"
 import { LogIn } from "lucide-react"
 import Mada from "./Mada"
 import BG from "../../images/HomeBG.png"
-import LogoJCIMNoBg from "../../images/JCI/JCI Madagascar/JCI Madagascar background marine blue name blue logo.png"
+import LogoJCIMNoBg from "../../images/JCI/JCI Madagascar/JCI_Madagascar_background_marine_blue_name_blue_logo-removebg-preview.webp"
 import LogoBLTNoBgRow from "../../images/Charte Build Legacy Together/BLT Blanc/BLT-05.webp"
 import LogoBLTNoBgRowWhite from "../../images/Charte Build Legacy Together/BLT Monochrome Blanc/BLT-11.webp"
 import PSD2026 from "../../images/Photos corporate BN/DN2026.webp"
@@ -23,7 +23,6 @@ import { IoArrowDownCircle } from "react-icons/io5"
 import { eventAPI } from "../../services/api"
 import { useState, useEffect, useRef } from "react"
 import { useTranslation } from "react-i18next"
-import Typewriter from "../../hooks/Typewriter"
 import Reveal from "../../components/ui/Reveal"
 
 
@@ -184,14 +183,13 @@ const AcceuilPage = () => {
 
 
               {/* MESSAGE PRESIDENT */}
+              <Reveal from="left" duration={1000} threshold={0.05} className="z-50">
               <div className='relative flex flex-col lg:flex-row items-start lg:items-center gap-4'>
-              <Reveal from="left" duration={1000} threshold={0.05}>
                 <img
                   src={PSD2026}
                   alt={t("home.president.imageAlt")}
                   className='peer h-10 w-10 rounded-full object-cover transition-all duration-300 ease-out hover:h-24 hover:w-24'
                 />
-              </Reveal>
 
                 <div className='relative lg:absolute w-full lg:w-[500px] lg:left-25 top-0 z-55 mt-3 lg:mt-0 lg:ml-3 max-w-full max-h-fit overflow-visible lg:overflow-hidden lg:max-w-0 lg:max-h-0 rounded border border-jci-blue/40 bg-jci-black/40 backdrop-blur-xl p-5 lg:p-0 opacity-100 lg:opacity-0 shadow-lg transition-all duration-300 ease-out lg:peer-hover:max-w-[10000px] lg:peer-hover:max-h-fit lg:peer-hover:p-5 lg:peer-hover:opacity-100'>
 
@@ -273,6 +271,7 @@ const AcceuilPage = () => {
                 </div>
 
               </div>
+              </Reveal>
 
             </div>
 
@@ -309,7 +308,40 @@ const AcceuilPage = () => {
           {/* CARTE */}
           <Reveal from="zoom" duration={1000} threshold={0.05}>
           <div className='flex justify-center md:row-span-2 md:self-center -mt-15 lg:row-span-1 lg:self-start z-50'>
-            <Mada Width="350" Height="755" />
+            <div className="mada-interaction-container">
+              <div className="mada-interaction-hint">
+                <span className='text-[13px] align-middle leading-none'>Survolez les zones sur la carte</span>
+
+                <svg
+                  className="mada-interaction-arrow"
+                  viewBox="0 0 120 80"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+              >
+                  <path
+                      className="mada-arrow-line"
+                      pathLength="1"
+                      d="M40 10 C45 80, 75 50, 100 55"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                  />
+
+                  <path
+                      className="mada-arrow-head"
+                      pathLength="1"
+                      d="M86.7 59.5 L100 55 L89.5 45.8"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                  />
+              </svg>
+              </div>
+
+              <Mada Width="350" Height="755" />
+          </div>
           </div>
           </Reveal>
 
@@ -483,11 +515,41 @@ const AcceuilPage = () => {
           >
 
             <Reveal from="zoom" duration={1000} threshold={0.05}>
-            <div className="relative flex items-center justify-center -ml-10">
+              <div className="relative flex items-center justify-center -ml-15">
+                <div className="mada-interaction-container">
+                  <div className="mada-interaction-hint mobile">
+                      <span>Cliquez sur les zones de la carte</span>
 
-              <Mada Width="290" Height="755" />
+                     <svg
+                          className="mada-interaction-arrow"
+                          viewBox="0 0 120 80"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          aria-hidden="true"
+                      >
+                          <path
+                              className="mada-arrow-line"
+                              pathLength="1"
+                              d="M40 10 C45 80, 75 50, 100 55"
+                              stroke="currentColor"
+                              strokeWidth="2.5"
+                              strokeLinecap="round"
+                          />
 
-            </div>
+                          <path
+                              className="mada-arrow-head"
+                              pathLength="1"
+                              d="M86.7 59.5 L100 55 L89.5 45.8"
+                              stroke="currentColor"
+                              strokeWidth="2.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                          />
+                      </svg>
+                  </div>
+                  <Mada Width="300" Height="755" />
+                </div>
+              </div>
             </Reveal>
 
 
@@ -599,13 +661,17 @@ const AcceuilPage = () => {
 
 
               {/* MESSAGE MOBILE */}
-              <div className="fixed bottom-5 right-5 z-50">
+              <div className="fixed bottom-1 right-5 z-50">
 
                 <div
-                  className={`absolute bottom-full right-0 mb-4 w-[500px] max-w-[calc(100vw-2rem)] rounded border border-jci-blue/40 bg-jci-black/80 backdrop-blur-xl shadow-lg overflow-hidden transition-all duration-500 ease-out ${
+                  className={`absolute bottom-full right-0 mb-1 w-[500px] max-w-[calc(100vw-2rem)]
+                  max-h-[70vh] overflow-y-auto overscroll-contain
+                  origin-bottom-right rounded border border-jci-blue/40 bg-jci-black/90 backdrop-blur-md shadow-lg p-5
+                  transition-[opacity,transform,visibility] duration-300 ease-out will-change-[opacity,transform]
+                  ${
                     showPSD
-                      ? "max-h-[1000px] p-5 opacity-100 translate-y-0"
-                      : "max-h-0 p-0 opacity-0 translate-y-5 pointer-events-none"
+                      ? "opacity-100 translate-y-0 scale-100 visible"
+                      : "opacity-0 translate-y-3 scale-95 invisible pointer-events-none"
                   }`}
                 >
 
@@ -697,7 +763,7 @@ const AcceuilPage = () => {
                     src={PSD2026}
                     alt={t("home.president.imageAlt")}
                     className="h-15 w-15 rounded-full object-cover"
-                    loading="lazy"
+                    loading="eager"
                   />
 
                   <span className="absolute inset-0 rounded-full border-2 border-jci-blue animate-ping" />

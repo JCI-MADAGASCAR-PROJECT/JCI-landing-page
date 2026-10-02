@@ -4,7 +4,7 @@ const EventCard = ({ Img, Day, Month, Type, Title, Content, Year, Id }) => {
   const eventDate = new Date(`${Year}-${Month}-${Day}`);
   const today = new Date();
   return (
-    <div className="w-full max-w-[278px] aspect-[278/330] mx-auto bg-jci-white border-black/5 border rounded shadow-[0_4px_10px_rgba(0,0,0,0.2)] p-2.5 lg:p-3 hover:scale-105 transition-all duration-300">
+    <div className="w-full max-w-[278px] aspect-[278/330]  bg-jci-white border-black/5 border rounded shadow-[0_4px_10px_rgba(0,0,0,0.2)] p-2.5 lg:p-3 hover:scale-105 transition-all duration-300">
       
       <div className="border rounded-xs border-black/5 w-full h-full flex flex-col overflow-hidden">
 

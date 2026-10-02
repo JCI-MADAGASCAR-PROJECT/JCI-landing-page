@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import { eventAPI, eventFileAPI, eventImageAPI } from '../../services/api';
-import { IoClose, IoAdd, IoDocumentText ,IoImages } from "react-icons/io5";
+import { IoClose, IoDocumentText } from "react-icons/io5";
 import LabelTraitSimple from '@/components/ui/LabelTraitSimple'
 import Reveal from "../../components/ui/Reveal"
 import { createPortal } from 'react-dom';
@@ -18,6 +18,20 @@ const EventsDetails = () => {
   const month = date ? date.toLocaleString('default', { month: 'short' }) : '';
   const year = date ? date.getFullYear() : '';
   const [selectedImage, setSelectedImage] = useState(null);
+
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  const handleCarouselScroll = (e) => {
+    const el = e.currentTarget;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    if (maxScroll <= 0) return;
+
+    if (!hasScrolled && el.scrollLeft > 10) setHasScrolled(true);
+
+    const index = Math.round((el.scrollLeft / maxScroll) * (eventImages.length - 1));
+    setActiveIndex(index);
+  };
 
   const getFileExtension = (url) => {
     if (!url) return 'FICHIER';
@@ -139,7 +153,7 @@ const EventsDetails = () => {
                 ))}
               </div>
             ) : (
-              <p className="text-[13px] text-jci-black/50 italic">Aucun fichier disponible pour cet événement.</p>
+              <p className="text-[13px] text-jci-black/50 italic">Aucun fichier fourni pour cet événement.</p>
             )}
           </div>
           </Reveal>
@@ -173,28 +187,63 @@ const EventsDetails = () => {
                   </div>
                 ))}
               </div>
-              <div className=" md:hidden flex md:flex-wrap flex-row gap-0 md:gap-2 w-full overflow-x-scroll md:overflow-visible snap-x snap-mandatory md:snap-none">
-                {eventImages.map((image) => (
-                  <div
-                    key={image.id}
+              <div className="relative md:hidden">
+                <div
+                  onScroll={handleCarouselScroll}
+                  className="flex flex-row gap-0 w-full overflow-x-auto snap-x snap-mandatory
+                    [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                >
+                  {eventImages.map((image) => (
+                    <div
+                      key={image.id}
                       role="button"
-                    tabIndex={0}
-                    onClick={() => setSelectedImage(image)}
-                    onKeyDown={(e) => { if (e.key === 'Enter') setSelectedImage(image); }}
-                    className="relative group overflow-hidden border border-black/10 hover:border-jci-yellow transition-colors duration-300 h-70 w-full shrink-0 snap-center md:w-auto md:shrink md:flex-1 md:min-w-[220px]"
-                  >
-                    <img
-                      src={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${image.imgUrl}`}
-                      alt="Image événement"
-                      className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-jci-black/0 group-hover:bg-jci-black/20 transition-colors duration-300" />
+                      tabIndex={0}
+                      onClick={() => setSelectedImage(image)}
+                      onKeyDown={(e) => { if (e.key === 'Enter') setSelectedImage(image); }}
+                      className="relative group overflow-hidden border border-black/10 hover:border-jci-yellow transition-colors duration-300 h-70 w-full shrink-0 snap-start"
+                    >
+                      <img
+                        src={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${image.imgUrl}`}
+                        alt="Image événement"
+                        className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-jci-black/0 group-hover:bg-jci-black/20 transition-colors duration-300" />
+                    </div>
+                  ))}
+                </div>
+
+                {/* Compteur */}
+                <span className="absolute top-2 right-2 rounded-full bg-jci-black/60 px-2 py-0.5 text-[10px] font-semibold text-white backdrop-blur-sm pointer-events-none">
+                  {activeIndex + 1} / {eventImages.length}
+                </span>
+
+                {/* Flèche animée, disparaît après le premier scroll */}
+                <div
+                  className={`absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none transition-opacity duration-300
+                    ${hasScrolled ? "opacity-0" : "opacity-100"}`}
+                >
+                  <div className="mada-swipe-hint flex h-9 w-9 items-center justify-center rounded-full bg-jci-black/60 text-white backdrop-blur-sm">
+                    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor"
+                      strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M9 5l7 7-7 7" />
+                    </svg>
                   </div>
-                ))}
+                </div>
+
+                {/* Points de pagination */}
+                <div className="mt-3 flex justify-center gap-1.5" aria-hidden="true">
+                  {eventImages.map((image, i) => (
+                    <span
+                      key={image.id}
+                      className={`h-1.5 rounded-full transition-all duration-300
+                        ${i === activeIndex ? "w-5 bg-jci-yellow" : "w-1.5 bg-black/25"}`}
+                    />
+                  ))}
+                </div>
               </div>
               </>
             ) : (
-              <p className="lg:text-[14px] md:text-[12px] text-[10px] text-jci-black/50 italic">Aucune photo disponible pour cet événement.</p>
+              <p className="text-[13px] text-jci-black/50 italic">Aucune photo fournie pour cet événement.</p>
             )}
             {selectedImage && createPortal(
               <div
