@@ -818,7 +818,7 @@ useEffect(() => {
 
                       <div
                           key={content.id}
-                          className="bg-gray-50 rounded-xl border border-gray-200 p-2 hover:shadow-sm transition-shadow duration-300"
+                          className="bg-gray-50 rounded-xl border items-end flex  flex-col  justify-end border-gray-200 p-2 hover:shadow-sm transition-shadow duration-300"
                       >
 
                         <div className="flex items-start justify-between gap-5">
@@ -834,7 +834,10 @@ useEffect(() => {
 
                           {/* ACTIONS */}
 
-                          <div className="flex items-center gap-2 shrink-0">
+                          
+
+                        </div>
+                        <div className="flex items-center gap-2 shrink-0">
 
                             <button
                                 type="button"
@@ -855,8 +858,6 @@ useEffect(() => {
                             </button>
 
                           </div>
-
-                        </div>
 
                       </div>
 

@@ -43,6 +43,8 @@ const ZonesDetailsManager  = lazy(() => import("../pages/admin/ZonesDetailsManag
 const OLDetainsManager     = lazy(() => import("../pages/admin/OLDetainsManager"));
 const EventsDetailsManager = lazy(() => import("../pages/admin/EventsDetailsManager"));
 const Ecommerce            = lazy(() => import("../pages/admin/Ecommerce"));
+const AdminHelp = lazy(() => import("../pages/admin/AdminHelp"));
+  
 
 // ─── Page Unauthorized — corrige la redirection cassée de RoleRoute ───────────
 const UnauthorizedPage = () => (
@@ -91,6 +93,7 @@ const AppRoutes = () => {
         <Route element={<AdminLayout/>}>
           {/* Routes ADMIN_NATIONAL */}
           <Route path="/admin/unauthorized" element={<UnauthorizedPage />} />
+          <Route path="/admin/aide" element={<AdminHelp />} />
           <Route element={<RoleRoute allowedRoles={["ADMIN_NATIONAL","SUPER_ADMIN"]} />}>
             <Route path="/admin" element={<UserManager />} />
             <Route path="/admin/evenements/national" element={<EventsManager />} />

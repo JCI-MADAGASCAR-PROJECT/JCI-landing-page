@@ -6,12 +6,14 @@ import { NavLink, useNavigate } from 'react-router'
 import JCILogo from "../../images/JCI/JCI Madagascar/JCI_Madagascar_background_blue_logo-removebg-preview.webp"
 import { authAPI, olAPI } from '../../services/api'
 import { LogIn, Menu, X } from 'lucide-react'
+import { IoMdHelpCircleOutline } from "react-icons/io";
+
 
 
 const navActiveClass = ({ isActive }) =>
     isActive
-        ? "text-jci-yellow scale-105"
-        : "text-jci-white hover:scale-105 transition-transform duration-300 hover:text-jci-yellow"
+        ? "text-jci-yellow scale-105 flex flex-row gap-1 items-center"
+        : "text-jci-white hover:scale-105 transition-transform duration-300 hover:text-jci-yellow flex flex-row gap-1 items-center"
 
 
 const SidebarAdmin = () => {
@@ -185,7 +187,14 @@ const SidebarAdmin = () => {
 
 
                     {/* Logout */}
-                    <div className='flex flex-col gap-2 text-jci-white/80 text-[12px] font-bold'>
+                    <div className='flex flex-col gap-5 text-jci-white/80 text-[12px] font-bold'>
+                        <NavLink
+                            to="/admin/aide"
+                            className={navActiveClass}
+                            
+                        >
+                           <IoMdHelpCircleOutline size={16} /> Page d'aide
+                        </NavLink>
 
                         <button
                             onClick={handleLogout}
@@ -297,6 +306,14 @@ const SidebarAdmin = () => {
 
 
                             {/* Logout */}
+                            <NavLink
+                                to="/admin/aide"
+                                className={navActiveClass}
+                                onClick={handleMobileNavigate}
+                                
+                            >
+                                <IoMdHelpCircleOutline size={16} /> Page d'aide
+                            </NavLink>
                             <button
                                 onClick={handleLogout}
                                 className='flex flex-row items-center justify-center gap-2 bg-jci-yellow px-3 py-2.5 text-jci-black border border-jci-yellow rounded hover:text-jci-yellow hover:bg-transparent hover:border-jci-yellow cursor-pointer w-full'
