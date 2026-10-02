@@ -27,7 +27,7 @@ const ContactPage = () => {
         <ContactInfoBlock
           Title="Coordonnées"
           Address="Kentia Ambatonakanga"
-          Phone="+261 34 00 000 00"
+          Phone="+261 032 60 766 50"
           Email="contact@jcimada.org"
         />
 

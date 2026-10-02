@@ -130,7 +130,7 @@ const Footer = () => {
         <div className='flex flex-col gap-5'>
           <a
             href="mailto:contact@jcimada.org"
-            className='flex flex-row gap-2 items-center border-2 border-jci-white md:text-[12px] text-[8px] font-poppins py-1 px-3 font-semibold w-fit hover:bg-jci-white hover:text-jci-black'
+            className='flex flex-row gap-2 items-center border-2 border-jci-white md:text-[12px] text-[8px] font-poppins py-1 px-3 font-semibold w-fit hover:bg-jci-white hover:text-jci-black  hover:scale-105 hover:-translate-y-1 transition-transform duration-300'
           >
             {isHomePage ? t("footer.contactUs") : "Nous contacter"}
             <IoMailOutline size={15} />
@@ -149,7 +149,7 @@ const Footer = () => {
 
           <a
             href="mailto:isevenstudio07@gmail.com"
-            className='flex flex-row gap-2 items-center'
+            className='flex flex-row gap-2 items-center hover:text-[#C1CA1D] hover:scale-105 hover:-translate-y-1  transition-transform duration-300'
           >
             <IoMail size={20} />
              isevenstudio07@gmail.com
@@ -159,7 +159,7 @@ const Footer = () => {
             href="https://www.facebook.com/share/1RopVUxVKk/"
             target="_blank"
             rel="noopener noreferrer"
-            className='flex flex-row gap-2 items-center'
+            className='flex flex-row gap-2 items-center hover:text-[#C1CA1D] hover:scale-105 hover:-translate-y-1  transition-transform duration-300'
           >
             <RiFacebookCircleFill size={20} />
             iSeven Studio
@@ -169,7 +169,7 @@ const Footer = () => {
             href="https://www.instagram.com/jcimadagascar?stkn=ejBqNHU1YWZseWU3"
             target="_blank"
             rel="noopener noreferrer"
-            className='flex flex-row gap-2 items-center'
+            className='flex flex-row gap-2 items-center hover:text-[#C1CA1D] hover:scale-105 hover:-translate-y-1  transition-transform duration-300'
           >
             <RiInstagramFill size={20} />
             iSeven Studio Instagram
@@ -179,7 +179,7 @@ const Footer = () => {
             href="https://www.linkedin.com/company/jcimadagascar"
             target="_blank"
             rel="noopener noreferrer"
-            className='flex flex-row gap-2 items-center'
+            className='flex flex-row gap-2 items-center hover:text-[#C1CA1D] hover:scale-105 hover:-translate-y-1  transition-transform duration-300'
           >
             <IoLogoLinkedin size={20} />
             iSeven Studio LinkedIn
@@ -189,7 +189,7 @@ const Footer = () => {
             href="https://linktr.ee/JCI_Madagascar"
             target="_blank"
             rel="noopener noreferrer"
-            className='flex flex-row gap-2 items-center'
+            className='flex flex-row gap-2 items-center hover:text-[#C1CA1D] hover:scale-105 hover:-translate-y-1  transition-transform duration-300'
           >
             <SiLinktree size={20} />
             iSeven Studio Linktree

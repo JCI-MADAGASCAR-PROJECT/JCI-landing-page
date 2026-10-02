@@ -193,7 +193,7 @@ const ECommercePage = () => {
                 <p className='text-gray-500 text-center text-[12px]'>*En attente de la finalisation de notre boutique</p>
                 <div className='bg-gray-200  text-jci-black flex flex-row items-center gap-3 px-4 py-2 lg:text-[20px] md:text-[16px] text-[12px] rounded-full mt-4 group'>
                     Passez votre commande ici
-                    <a href="/boutique" className=" rounded-full bg-jci-black text-jci-white p-3 flex flex-row items-center gap-2 group-hover:scale-105 group-hover:-translate-y-0.5 cursor-pointer hover:bg-jci-blue transition-all duration-300">
+                    <a href="https://tally.so/r/Y5NlV0" className=" rounded-full bg-jci-black text-jci-white p-3 flex flex-row items-center gap-2 group-hover:scale-105 group-hover:-translate-y-0.5 cursor-pointer hover:bg-jci-blue transition-all duration-300">
                     <FiArrowUpRight size={16} />
                     </a>
                 </div>

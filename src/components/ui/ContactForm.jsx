@@ -5,7 +5,10 @@ import { emailAPI } from '../../services/api';
 import {toast} from "sonner";
 
 const ContactForm = () => {
-  const contactFormulaire = useForm();
+  const contactFormulaire = useForm({
+      mode: 'onChange',
+      reValidateMode: 'onChange',
+    });
   const [isPending, setIsPending] = useState(false);
 
   const handleSubmit = async (data) => {
@@ -96,7 +99,7 @@ const ContactForm = () => {
         <input
             id="phone"
             type="text"
-            placeholder="+261340000000"
+            placeholder="+261 34 00 000 00"
             {...contactFormulaire.register("phone",{
                 required: "Le numéro de téléphone est obligatoire",
                 pattern: {

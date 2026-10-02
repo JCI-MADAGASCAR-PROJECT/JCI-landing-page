@@ -25,7 +25,7 @@ const ProgrammesPage = () => {
                 <Reveal from="fade" duration={1000} threshold={0.05}>
                   <img
                     src={Programme1}
-                    alt=""
+                    alt="Programme 1"
                     className="w-full md:h-[300px] h-[250px] lg:h-[550px] object-cover"
                     loading="eager"
                   />
@@ -107,7 +107,7 @@ const ProgrammesPage = () => {
               <Reveal from="right" delay={150} className="flex mx-5 my-2 flex-col mb-5 bg-[#184459] py-3">
                 <img
                   src={TOYP_Inverted}
-                  alt=""
+                  alt="TOYP Logo"
                   className="w-full h-[150px] lg:h-[270px] object-contain"
                 />
               </Reveal>
@@ -116,8 +116,8 @@ const ProgrammesPage = () => {
               <Reveal from="left" className="flex mx-5 my-2 flex-col mb-5">
                 <img
                   src={Programme2}
-                  alt=""
-                  className="w-full h-[150px] lg:h-[300px] object-contain"
+                  alt="SPI Logo"
+                  className="w-full h-[150px] lg:h-[300px] object-cover"
                 />
               </Reveal>
 
@@ -143,7 +143,7 @@ const ProgrammesPage = () => {
               <Reveal from="right" delay={150} className="flex mx-5 my-2 flex-col mb-5">
                 <img
                   src={Programme5}
-                  alt=""
+                  alt="Caravane de l’Éloquence Logo"
                   className="w-full h-[150px] lg:h-[270px] object-cover"
                 />
               </Reveal>
@@ -152,7 +152,7 @@ const ProgrammesPage = () => {
               <Reveal from="left" className="flex mx-5 my-2 flex-col mb-5 bg-[#184459] py-3">
                 <img
                   src={JIB_Inverted}
-                  alt=""
+                  alt="JIB Logo"
                   className="w-full h-[150px] lg:h-[270px] object-contain"
                 />
               </Reveal>
@@ -182,7 +182,7 @@ const ProgrammesPage = () => {
               <Reveal from="right" delay={150} className="flex mx-5 my-2 flex-col mb-5 bg-[#184459] py-3">
                 <img
                   src={IHD_Inverted}
-                  alt=""
+                  alt="IHD Logo"
                   className="w-full h-[150px] lg:h-[270px] object-contain"
                 />
               </Reveal>
@@ -191,7 +191,7 @@ const ProgrammesPage = () => {
               <Reveal from="left" className="flex mx-5 my-2 flex-col mb-5 bg-[#184459] py-3">
                 <img
                   src={JCI_RISE_Inverted}
-                  alt=""
+                  alt="JCI Rise Logo"
                   className="w-full h-[150px] lg:h-[270px] object-contain"
                 />
               </Reveal>
@@ -216,7 +216,7 @@ const ProgrammesPage = () => {
                 <Reveal from="fade" duration={1000} threshold={0.05}>
                   <img
                     src={Programme1}
-                    alt=""
+                    alt="Programme 1"
                     className="w-full md:h-[300px] h-[250px] lg:h-[550px] object-cover"
                     loading="eager"
                   />
@@ -277,7 +277,7 @@ const ProgrammesPage = () => {
               <Reveal from="zoom" className="flex mx-5 my-2 flex-col mb-5 bg-[#184459] py-3">
                 <img
                   src={CYE_Inverted}
-                  alt=""
+                  alt="CYE Logo"
                   className="w-full h-[150px] lg:h-[270px] object-contain "
                 />
               </Reveal>
@@ -293,7 +293,7 @@ const ProgrammesPage = () => {
               <Reveal from="zoom" className="flex mx-5 my-2 flex-col mb-5 bg-[#184459] py-3">
                 <img
                   src={TOYP_Inverted}
-                  alt=""
+                  alt="TOYP Logo"
                   className="w-full h-[150px] lg:h-[270px] object-contain"
                 />
               </Reveal>
@@ -309,7 +309,7 @@ const ProgrammesPage = () => {
               <Reveal from="zoom" className="flex mx-5 my-2 flex-col mb-5">
                 <img
                   src={Programme2}
-                  alt=""
+                  alt="SPI Logo"
                   className="w-full h-[150px] lg:h-[300px] object-cover"
                 />
               </Reveal>
@@ -325,7 +325,7 @@ const ProgrammesPage = () => {
               <Reveal from="zoom" className="flex mx-5 my-2 flex-col mb-5">
                 <img
                   src={Programme5}
-                  alt=""
+                  alt="Caravane de l’Éloquence Logo"
                   className="w-full h-[150px] lg:h-[270px] object-cover"
                 />
               </Reveal>
@@ -341,7 +341,7 @@ const ProgrammesPage = () => {
               <Reveal from="zoom" className="flex mx-5 my-2 flex-col mb-5 bg-[#184459] py-3">
                 <img
                   src={JIB_Inverted}
-                  alt=""
+                  alt="JIB Logo"
                   className="w-full h-[150px] lg:h-[270px] object-contain"
                 />
               </Reveal>
@@ -360,7 +360,7 @@ const ProgrammesPage = () => {
               <Reveal from="zoom" className="flex mx-5 my-2 flex-col mb-5 bg-[#184459] py-3">
                 <img
                   src={IHD_Inverted}
-                  alt=""
+                  alt="IHD Logo"
                   className="w-full h-[150px] lg:h-[270px] object-contain"
                 />
               </Reveal>
@@ -378,7 +378,7 @@ const ProgrammesPage = () => {
               <Reveal from="zoom" className="flex mx-5 my-2 flex-col mb-5 bg-[#184459] py-3">
                 <img
                   src={JCI_RISE_Inverted}
-                  alt=""
+                  alt="JCI Rise Logo"
                   className="w-full h-[150px] lg:h-[270px] object-contain"
                 />
               </Reveal>
