@@ -45,7 +45,7 @@ const EventCard = ({ Img, Day, Month, Type, Title, Content, Year, Id }) => {
             {Title}
           </span>
 
-          <p>
+          <p className="text-[8px] md:text-[9px] font-normal text-justify  line-clamp-5">
             {Content}
           </p>
         </div>
