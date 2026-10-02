@@ -4,6 +4,7 @@ import EventCard from "../../components/ui/EventCard"
 import Pagination from "../../components/ui/Pagination"
 import { eventAPI } from "../../services/api"
 import Reveal from "../../components/ui/Reveal"
+import SEO from "../../components/common/SEO"
 
 const PAGE_SIZE = 12
 
@@ -113,6 +114,31 @@ const BlogPage = () => {
   }
 
   return (
+    <>
+    <SEO
+        title="Blog, Actualités & Événements | JCI Madagascar"
+        description="Restez informé des dernières actualités et évènements de JCI Madagascar."
+        canonical="https://jcimadagascar.org/blog"
+        indexable={true}
+    />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://jcimadagascar.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://jcimadagascar.org/blog"
+        }
+      ]
+    }) }} />
     <div className='flex flex-col w-full min-h-screen bg-jci-black'>
 
       {/* Actualités & évènements */}
@@ -256,6 +282,7 @@ const BlogPage = () => {
         </div>
       </section>
     </div>
+    </>
   )
 }
 

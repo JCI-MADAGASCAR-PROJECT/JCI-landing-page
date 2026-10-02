@@ -30,8 +30,6 @@ const CGUPage                      = lazy(() => import("../pages/public/CGUPage"
 const PolitiqueConfidentialitePage = lazy(() => import("../pages/public/PolitiqueConfidentialitePage"));
 const ConditionsGeneralesVentePage = lazy(() => import("../pages/public/ConditionsGeneralesVentePage"));
 const ECommercePage                = lazy(() => import("../pages/public/ECommercePage"));
-const MadaPage                      = lazy(() => import("../pages/public/Mada"));
-const ScrollTest = lazy(() => import("../pages/public/ScrollTest"));
 
 // ─── Pages admin — JAMAIS téléchargées par un visiteur public ─────────────────
 const UserManager          = lazy(() => import("../pages/admin/UserManager"));
@@ -66,7 +64,6 @@ const AppRoutes = () => {
         {/*when no user is connected */}
         <Route element={<Ecommercelayout/>}>  
         <Route path="/boutique" element={<ECommercePage />} />
-        <Route path="/scroll-test" element={<ScrollTest />} />
         </Route>
         <Route element={<PublicLayout/>}>
           <Route path="/" element={<AcceuilPage />} />
@@ -84,7 +81,6 @@ const AppRoutes = () => {
           <Route path="/organisations-locales" element={<OrganisationsLocalesPage />} />
           <Route path="/organisations-locales/:zone" element={<ZonePage />} />
           <Route path="/partenaires" element={<PartenairesPage />} />
-          <Route path="/mada" element={<MadaPage />} />
           <Route path="/politique-de-confidentialite" element={<PolitiqueConfidentialitePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>

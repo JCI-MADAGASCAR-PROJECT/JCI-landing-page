@@ -1,5 +1,9 @@
 User-agent: *
 Disallow: /admin
 Disallow: /admin/
+Disallow: /connexion
+Disallow: /scroll-test
+Disallow: /mada
+
 Allow: /
-Sitemap: https://jcimada.org/sitemap.xml
+Sitemap: https://jcimadagascar.org/sitemap.xml

@@ -8,6 +8,7 @@ import {
   Globe2,
   Mail,
 } from "lucide-react";
+import SEO from "../../components/common/SEO";
 
 const CGUPage = () => {
   const [openSection, setOpenSection] = useState(null);
@@ -252,6 +253,13 @@ const CGUPage = () => {
   ];
 
   return (
+    <>
+    <SEO
+        title="Conditions Générales d'Utilisation | JCI Madagascar"
+        description="Consultez les conditions générales d'utilisation du site officiel de la Jeune Chambre Internationale Madagascar (jcimadagascar.org)."
+        canonical="https://jcimadagascar.org/conditions-generales-utilisation"
+        indexable={true}
+    />
     <main className="min-h-screen bg-white text-jci-black">
       {/* HERO */}
       <section className="relative overflow-hidden bg-jci-black lg:pl-35 lg:mr-1 ml-0 pl-0">
@@ -455,6 +463,7 @@ const CGUPage = () => {
       {/* FOOTER LEGAL */}
 
     </main>
+    </>
   );
 };
 

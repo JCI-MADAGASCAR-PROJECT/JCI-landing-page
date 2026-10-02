@@ -11,6 +11,7 @@ import {
   ShieldCheck,
   Mail,
 } from "lucide-react";
+import SEO from "../../components/common/SEO";
 
 const ConditionsGeneralesVentePage = () => {
   const [openSection, setOpenSection] = useState(null);
@@ -398,6 +399,13 @@ const ConditionsGeneralesVentePage = () => {
   ];
 
   return (
+    <>
+    <SEO
+        title="Conditions Générales de Vente | JCI Madagascar"
+        description="Consultez les conditions générales de vente relatives à la boutique en ligne officielle de la JCI Madagascar."
+        canonical="https://jcimadagascar.org/conditions-generales-de-vente"
+        indexable={true}
+    />
     <main className="min-h-screen bg-white text-jci-black">
       {/* HERO */}
       <section className="relative overflow-hidden bg-jci-black lg:pl-35 lg:mr-1 ml-0 pl-0">
@@ -591,6 +599,7 @@ const ConditionsGeneralesVentePage = () => {
       </section>
 
     </main>
+    </>
   );
 };
 

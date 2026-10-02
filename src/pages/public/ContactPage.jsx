@@ -1,10 +1,77 @@
 import ContactInfoBlock from "../../components/ui/ContactInfoBlock"
 import ContactForm from "../../components/ui/ContactForm"
 import Reveal from "../../components/ui/Reveal"
+import SEO from "../../components/common/SEO"
 
 
 const ContactPage = () => {
   return (
+    <>
+    <SEO
+        title="Contactez-nous | JCI Madagascar"
+        description="Contactez la Jeune Chambre Internationale Madagascar pour toute information ou pour devenir membre."
+        canonical="https://jcimadagascar.org/contact"
+        indexable={true}
+    />
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                  {
+                      "@type": "NGO",
+                      "@id": "https://jcimadagascar.org/#organization",
+                      "name": "JCI Madagascar",
+                      "alternateName": "Jeune Chambre Internationale Madagascar",
+                      "url": "https://jcimadagascar.org",
+                      "logo": {
+                          "@type": "ImageObject",
+                          "@id": "https://jcimadagascar.org/#logo",
+                          "url": "https://jcimadagascar.org/JCI-Madagascar-color-logo.svg",
+                          "caption": "Logo JCI Madagascar"
+                      },
+                      "image": "https://jcimadagascar.org/og-image.jpg",
+                      "description": "Organisation nationale affiliée à la Jeune Chambre Internationale (JCI), fédérant 14 organisations locales de jeunes leaders citoyens engagés à Madagascar.",
+                      "address": {
+                          "@type": "PostalAddress",
+                          "streetAddress": "Kentia Ambatonakanga",
+                          "addressLocality": "Antananarivo",
+                          "addressCountry": "MG"
+                      },
+                      "contactPoint": {
+                          "@type": "ContactPoint",
+                          "telephone": "+261326076650",
+                          "contactType": "customer service",
+                          "email": "contact@jcimadagascar.org",
+                          "availableLanguage": [
+                              "French",
+                              "English",
+                              "Malagasy"
+                          ]
+                      },
+                      "sameAs": [
+                          "https://www.facebook.com/share/1RopVUxVKk/",
+                          "https://www.instagram.com/jcimadagascar",
+                          "https://www.linkedin.com/company/jcimadagascar",
+                          "https://linktr.ee/JCI_Madagascar"
+                      ]
+                  },
+                  {
+                      "@type": "WebSite",
+                      "@id": "https://jcimadagascar.org/#website",
+                      "url": "https://jcimadagascar.org",
+                      "name": "JCI Madagascar",
+                      "description": "Site officiel de la Jeune Chambre Internationale Madagascar",
+                      "publisher": {
+                          "@id": "https://jcimadagascar.org/#organization"
+                      },
+                      "inLanguage": "fr-FR"
+                  }
+              ]
+          })
+      }}
+  />
     <div className='min-h-screen font-poppins flex flex-col items-start pt-20 sm:pt-15 pb-10 px-4 sm:px-6 lg:pl-55 lg:pr-10'>
 
       {/* Header */}
@@ -36,6 +103,7 @@ const ContactPage = () => {
 
       </div>
     </div>
+    </>
   )
 }
 

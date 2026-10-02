@@ -10,6 +10,7 @@ import {
   UserCheck,
   Mail,
 } from "lucide-react";
+import SEO from "../../components/common/SEO";
 
 const PolitiqueConfidentialitePage = () => {
   const [openSection, setOpenSection] = useState(null);
@@ -362,6 +363,13 @@ const PolitiqueConfidentialitePage = () => {
   ];
 
   return (
+    <>
+    <SEO
+        title="Politique de Confidentialité | JCI Madagascar"
+        description="Découvrez comment la JCI Madagascar protège vos données personnelles conformément aux réglementations de confidentialité en vigueur."
+        canonical="https://jcimadagascar.org/politique-de-confidentialite"
+        indexable={true}
+    />
     <main className="min-h-screen bg-white text-jci-black">
       {/* HERO */}
       <section className="relative overflow-hidden bg-jci-black lg:pl-35 lg:mr-1 ml-0 pl-0">
@@ -556,6 +564,7 @@ const PolitiqueConfidentialitePage = () => {
 
 
     </main>
+    </>
   );
 };
 

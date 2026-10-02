@@ -1,5 +1,5 @@
 import ZoneFilterTabs from "../../components/layout/ZoneFilterTabs"
-import Mada from "../../images/MadaLocalOrg.svg"
+import Mada from "../../images/MadaLocalOrg.webp"
 import LabelTraitSimple from "../../components/ui/LabelTraitSimple"
 import JCIAmbilobe from "../../images/JCI/JCI Ambilobe/JCI Ambilobe background marine blue logo.webp"
 import JCIAntananarivo from "../../images/JCI/JCI Antananarivo/JCI Antananarivo background blue logo.webp"
@@ -16,6 +16,7 @@ import JCISambava from "../../images/JCI/JCI Sambava/JCI Sambava background mari
 import JCIToamasina from "../../images/JCI/JCI Toamasina/JCI Toamasina background blue logo.webp"
 import JCIToliara from "../../images/JCI/JCI Toliara/JCI Toliara color logo.webp"
 import Reveal from "../../components/ui/Reveal"
+import SEO from "../../components/common/SEO"
 
 const listeOl1 =[
   { name: "JCI Ambilobe", logo: JCIAmbilobe },
@@ -39,6 +40,31 @@ const listeOl2 = [
 
 const OrganisationsLocalesPage = () => {
   return (
+    <>
+    <SEO
+        title="Organisations Locales | JCI Madagascar"
+        description="Un réseau national, un impact local. Découvrez les Organisations Locales (OL) de JCI Madagascar réparties sur les zones Nord, Centre et Sud de la Grande Île."
+        canonical="https://jcimadagascar.org/organisations-locales"
+        indexable={true}
+    />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://jcimadagascar.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Organisations Locales",
+          "item": "https://jcimadagascar.org/organisations-locales"
+        },
+      ]
+    }) }} />
     <div className='min-h-screen font-poppins flex flex-col items-start pt-25 pb-10 px-2 lg:pl-33 lg:pr-20 bg-jci-black gap-2'>
       <ZoneFilterTabs />
       <div className="group hidden md:flex flex-col gap-0 lg:ml-20 lg:mr-1 mr-0">
@@ -124,6 +150,7 @@ const OrganisationsLocalesPage = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

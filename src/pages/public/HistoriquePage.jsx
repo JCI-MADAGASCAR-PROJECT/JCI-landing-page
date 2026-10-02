@@ -7,6 +7,8 @@ import LabelTraitSimple from './../../components/ui/LabelTraitSimple';
 import { useEffect, useState } from "react"
 import { pastPresidentAPI } from "../../services/api.js";
 import Reveal from "../../components/ui/Reveal"
+import SEO from "../../components/common/SEO"
+
 
 const HistoriquePage = () => {
   const [presidentsList, setPresidentsList] = useState([])
@@ -42,6 +44,31 @@ const HistoriquePage = () => {
     fetchPresidents();
   }, [])
   return (
+    <>
+    <SEO
+        title="Notre Histoire | JCI Madagascar"
+        description="Découvrez l'histoire de la JCI Madagascar depuis son affiliation en 1960 par Charles Andriantsitohaina, sa renaissance en 1987 et ses présidents nationaux successifs"
+        canonical="https://jcimadagascar.org/jci-madagascar"
+        indexable={true}
+    />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://jcimadagascar.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "JCI Madagascar",
+          "item": "https://jcimadagascar.org/jci-madagascar"
+        }
+      ]
+    }) }} />
     <div className='min-h-screen font-poppins flex flex-col items-start pt-25 pb-10 px-2 lg:pl-33 lg:pr-10 bg-jci-black gap-2'>
       <SubNav />
       {/**DESKTOP VIEW */}
@@ -221,6 +248,7 @@ const HistoriquePage = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

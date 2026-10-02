@@ -8,7 +8,7 @@ import BG from "../../images/HomeBG.png"
 import H1 from './../../components/ui/H1';
 import { toast } from "sonner";
 import Reveal from "../../components/ui/Reveal";
-
+import SEO from "../../components/common/SEO";
 
 const LoginPage = () => {
 
@@ -39,285 +39,291 @@ const LoginPage = () => {
 
 return (
   <>
+    <SEO
+        title="Espace Membre - Connexion | JCI Madagascar"
+        description="Page de connexion réservée aux membres et administrateurs de la JCI Madagascar."
+        canonical="https://jcimadagascar.org/connexion"
+        noindex={true}
+    />
     {/* ================= DESKTOP ================= */}
-<div
-  className="hidden md:flex h-screen bg-jci-black relative overflow-hidden"
-  style={{
-    backgroundImage: `url(${BG})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  }}
->
-  {/* Overlay */}
-  <div className="absolute inset-0 bg-jci-black/55" />
-
-  {/* Décor JCI - côté gauche */}
-  <div className="absolute left-0 top-0 w-full h-full overflow-hidden">
-
-    {/* Grand cercle bleu */}
-    <div className="absolute -left-40 -top-40 w-[400px] h-[400px] rounded-full border-[70px] border-jci-blue/30" />
-
-    {/* Cercle jaune */}
-    <div className="absolute -right-52 bottom-[-120px] w-[420px] h-[420px] rounded-full border-[45px] border-jci-yellow/30" />
-
-    {/* Ligne décorative */}
-    <div className="absolute left-16 bottom-16 w-24 h-1 bg-jci-yellow" />
-
-  </div>
-
-  {/* Contenu gauche */}
-  <div className="relative z-10 flex-1 flex flex-col justify-center items-center px-10">
-    <Reveal from="left" duration={1000} threshold={0.05}>
-    <img
-      src={JciLogo}
-      alt="Logo JCI Madagascar"
-      className="w-auto h-40 object-contain"
-    />
-    </Reveal>
-    <Reveal from="left" duration={1000} threshold={0.05}>
-    <div className="mt-8 text-center">
-      <p className="text-white/80 text-[11px] font-poppins tracking-[0.25em] uppercase">
-        Junior Chamber International Madagascar
-      </p>
-    </div>
-    </Reveal>
-
-  </div>
-
-  {/* Zone formulaire */}
-  <div className="relative z-10 flex-1 h-full flex items-center justify-center bg-jci-white">
-
-
-    {/* Décoration géométrique */}
-    <div className="absolute -right-34 -top-24 w-64 h-64 rounded-full border-[35px] border-jci-blue/10" />
-
-    <div className="absolute -left-20 -bottom-20 w-56 h-56 rounded-full border-[30px] border-jci-white/10" />
-
-    {/* Formulaire */}
-    <Reveal from="right" duration={1000} threshold={0.05}>
-    <form
-      className="relative flex flex-col gap-6 w-[500px] px-8 py-10 text-jci-black font-poppins"
-      onSubmit={loginFormDesktop.handleSubmit(handleSubmit)}
-    >
-
-      {/* En-tête */}
-      <div className="flex flex-col text-left">
-        <h1 className="text-jci-blue text-[15px] font-semibold">
-          Espace administrateur
-        </h1>
-
-        <H1 TextSize="text-[38px]">
-          CONNEXION
-        </H1>
-
-        <p className="text-[11px] text-jci-black/80 font-normal mt-1">
-          Connectez-vous à votre espace d'administration JCI Madagascar.
-        </p>
-
-      </div>
-
-      {/* Email */}
-      <div className="flex flex-col gap-2">
-
-        <label
-          htmlFor="email"
-          className="flex flex-row gap-1 text-[11px] font-semibold font-poppins text-jci-black uppercase tracking-wide"
-        >
-          Adresse email
-          <span className="text-jci-blue ml-1">*</span>
-        </label>
-
-        <input
-          id="email"
-          type="email"
-          className="w-full h-11 border border-jci-black/20 bg-white px-3 text-[12px] font-normal font-sans rounded-[10px] outline-none transition-all duration-200 focus:border-jci-blue focus:ring-1 focus:ring-jci-blue/20"
-          placeholder="example@example.com"
-          {...loginFormDesktop.register("email", {
-            required: "L'adresse email est obligatoire",
-            pattern: {
-              value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-              message: "Email invalide",
-            },
-          })}
-        />
-
-        {loginFormDesktop.formState.errors.email && (
-          <p className="text-red-500 text-[10px] font-normal">
-            {loginFormDesktop.formState.errors.email.message}
-          </p>
-        )}
-
-      </div>
-
-      {/* Mot de passe */}
-      <div className="flex flex-col gap-2">
-
-        <label
-          htmlFor="password"
-          className="flex flex-row gap-1 text-[11px] font-semibold font-poppins text-jci-black uppercase tracking-wide"
-        >
-          Mot de passe
-          <span className="text-jci-blue ml-1">*</span>
-        </label>
-
-        <input
-          id="password"
-          type="password"
-          className="w-full h-11 border border-jci-black/20 bg-white px-3 text-[12px] font-normal font-sans rounded-[10px] outline-none transition-all duration-200 focus:border-jci-blue focus:ring-1 focus:ring-jci-blue/20"
-          placeholder="••••••••••••"
-          {...loginFormDesktop.register("password", {
-            required: "Le mot de passe est obligatoire",
-          })}
-        />
-
-        {loginFormDesktop.formState.errors.password && (
-          <p className="text-red-500 text-[10px] font-normal">
-            {loginFormDesktop.formState.errors.password.message}
-          </p>
-        )}
-
-      </div>
-
-      {/* Bouton */}
-      <button
-        type="submit"
-        className={`group relative font-poppins w-full h-12 overflow-hidden rounded-[10px] bg-jci-blue text-white text-[13px] font-semibold uppercase tracking-[0.12em] border border-jci-blue transition-all duration-300 hover:bg-transparent hover:text-jci-blue cursor-pointer ${isSubmitting ? "opacity-50 pointer-events-none disabled" : ""}`} 
-        disabled={isSubmitting}
-      >
-        <span className="relative z-10">
-          {isSubmitting ? "Connexion en cours..." : "Se connecter"}
-        </span>
-
-        <span className="absolute left-0 bottom-0 h-[3px] w-0 bg-jci-yellow transition-all duration-300 group-hover:w-full" />
-      </button>
-
-      {/* Footer */}
-      <div className="flex items-center gap-3 pt-2">
-
-        <div className="h-[1px] flex-1 bg-jci-black/10" />
-
-        <a href="mailto:dirnum@jcimada.org" className="text-[9px] text-jci-blue underline  uppercase tracking-wider">
-          En cas de difficulté de connexion ou de besoin d’assistance, .
-          veuillez contacter l’administrateur
-        </a>
-
-        <div className="h-[1px] flex-1 bg-jci-black/10" />
-
-      </div>
-
-    </form>
-    </Reveal>
-  </div>
-</div>
-
-
-    {/* ================= MOBILE ================= */}
-   <div className="md:hidden min-h-screen w-full flex flex-col px-5 pt-16 pb-8 font-poppins"
+    <div
+      className="hidden md:flex h-screen bg-jci-black relative overflow-hidden"
       style={{
-      backgroundImage: `url(${BG})`,
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-    }}
-   >
-
-  {/* Logo */}
-  <Reveal from="fade" duration={1000} threshold={0.05} className="flex justify-center mb-10">
-    <img
-      src={JciLogo}
-      alt="Logo JCI Madagascar"
-      className="w-auto h-30"
-    />
-  </Reveal>
-
-  {/* Formulaire */}
-  <Reveal from="up" delay={150} duration={900} threshold={0.05}>
-    <form
-      className="flex flex-col gap-5 w-full text-jci-black px-2"
-      onSubmit={loginFormMobile.handleSubmit(handleSubmit)}
+        backgroundImage: `url(${BG})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
-      <div className="flex flex-col text-start w-full">
-        <h1 className="text-jci-blue text-[11px] font-poppins font-semibold">
-          Espace administrateur JCI Madagascar
-        </h1>
-        <H1 TextSize="text-[26px]" TextColor="text-jci-white">
-          CONNEXION
-        </H1>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-jci-black/55" />
+
+      {/* Décor JCI - côté gauche */}
+      <div className="absolute left-0 top-0 w-full h-full overflow-hidden">
+
+        {/* Grand cercle bleu */}
+        <div className="absolute -left-40 -top-40 w-[400px] h-[400px] rounded-full border-[70px] border-jci-blue/30" />
+
+        {/* Cercle jaune */}
+        <div className="absolute -right-52 bottom-[-120px] w-[420px] h-[420px] rounded-full border-[45px] border-jci-yellow/30" />
+
+        {/* Ligne décorative */}
+        <div className="absolute left-16 bottom-16 w-24 h-1 bg-jci-yellow" />
+
       </div>
 
-      {/* Email */}
-      <div className="flex flex-col gap-2">
-        <label
-          htmlFor="email"
-          className="flex flex-row gap-1 text-[12px] font-semibold font-poppins text-jci-white"
-        >
-          Adresse email <span className="text-jci-blue">*</span>
-        </label>
-
-        <input
-          id="email"
-          type="email"
-          autoComplete="email"
-          className="w-full h-14 px-4 rounded-2xl border border-transparent bg-jci-white text-[14px] font-normal font-poppins text-jci-black placeholder:text-jci-black/50 outline-none transition-all duration-200  focus:border-jci-blue focus:ring-2 focus:ring-jci-blue/20"
-          placeholder="example@example.com"
-          {...loginFormMobile.register("email", {
-            required: true,
-            pattern: {
-              value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-              message: "Email invalide"
-            }
-          })}
+      {/* Contenu gauche */}
+      <div className="relative z-10 flex-1 flex flex-col justify-center items-center px-10">
+        <Reveal from="left" duration={1000} threshold={0.05}>
+        <img
+          src={JciLogo}
+          alt="Logo JCI Madagascar"
+          className="w-auto h-40 object-contain"
         />
-
-        {loginFormMobile.formState.errors.email && (
-          <p className="text-red-500 text-[11px] font-normal">
-            {loginFormMobile.formState.errors.email.message}
+        </Reveal>
+        <Reveal from="left" duration={1000} threshold={0.05}>
+        <div className="mt-8 text-center">
+          <p className="text-white/80 text-[11px] font-poppins tracking-[0.25em] uppercase">
+            Junior Chamber International Madagascar
           </p>
-        )}
+        </div>
+        </Reveal>
+
       </div>
 
-      {/* Mot de passe */}
-      <div className="flex flex-col gap-2">
-        <label
-          htmlFor="password"
-          className="flex flex-row gap-1 text-[12px] font-semibold font-poppins text-jci-white"
+      {/* Zone formulaire */}
+      <div className="relative z-10 flex-1 h-full flex items-center justify-center bg-jci-white">
+
+
+        {/* Décoration géométrique */}
+        <div className="absolute -right-34 -top-24 w-64 h-64 rounded-full border-[35px] border-jci-blue/10" />
+
+        <div className="absolute -left-20 -bottom-20 w-56 h-56 rounded-full border-[30px] border-jci-white/10" />
+
+        {/* Formulaire */}
+        <Reveal from="right" duration={1000} threshold={0.05}>
+        <form
+          className="relative flex flex-col gap-6 w-[500px] px-8 py-10 text-jci-black font-poppins"
+          onSubmit={loginFormDesktop.handleSubmit(handleSubmit)}
         >
-          Mot de passe <span className="text-jci-blue">*</span>
-        </label>
 
-        <input
-          id="password"
-          type="password"
-          autoComplete="current-password"
-          className="w-full h-14 px-4 rounded-2xl border border-transparent bg-jci-white text-[14px] font-normal font-poppins text-jci-black placeholder:text-jci-black/50 outline-none transition-all duration-200  focus:border-jci-blue focus:ring-2 focus:ring-jci-blue/20"
-          placeholder="***********"
-          {...loginFormMobile.register("password", {
-            required: true
-          })}
-        />
+          {/* En-tête */}
+          <div className="flex flex-col text-left">
+            <h1 className="text-jci-blue text-[15px] font-semibold">
+              Espace administrateur
+            </h1>
+
+            <H1 TextSize="text-[38px]">
+              CONNEXION
+            </H1>
+
+            <p className="text-[11px] text-jci-black/80 font-normal mt-1">
+              Connectez-vous à votre espace d'administration JCI Madagascar.
+            </p>
+
+          </div>
+
+          {/* Email */}
+          <div className="flex flex-col gap-2">
+
+            <label
+              htmlFor="email"
+              className="flex flex-row gap-1 text-[11px] font-semibold font-poppins text-jci-black uppercase tracking-wide"
+            >
+              Adresse email
+              <span className="text-jci-blue ml-1">*</span>
+            </label>
+
+            <input
+              id="email"
+              type="email"
+              className="w-full h-11 border border-jci-black/20 bg-white px-3 text-[12px] font-normal font-sans rounded-[10px] outline-none transition-all duration-200 focus:border-jci-blue focus:ring-1 focus:ring-jci-blue/20"
+              placeholder="example@example.com"
+              {...loginFormDesktop.register("email", {
+                required: "L'adresse email est obligatoire",
+                pattern: {
+                  value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                  message: "Email invalide",
+                },
+              })}
+            />
+
+            {loginFormDesktop.formState.errors.email && (
+              <p className="text-red-500 text-[10px] font-normal">
+                {loginFormDesktop.formState.errors.email.message}
+              </p>
+            )}
+
+          </div>
+
+          {/* Mot de passe */}
+          <div className="flex flex-col gap-2">
+
+            <label
+              htmlFor="password"
+              className="flex flex-row gap-1 text-[11px] font-semibold font-poppins text-jci-black uppercase tracking-wide"
+            >
+              Mot de passe
+              <span className="text-jci-blue ml-1">*</span>
+            </label>
+
+            <input
+              id="password"
+              type="password"
+              className="w-full h-11 border border-jci-black/20 bg-white px-3 text-[12px] font-normal font-sans rounded-[10px] outline-none transition-all duration-200 focus:border-jci-blue focus:ring-1 focus:ring-jci-blue/20"
+              placeholder="••••••••••••"
+              {...loginFormDesktop.register("password", {
+                required: "Le mot de passe est obligatoire",
+              })}
+            />
+
+            {loginFormDesktop.formState.errors.password && (
+              <p className="text-red-500 text-[10px] font-normal">
+                {loginFormDesktop.formState.errors.password.message}
+              </p>
+            )}
+
+          </div>
+
+          {/* Bouton */}
+          <button
+            type="submit"
+            className={`group relative font-poppins w-full h-12 overflow-hidden rounded-[10px] bg-jci-blue text-white text-[13px] font-semibold uppercase tracking-[0.12em] border border-jci-blue transition-all duration-300 hover:bg-transparent hover:text-jci-blue cursor-pointer ${isSubmitting ? "opacity-50 pointer-events-none disabled" : ""}`} 
+            disabled={isSubmitting}
+          >
+            <span className="relative z-10">
+              {isSubmitting ? "Connexion en cours..." : "Se connecter"}
+            </span>
+
+            <span className="absolute left-0 bottom-0 h-[3px] w-0 bg-jci-yellow transition-all duration-300 group-hover:w-full" />
+          </button>
+
+          {/* Footer */}
+          <div className="flex items-center gap-3 pt-2">
+
+            <div className="h-[1px] flex-1 bg-jci-black/10" />
+
+            <a href="mailto:dirnum@jcimada.org" className="text-[9px] text-jci-blue underline  uppercase tracking-wider">
+              En cas de difficulté de connexion ou de besoin d’assistance, .
+              veuillez contacter l’administrateur
+            </a>
+
+            <div className="h-[1px] flex-1 bg-jci-black/10" />
+
+          </div>
+
+        </form>
+        </Reveal>
       </div>
+    </div>
 
-      {/* Bouton */}
-      <button
-        type="submit"
-        className={`mt-2 w-full h-14 rounded-2xl bg-jci-blue text-white text-[14px] font-semibold font-poppins tracking-wide transition-all duration-200 active:scale-[0.98] cursor-pointer ${isSubmitting ? "opacity-50 pointer-events-none disabled" : ""}`} 
-        disabled={isSubmitting}
+
+        {/* ================= MOBILE ================= */}
+      <div className="md:hidden min-h-screen w-full flex flex-col px-5 pt-16 pb-8 font-poppins"
+          style={{
+          backgroundImage: `url(${BG})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
       >
-        {isSubmitting ? "Connexion en cours..." : "Se connecter"}
-      </button>
-    </form>
-  </Reveal>
 
-  {/* Assistance (en bas de l'écran) */}
-  <Reveal from="fade" delay={400} duration={900} threshold={0.05} className="mt-auto pt-10 text-center">
-    <a
-      href="mailto:dirnum@jcimada.org"
-      className="text-[11px] leading-relaxed font-poppins text-jci-white/60"
-    >
-      En cas de difficulté de connexion ou de besoin d’assistance,{" "}
-      <span className="text-jci-blue underline">veuillez contacter l’administrateur</span>
-    </a>
-  </Reveal>
-</div>
+      {/* Logo */}
+      <Reveal from="fade" duration={1000} threshold={0.05} className="flex justify-center mb-10">
+        <img
+          src={JciLogo}
+          alt="Logo JCI Madagascar"
+          className="w-auto h-30"
+        />
+      </Reveal>
+
+      {/* Formulaire */}
+      <Reveal from="up" delay={150} duration={900} threshold={0.05}>
+        <form
+          className="flex flex-col gap-5 w-full text-jci-black px-2"
+          onSubmit={loginFormMobile.handleSubmit(handleSubmit)}
+        >
+          <div className="flex flex-col text-start w-full">
+            <h1 className="text-jci-blue text-[11px] font-poppins font-semibold">
+              Espace administrateur JCI Madagascar
+            </h1>
+            <H1 TextSize="text-[26px]" TextColor="text-jci-white">
+              CONNEXION
+            </H1>
+          </div>
+
+          {/* Email */}
+          <div className="flex flex-col gap-2">
+            <label
+              htmlFor="email"
+              className="flex flex-row gap-1 text-[12px] font-semibold font-poppins text-jci-white"
+            >
+              Adresse email <span className="text-jci-blue">*</span>
+            </label>
+
+            <input
+              id="email"
+              type="email"
+              autoComplete="email"
+              className="w-full h-14 px-4 rounded-2xl border border-transparent bg-jci-white text-[14px] font-normal font-poppins text-jci-black placeholder:text-jci-black/50 outline-none transition-all duration-200  focus:border-jci-blue focus:ring-2 focus:ring-jci-blue/20"
+              placeholder="example@example.com"
+              {...loginFormMobile.register("email", {
+                required: true,
+                pattern: {
+                  value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                  message: "Email invalide"
+                }
+              })}
+            />
+
+            {loginFormMobile.formState.errors.email && (
+              <p className="text-red-500 text-[11px] font-normal">
+                {loginFormMobile.formState.errors.email.message}
+              </p>
+            )}
+          </div>
+
+          {/* Mot de passe */}
+          <div className="flex flex-col gap-2">
+            <label
+              htmlFor="password"
+              className="flex flex-row gap-1 text-[12px] font-semibold font-poppins text-jci-white"
+            >
+              Mot de passe <span className="text-jci-blue">*</span>
+            </label>
+
+            <input
+              id="password"
+              type="password"
+              autoComplete="current-password"
+              className="w-full h-14 px-4 rounded-2xl border border-transparent bg-jci-white text-[14px] font-normal font-poppins text-jci-black placeholder:text-jci-black/50 outline-none transition-all duration-200  focus:border-jci-blue focus:ring-2 focus:ring-jci-blue/20"
+              placeholder="***********"
+              {...loginFormMobile.register("password", {
+                required: true
+              })}
+            />
+          </div>
+
+          {/* Bouton */}
+          <button
+            type="submit"
+            className={`mt-2 w-full h-14 rounded-2xl bg-jci-blue text-white text-[14px] font-semibold font-poppins tracking-wide transition-all duration-200 active:scale-[0.98] cursor-pointer ${isSubmitting ? "opacity-50 pointer-events-none disabled" : ""}`} 
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Connexion en cours..." : "Se connecter"}
+          </button>
+        </form>
+      </Reveal>
+
+      {/* Assistance (en bas de l'écran) */}
+      <Reveal from="fade" delay={400} duration={900} threshold={0.05} className="mt-auto pt-10 text-center">
+        <a
+          href="mailto:dirnum@jcimada.org"
+          className="text-[11px] leading-relaxed font-poppins text-jci-white/60"
+        >
+          En cas de difficulté de connexion ou de besoin d’assistance,{" "}
+          <span className="text-jci-blue underline">veuillez contacter l’administrateur</span>
+        </a>
+      </Reveal>
+    </div>
   </>
 )
 

@@ -1,4 +1,5 @@
 import { LuExternalLink } from "react-icons/lu";
+import { Link } from "react-router";
 
 const EventCard = ({ Img, Day, Month, Type, Title, Content, Year, Id }) => {
   const eventDate = new Date(`${Year}-${Month}-${Day}`);
@@ -20,31 +21,31 @@ const EventCard = ({ Img, Day, Month, Type, Title, Content, Year, Id }) => {
 
           {/* Date */}
           <div className="bg-jci-blue text-white px-1.5 py-1 md:px-2 font-roboto font-bold flex flex-col justify-center items-center absolute top-0 right-2">
-            <h1 className="text-[18px] md:text-[22px]">{Day}</h1>
-            <h2 className="text-[10px] md:text-[11px] -mt-2 uppercase">{Month}</h2>
-            <h3 className="text-[10px] md:text-[11px]  uppercase">{Year}</h3>
+            <span className="text-[18px] md:text-[22px]">{Day}</span>
+            <span className="text-[10px] md:text-[11px] -mt-2 uppercase">{Month}</span>
+            <span className="text-[10px] md:text-[11px]  uppercase">{Year}</span>
           </div>
           {eventDate > today && (
             <div className="bg-red-600 text-white px-1.5 py-1 md:px-2 font-roboto font-bold flex flex-col justify-center items-center absolute top-0 left-2 ">
-              <h3 className="text-[10px]  uppercase">
+              <span className="text-[10px]  uppercase">
                 à venir
-              </h3>
+              </span>
             </div>
           )}
 
           {/* Type */}
-          <div className="px-3 md:px-4 py-0.5 bg-jci-yellow text-[7px] md:text-[8px] text-jci-black font-extrabold font-roboto text-center absolute bottom-0.5 left-0">
+          <span className="px-3 md:px-4 py-0.5 bg-jci-yellow text-[7px] md:text-[8px] text-jci-black font-extrabold font-roboto text-center absolute bottom-0.5 left-0">
             {Type}
-          </div>
+          </span>
         </div>
 
         {/* Content */}
         <div className="flex flex-col  min-h-0 bg-jci-white p-1 md:p-3 font-poppins text-[#313131]">
-          <h1 className="text-[12px] md:text-[14px] font-bold ">
+          <span className="text-[12px] md:text-[14px] font-bold ">
             {Title}
-          </h1>
+          </span>
 
-          <p className="text-[8px] md:text-[9px] font-normal text-justify  line-clamp-5">
+          <p>
             {Content}
           </p>
         </div>
@@ -53,13 +54,13 @@ const EventCard = ({ Img, Day, Month, Type, Title, Content, Year, Id }) => {
       {/* Actions */}
       <div className="flex items-center justify-between gap-2 ">
 
-        <button
+        <Link
+          to={`/blog/evenements/${Id}`}
           className=' flex flex-row iterms-center gap-2 px-3 py-1.5 bg-jci-green rounded-lg text-jci-black font-semibold text-[12px] hover:text-jci-black hover:bg-jci-white hover:border-green-600 border border-transparent cursor-pointer transition-colors duration-300'
-          onClick={() => window.location.href = `/blog/evenements/${Id}`}
         >
-        Voir  <LuExternalLink size={16}/>
+          Voir  <LuExternalLink size={16}/>
 
-        </button>
+        </Link>
 
       </div>
     </div>

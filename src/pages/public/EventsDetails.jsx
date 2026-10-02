@@ -1,4 +1,3 @@
-import React from 'react'
 import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import { eventAPI, eventFileAPI, eventImageAPI } from '../../services/api';
@@ -6,7 +5,7 @@ import { IoClose, IoDocumentText } from "react-icons/io5";
 import LabelTraitSimple from '@/components/ui/LabelTraitSimple'
 import Reveal from "../../components/ui/Reveal"
 import { createPortal } from 'react-dom';
-
+import SEO from "../../components/common/SEO"
 
 const EventsDetails = () => {
   const { eventId } = useParams();
@@ -84,6 +83,37 @@ const EventsDetails = () => {
     }, [eventId]);
 
   return (
+    <>
+    <SEO
+        title={`${eventDetails?.title} | JCI Madagascar`}
+        description="Découvrez les détails complets de l'événement de JCI Madagascar."
+        canonical={`https://jcimadagascar.org/blog/evenements/${eventId}`}
+        indexable={true}
+    />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://jcimadagascar.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://jcimadagascar.org/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Événement",
+          "item": `https://jcimadagascar.org/blog/evenements/${eventId}`
+        }
+      ]
+    }) }} />
     <div className='flex flex-col w-full min-h-screen bg-jci-black'>
       
       {/* Actualités & évènements */}
@@ -282,6 +312,7 @@ const EventsDetails = () => {
         </div>
       </section>
     </div>
+    </>
   )
 }
 

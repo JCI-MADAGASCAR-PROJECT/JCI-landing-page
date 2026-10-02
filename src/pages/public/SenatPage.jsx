@@ -4,9 +4,41 @@ import Reveal from "../../components/ui/Reveal"
 import LabelTraitSimple from "../../components/ui/LabelTraitSimple"
 import ValueCredoBlock from "../../components/ui/ValueCredoBlock"
 import SenatImage from "../../images/Senat-removebg-preview.png"
+import SEO from "../../components/common/SEO"
 
 const SenatPage = () => {
   return (
+    <>
+    <SEO
+        title="Le Sénat | JCI Madagascar"
+        description="Le Sénat de la JCI Madagascar : honneur accordé aux membres d'exception pour leur engagement durable et leur contribution au développement du mouvement Jaycee."
+        canonical="https://jcimadagascar.org/jci-madagascar/senat"
+        indexable={true}
+    />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://jcimadagascar.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "JCI Madagascar",
+          "item": "https://jcimadagascar.org/jci-madagascar"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Le Sénat",
+          "item": "https://jcimadagascar.org/jci-madagascar/senat"
+        }
+      ]
+    }) }} />
     <div className='min-h-screen font-poppins flex flex-col items-start pt-25 pb-10 px-2 lg:pl-33 lg:pr-10 bg-jci-black gap-2'>
       <SubNav />
 
@@ -133,6 +165,7 @@ const SenatPage = () => {
 
       </div>
     </div>
+    </>
   )
 }
 

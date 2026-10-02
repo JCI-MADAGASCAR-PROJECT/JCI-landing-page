@@ -7,6 +7,7 @@ import DecoFond from "../../images/Vector.png"
 import { useState, useEffect } from "react"
 import ScrollStack,{ScrollStackItem } from '@/hooks/ScrollStack'
 import Reveal from "../../components/ui/Reveal"
+import SEO from "../../components/common/SEO"
 
 const ValeursPage = () => {
     const [isMobile, setIsMobile] = useState(
@@ -28,6 +29,37 @@ const ValeursPage = () => {
     }, [])
 
   return (
+    <>
+    <SEO
+        title="Nos Valeurs, Mission & Credo | JCI Madagascar"
+        description="Explorez le Credo JCI, notre mission d'offrir des opportunités de développement aux jeunes et notre vision d'être le premier réseau mondial de jeunes leaders."
+        canonical="https://jcimadagascar.org/jci-madagascar/valeurs"
+        indexable={true}
+    />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://jcimadagascar.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "JCI Madagascar",
+          "item": "https://jcimadagascar.org/jci-madagascar"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Nos Valeurs",
+          "item": "https://jcimadagascar.org/jci-madagascar/valeurs"
+        }
+      ]
+    }) }} />
     <div className='min-h-screen font-poppins flex flex-col items-start pt-25 pb-10 px-2 lg:pl-33 lg:pr-10 bg-jci-black gap-2'>
       <SubNav />
       {!isMobile && (
@@ -370,6 +402,7 @@ const ValeursPage = () => {
         </div>
       )}
     </div>
+    </>
   )
 }
 

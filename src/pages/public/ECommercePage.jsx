@@ -11,6 +11,7 @@ import { itemAPI } from './../../services/api';
 import { useState, useEffect } from 'react';
 import { FiArrowUpRight } from "react-icons/fi";
 import Reveal from '@/components/ui/Reveal';
+import SEO from "../../components/common/SEO";
 
 
 const shopItems = [
@@ -107,6 +108,13 @@ const ECommercePage = () => {
         fetchItems();
     }, []);
   return (
+    <>
+    <SEO
+        title="Boutique Officielle| JCI Madagascar"
+        description="Boutique officielle de la JCI Madagascar : polos, casquettes, pin's, mugs et accessoires aux couleurs de l'organisation."
+        canonical="https://jcimadagascar.org/boutique"
+        indexable={true}
+    />
     <div className="min-h-screen w-full max-w-full overflow-x-hidden font-poppins flex flex-col items-start pt-5 md:pt-15 pb-10 px-2 md:px-6   bg-[#f1f1f1] gap-5 md:gap-10">
         <Reveal from="bottom" duration={1000} threshold={0.05}>
         <div className="group flex flex-col md:flex-row gap-10 w-full min-w-0 ">
@@ -226,6 +234,7 @@ const ECommercePage = () => {
             </div>
         </div>
     </div>
+    </>
   )
 }
 

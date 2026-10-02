@@ -1,6 +1,7 @@
 import H1 from "../../components/ui/H1"
 import PartnerBlock from "../../components/ui/PartnerBlock"
 import Reveal from "../../components/ui/Reveal"
+import SEO from "../../components/common/SEO"
 
 
 import MidiMadagascarLogo from "../../images/LOGO-OTHER/logo_midi_madagasikara.webp"
@@ -128,6 +129,31 @@ const partners = [
 
 const PartenairesPage = () => {
   return (
+    <>
+    <SEO
+        title="Nos Partenaires Nationaux | JCI Madagascar"
+        description="Découvrez les partenaires nationaux de JCI Madagascar et leur contribution au développement de la jeunesse malgache."
+        canonical="https://jcimadagascar.org/partenaires"
+        indexable={true}
+    />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://jcimadagascar.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Partenaires",
+          "item": "https://jcimadagascar.org/partenaires"
+        }
+      ]
+    }) }} />
     <div className='min-h-screen font-poppins flex flex-col items-center pt-5  bg-jci-white gap-0'>
       <Reveal from="left" duration={1000} threshold={0.05}>
         <div className="w-fit md:-ml-120 ml-7 mt-15 md:mt-10 border-l-6 pl-3 border-jci-yellow hover:scale-105 transition-all duration-300">
@@ -149,6 +175,7 @@ const PartenairesPage = () => {
         ))}
       </div>
     </div>
+    </>
   )
 }
 

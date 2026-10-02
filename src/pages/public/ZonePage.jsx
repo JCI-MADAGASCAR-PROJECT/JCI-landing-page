@@ -1,4 +1,4 @@
-import { useParams, Navigate } from 'react-router'
+import { useParams } from 'react-router'
 import ZoneFilterTabs from "../../components/layout/ZoneFilterTabs"
 import LabelTraitSimple from './../../components/ui/LabelTraitSimple';
 import { RiSendPlaneFill } from "react-icons/ri";
@@ -9,6 +9,7 @@ import ProfilePh from "../../images/profilePlaceHolder.jpeg"
 import Pagination from "../../components/ui/Pagination"
 import ContactInfoBlock from '@/components/ui/ContactInfoBlock';
 import Reveal from "../../components/ui/Reveal"
+import SEO from "../../components/common/SEO"
 
 
 const ZonePage = () => {
@@ -209,6 +210,37 @@ useEffect(() => {
 }, [zoneDetails?.id]);
 
   return (
+    <>
+    <SEO
+        title={`Zone ${zoneDetails?.name} | JCI Madagascar`}
+        description={`Découvrez la zone ${zoneDetails?.name} de JCI Madagascar, ses organisations locales et son président.`}
+        canonical={`https://jcimadagascar.org/organisations-locales/${zoneDetails?.name}`}
+        indexable={true}
+    />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://jcimadagascar.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Organisations Locales",
+          "item": "https://jcimadagascar.org/organisations-locales"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": `Zone ${zoneDetails?.name}`,
+          "item": `https://jcimadagascar.org/organisations-locales/${zoneDetails?.name}`
+        }
+      ]
+    }) }} />
     <div className='min-h-screen font-poppins flex flex-col items-start pt-25 pb-10 px-2 lg:pl-33 lg:pr-20 bg-jci-black gap-2'>
       <ZoneFilterTabs />
 
@@ -531,6 +563,7 @@ useEffect(() => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

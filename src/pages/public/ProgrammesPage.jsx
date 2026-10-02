@@ -9,9 +9,42 @@ import CYE_Inverted from "../../images/CYE_Inverted.png"
 import TOYP_Inverted from "../../images/TOYP_Inverted.png"
 import JCI_RISE_Inverted from "../../images/JCI_RISE_Inverted.png"
 import IHD_Inverted from "../../images/IHD_Inverted.png"
+import SEO from "../../components/common/SEO"
+
 
 const ProgrammesPage = () => {
   return (
+    <>
+    <SEO
+        title="Nos Programmes de Leadership | JCI Madagascar"
+        description="Découvrez les programmes phares de JCI Madagascar : JCI Morning Academy, Public Speaking Championship, TOYP (Ten Outstanding Young Persons) et CYE."
+        canonical="https://jcimadagascar.org/jci-madagascar/programmes"
+        indexable={true}
+    />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://jcimadagascar.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "JCI Madagascar",
+          "item": "https://jcimadagascar.org/jci-madagascar"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Nos Programmes",
+          "item": "https://jcimadagascar.org/jci-madagascar/programmes"
+        }
+      ]
+    }) }} />
     <div className='min-h-screen font-poppins flex flex-col items-start pt-25 pb-10 px-2 lg:pl-33 lg:pr-10 bg-jci-black gap-2'>
       <SubNav />
 
@@ -387,6 +420,7 @@ const ProgrammesPage = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

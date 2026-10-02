@@ -4,9 +4,13 @@ import BNCard from "../../components/ui/BNCard";
 import { useState, useEffect, useRef } from "react";
 import { bnAPI } from "../../services/api.js";
 import Reveal from "../../components/ui/Reveal"
+import SEO from "../../components/common/SEO"
+
 
 
 const BureauNationalPage = () => {
+  const today = new Date();
+  const year = today.getFullYear();
   const [bnList, setBnList] = useState([]);
   const carouselRefMobile = useRef(null);
 
@@ -33,6 +37,38 @@ const BureauNationalPage = () => {
   }, []);
 
   return (
+    <>
+    <SEO
+        title={`Bureau National ${year} | JCI Madagascar`}
+        description={`Présentation des membres du Bureau National ${year} de la JCI Madagascar sous le thème Build Legacy Together. Gouvernance et contacts de l'équipe exécutive`}
+        canonical="https://jcimadagascar.org/jci-madagascar/bureau-national"
+        indexable={true}
+    />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://jcimadagascar.org/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "JCI Madagascar",
+          "item": "https://jcimadagascar.org/jci-madagascar"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Bureau National",
+          "item": "https://jcimadagascar.org/jci-madagascar/bureau-national"
+        }
+      ]
+      })}} />
+
     <div className="min-h-screen w-full max-w-full overflow-x-clip font-poppins flex flex-col items-start pt-25 pb-10 px-2 lg:pl-33 lg:pr-10 bg-jci-black gap-2">
 
       <SubNav />
@@ -45,12 +81,12 @@ const BureauNationalPage = () => {
           <Reveal from="left" duration={1000} threshold={0.05}>
           <LabelTraitSimple
             Label="LES MEMBRES DU"
-            H1Text="BUREAU NATIONAL 2026"
+            H1Text={`BUREAU NATIONAL ${year}`}
           />
           </Reveal>
           <Reveal from="left" duration={1000} threshold={0.05}>
           <p className="text-[11px] font-normal font-poppins text-jci-black text-justify">
-            Découvrez les membres du Bureau National 2026 de la JCI Madagascar.
+            Découvrez les membres du Bureau National {year} de la JCI Madagascar.
             Une équipe engagée de jeunes leaders dédiée à la conduite des
             projets stratégiques, au renforcement des compétences et à la
             création d'impacts positifs à travers toutes les organisations
@@ -62,12 +98,12 @@ const BureauNationalPage = () => {
           <Reveal from="bottom" duration={1000} threshold={0.05}>
           <LabelTraitSimple
             Label="LES MEMBRES DU"
-            H1Text="BUREAU NATIONAL 2026"
+            H1Text={`BUREAU NATIONAL ${year}`}
           />
           </Reveal>
           <Reveal from="bottom" duration={1000} threshold={0.05}>
           <p className="text-[11px] font-normal font-poppins text-jci-black text-justify">
-            Découvrez les membres du Bureau National 2026 de la JCI Madagascar.
+            Découvrez les membres du Bureau National {year} de la JCI Madagascar.
             Une équipe engagée de jeunes leaders dédiée à la conduite des
             projets stratégiques, au renforcement des compétences et à la
             création d'impacts positifs à travers toutes les organisations
@@ -294,6 +330,7 @@ const BureauNationalPage = () => {
 
       </div>
     </div>
+    </>
   );
 };
 
