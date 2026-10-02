@@ -480,7 +480,7 @@ const Ecommerce = () => {
     {/* DESKTOP TABLE */}
     {/* ================================================= */}
 
-    <div className='  md:w-[90%] w-full overflow-x-auto rounded border border-gray-200 shadow-sm'>
+    <div className='  md:w-[90%] w-full overflow-x-auto rounded border border-gray-200 shadow-sm max-h-[400px] overflow-y-auto'>
 
       {filteredItemLists.length > 0 ? (
 
@@ -495,7 +495,7 @@ const Ecommerce = () => {
                 : user.role === 'ADMIN_LOCAL'
                 ? 'bg-green-900'
                 : 'bg-yellow-900'
-            } text-jci-white font-poppins font-semibold`}
+            } text-jci-white font-poppins font-semibold sticky top-0 z-10`}
           >
             <tr className='text-left'>
 

@@ -1,5 +1,5 @@
 import ZoneFilterTabs from "../../components/layout/ZoneFilterTabs"
-import Mada from "../../images/MadaLocalOrg.png"
+import Mada from "../../images/MadaLocalOrg.svg"
 import LabelTraitSimple from "../../components/ui/LabelTraitSimple"
 import JCIAmbilobe from "../../images/JCI/JCI Ambilobe/JCI Ambilobe background marine blue logo.webp"
 import JCIAntananarivo from "../../images/JCI/JCI Antananarivo/JCI Antananarivo background blue logo.webp"
@@ -59,13 +59,13 @@ const OrganisationsLocalesPage = () => {
             <div className='flex flex-wrap gap-0 mt-10 items-center justify-center w-full'>
 
                 {listeOl1.map((ol, index) => (
-                  <div key={index} className="flex flex-col items-center">
+                  <div key={index} className="flex flex-col items-center hover:scale-105 transition-transform duration-300">
                     <img src={ol.logo} alt={ol.name} className="md:w-25 w-20 aspect-[50/50] object-cover"/>
                   </div>
                 ))}
 
                 {listeOl2.map((ol, index) => (
-                  <div key={index} className="flex flex-col items-center">
+                  <div key={index} className="flex flex-col items-center hover:scale-105 transition-transform duration-300">
                     <img src={ol.logo} alt={ol.name} className="md:w-25 w-20 object-cover aspect-[50/50]"/>
                   </div>
                 ))}
@@ -94,8 +94,8 @@ const OrganisationsLocalesPage = () => {
               </p>
             </Reveal>
             
-            <Reveal from="bottom" duration={1000} threshold={0.05}>
-            <div className='flex flex-wrap gap-0 mt-10 items-center justify-center w-full'>
+            <Reveal from="bottom" duration={1000} threshold={0.05} className="flex items-center justify-center ">
+            <div className='flex flex-wrap gap-0 mt-10 items-center self-center  w-[85%]'>
 
                 {listeOl1.map((ol, index) => (
                   <Reveal from="bottom" duration={1000} threshold={0.05}>
@@ -116,9 +116,9 @@ const OrganisationsLocalesPage = () => {
             </div>
             </Reveal>
           </div>
-          <div className='flex flex-1 rounded-b-xl '>
-            <Reveal from="bottom" duration={1000} threshold={0.05}>
-            <img src={Mada} alt="Madagascar Map" className="h-full w-auto object-cover rounded-none lg:rounded-b-xl "/>
+          <div className='flex flex-1 rounded-b-xl pl-5'>
+            <Reveal from="bottom" duration={1000} threshold={0.05} className="">
+            <img src={Mada} alt="Madagascar Map" className="h-full w-auto object-cover rounded-none lg:rounded-b-xl  "/>
             </Reveal>
           </div>
         </div>

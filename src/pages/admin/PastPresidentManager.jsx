@@ -463,11 +463,11 @@ const PastPresidentManager = () => {
 
       </div>
 
-      <div className='md:w-[90%] w-full overflow-x-auto rounded border border-gray-200 shadow-sm'>
+      <div className='md:w-[90%] w-full overflow-x-auto rounded border border-gray-200 shadow-sm max-h-[400px] overflow-y-auto'>
       {filteredPastPresidentLists.length > 0 ? (
         <table className='w-full border-collapse text-sm'>
 
-          <thead className={` ${user.role === 'SUPER_ADMIN' ? 'bg-red-900' : user.role === 'ADMIN_NATIONAL' ? 'bg-jci-black' : user.role === 'ADMIN_LOCAL' ? 'bg-green-900' : 'bg-yellow-900'} text-jci-white font-poppins font-semibold`}>
+          <thead className={` ${user.role === 'SUPER_ADMIN' ? 'bg-red-900' : user.role === 'ADMIN_NATIONAL' ? 'bg-jci-black' : user.role === 'ADMIN_LOCAL' ? 'bg-green-900' : 'bg-yellow-900'} text-jci-white font-poppins font-semibold sticky top-0 z-10`}>
 
             <tr className='text-left'>
 
