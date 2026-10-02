@@ -78,8 +78,8 @@ const partners = [
       Pour les jeunes Malgaches, cette alliance signifie davantage de visibilité pour leurs initiatives et leurs parcours. Pour nos communautés, elle contribue à faire connaître les actions citoyennes et à renforcer leur impact.`,
     Logo: Logo2424,
     ImageFond: Logo2424,
-    BGColor: "bg-[#DF0023]",
-    LabelColor: "text-jci-white",
+    BGColor: "bg-[#212121]",
+    LabelColor: "text-jci-teal",
     H1Color: "text-jci-teal",
     ContentColor: "text-jci-white"
   },
