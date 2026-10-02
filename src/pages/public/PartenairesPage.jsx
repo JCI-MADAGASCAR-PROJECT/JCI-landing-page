@@ -38,7 +38,8 @@ Portée par une équipe pluridisciplinaire de jeunes talents, iSeven Studio plac
     BGColor: "bg-[#FFFFFF]",
     LabelColor: "text-[#045F66]",
     H1Color: "text-[#C1CA1D]",
-    ContentColor: "text-jci-black"
+    ContentColor: "text-jci-black",
+    PertenairType: "Technique",
   },
 
   {
@@ -171,6 +172,7 @@ const PartenairesPage = () => {
           <PartnerBlock key={partner.Name} 
           Title={partner.Title} 
           Name={partner.Name} Content={partner.Content} 
+          PertenairType={partner.PertenairType}
           Reverse={index % 2 === 1} Logo={partner.Logo} 
           ImageFond={partner.ImageFond} BGColor={partner.BGColor} 
           LabelColor={partner.LabelColor} H1Color={partner.H1Color} 
