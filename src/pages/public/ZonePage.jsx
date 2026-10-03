@@ -438,8 +438,8 @@ useEffect(() => {
                           <img src={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${member?.imgUrl}`} alt={member.name} className="h-10 w-10 rounded-full object-cover" loading="lazy"/>
                         </div>
                       </div>
-                      <div className="flex flex-col justify-center gap-[0.5px]">
-                        <p className='text-[12px] font-bold text-jci-black'>{member.name}</p>
+                      <div className="flex flex-col justify-center gap-[0.5px] w-full">
+                        <p className='text-[12px] font-bold text-jci-black w-full wrap-break-word'>{member?.name}</p>
                         <p className='text-[11px] font-normal text-jci-black/50'>{member.title}</p>
                       </div>
                     </div>
