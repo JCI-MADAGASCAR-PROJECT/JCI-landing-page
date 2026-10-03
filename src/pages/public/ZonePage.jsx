@@ -383,7 +383,7 @@ useEffect(() => {
           </Reveal>
 
           {/** Section for displaying the members of the local office */}
-          <div className='flex flex-col lg:flex-row gap-1 lg:w-[90%] lg:ml-15 w-full ml-0 px-3 lg:px-0'>
+          <div className='flex flex-col lg:flex-row gap-1 lg:w-full lg:ml-15 w-full ml-0 px-3 lg:px-0'>
             {/** Section for displaying the President*/}
             <div className={`flex flex-1 ${showMembersSkeleton ? 'animate-pulse' : ''}`}>
               <div className='relative p-2 border-[#F9F9F9] bg-[#F9F9F9] w-full'>
@@ -409,7 +409,7 @@ useEffect(() => {
                   { !showMembersSkeleton ? currentOlMemberList?.[0]?.ticket : <div className='h-2 w-5 bg-gray-300 rounded'></div>}
                 </div>
                 <div className=" absolute bottom-1 right-2 flex flex-col justify-center gap-[0.5px]">
-                  { !showMembersSkeleton ? <p className='text-[12px] font-bold text-jci-black'>{currentOlMemberList?.[0]?.name}</p>: <div className=' bg-gray-300 h-4 w-20 rounded'></div>}
+                  { !showMembersSkeleton ? <p className='text-[12px] font-bold text-jci-black max-w-[155px] wrap-break-words '>{currentOlMemberList?.[0]?.name}</p>: <div className=' bg-gray-300 h-4 w-20 rounded'></div>}
                   { !showMembersSkeleton ? <p className='text-[12px] font-semibold text-jci-black/60'>{currentOlMemberList?.[0]?.title}</p>: <div className=' bg-gray-300 h-4 w-25 rounded mt-1'></div>}
                 </div>
               </div>
