@@ -383,7 +383,7 @@ useEffect(() => {
           </Reveal>
 
           {/** Section for displaying the members of the local office */}
-          <div className='flex flex-col lg:flex-row gap-1 lg:w-full lg:ml-15 w-full ml-0 px-3 lg:px-0'>
+          <div className='flex flex-col lg:flex-row gap-1 lg:w-[93%] lg:ml-15 w-full ml-0 px-3 lg:px-0 '>
             {/** Section for displaying the President*/}
             <div className={`flex flex-1 ${showMembersSkeleton ? 'animate-pulse' : ''}`}>
               <div className='relative p-2 border-[#F9F9F9] bg-[#F9F9F9] w-full'>
@@ -415,7 +415,7 @@ useEffect(() => {
               </div>
             </div>
             {/** Section for displaying the rest of member */}
-            <div className=' flex-1 lg:flex-2 grid lg:grid-cols-2 grid-cols-1 gap-1'>
+            <div className=' flex-1 lg:flex-2 grid lg:grid-cols-2 grid-cols-1 gap-1 '>
               {showMembersSkeleton ? (
                 [0, 1, 2, 3].map((i) => (
                   <div key={i} className='relative flex flex-col gap-1 p-2 border border-[#F9F9F9] bg-[#F9F9F9] h-fit animate-pulse'>
@@ -431,9 +431,9 @@ useEffect(() => {
               ) : (
                 currentOlMemberList?.slice(1).map((member) => (
                   <Reveal from="right" duration={1000} threshold={0.05}>
-                  <div key={member?.id} className='relative flex flex-col gap-1 p-2 border border-[#F9F9F9] bg-[#F9F9F9]  h-fit'>
+                  <div key={member?.id} className='relative flex flex-col gap-1 p-2 border border-[#F9F9F9] bg-[#F9F9F9]  h-fit '>
                     <div className="flex flex-row gap-3">
-                      <div className=" ">
+                      <div className="shrink-0 ">
                         <div className="rounded-full border-2 border-green-500">
                           <img src={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${member?.imgUrl}`} alt={member.name} className="h-10 w-10 rounded-full object-cover" loading="lazy"/>
                         </div>
