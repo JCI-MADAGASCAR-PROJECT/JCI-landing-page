@@ -146,7 +146,7 @@ const EventsDetailsManager = () => {
       if(zone || olId){
         formData.append("organisationLocalId", olId);
       }
-      const res = await eventAPI.update(eventId, formData);
+      const res = await eventAPI.update(eventId,olId || null, formData);
       toast.success(res.data.message);
       const response = await eventAPI.getById(eventId);
       setEventDetails(response.data);

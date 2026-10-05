@@ -279,7 +279,7 @@ useEffect(() => {
             formData.append("localisation", data.localisation);
             formData.append("phone", data.phone);
             formData.append("email", data.email);
-            const res = await olAPI.update(olId, formData);
+            const res = await olAPI.update(olId,olDetails.zoneId, formData);
             toast.success(res.data.message);
 
             const response = await olAPI.getById(olId);
@@ -308,7 +308,7 @@ useEffect(() => {
           };
 
           if (isContentEdit) {
-             const res = await contentAPI.update(contentId, {
+             const res = await contentAPI.update(contentId,olId, {
                   content: data.content
               });
               toast.success(res.data.message);
@@ -341,7 +341,7 @@ useEffect(() => {
       setPendingAction('delete');
 
       try {
-          await contentAPI.deleteById(contentId);
+          await contentAPI.deleteById(contentId,olId);
           toast.success("OL content supprimé avec succès !");
           setOlContents((prev) =>
               prev.filter((content) => content.id !== contentId)
@@ -375,7 +375,7 @@ useEffect(() => {
       formData.append("ticket", data.ticket);
 
       if (memberId) {
-        const res = await memberAPI.update(memberId, formData);
+        const res = await memberAPI.update(memberId,olId, formData);
         toast.success(res.data.message);
       } else {
         formData.append("organisationLocalId", Number(olId));
@@ -408,7 +408,7 @@ useEffect(() => {
     setPendingAction('delete');
 
     try {
-      await memberAPI.deleteById(deleteMemberId);
+      await memberAPI.deleteById(deleteMemberId,olId);
       toast.success("Membre de bureau supprimé avec succès !");
       const response = await memberAPI.getAll(olId);
       setMembers(response.data);
@@ -440,7 +440,7 @@ useEffect(() => {
       formData.append("date", data.date);
 
       if (eventId) {
-        const res = await eventAPI.update(eventId, formData);
+        const res = await eventAPI.update(eventId,olId, formData);
         toast.success(res.data.message);
       } else {
         formData.append("organisationLocalId", Number(olId));
@@ -472,7 +472,7 @@ useEffect(() => {
     setIsPending(true);
 
     try {
-      await eventAPI.delete(deleteEventId);
+      await eventAPI.delete(deleteEventId,olId);
       toast.success("Événement supprimé avec succès !");
 
       const response = await eventAPI.getAllByOl(olId);

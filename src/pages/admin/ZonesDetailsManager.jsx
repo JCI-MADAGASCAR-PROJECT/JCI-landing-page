@@ -120,6 +120,7 @@ const ZonesDetailsManager = () => {
     };
 //================================Zone President Management Handling action ==============================
     const handleSubmit = async (data) => {
+        
         setPendingAction(isEdit ? 'edit' : 'create');
         setIsOpen(false);
         setIsPending(true);
@@ -135,7 +136,7 @@ const ZonesDetailsManager = () => {
             formData.append("quote", data.quote);
             formData.append("contact", data.contact);
             formData.append("zoneId", zoneDetails.id);
-
+            console.log(zoneDetails.id)
             // Vérifie si nous sommes en mode édition ou création
             if (isEdit) {
                 const res = await zonesAPI.updatePsd(zonePsd.id, formData);
@@ -165,13 +166,13 @@ const ZonesDetailsManager = () => {
     };
     const handleDelete = async () => {
         setPendingAction('delete');
+        setIsDeleteOpen(false);
         setIsPending(true);
 
         try {
-            await zonesAPI.deletePsd(zonePsd.id);
+            await zonesAPI.deletePsd(zonePsd.id, zoneDetails.id);
             toast.success("Zone president supprimé avec succès !");
             setZonePsd(null);
-            setIsDeleteOpen(false);
 
         } catch (error) {
             console.error("Error deleting zone president:", error);
@@ -238,7 +239,7 @@ const ZonesDetailsManager = () => {
         setIsPending(true);
 
         try {
-            await olAPI.deleteById(olId);
+            await olAPI.deleteById(olId, zoneDetails.id);
 
             setZoneOls((prev) =>
                 prev.filter((ol) => ol.id !== olId)

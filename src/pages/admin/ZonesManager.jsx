@@ -14,9 +14,9 @@ const ZonesManager = () => {
   const [isPending, setIsPending] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [zoneLists, setZoneLists] = useState([]);
-  const [zoneId, setZoneId] = useState(null);
+  const [zone, setZone] = useState(null);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  const [deleteId, setDeleteId] = useState(null);
+  const [deleteZone, setDeleteZone] = useState(null);
   const [pendingAction, setPendingAction] = useState(null);
   const [search, setSearch] = useState('');
 
@@ -39,7 +39,7 @@ const ZonesManager = () => {
 
 
   const openAddModal = () => {
-    setZoneId(null);
+    setZone(null);
 
     zoneForm.reset({
       name: '',
@@ -51,7 +51,7 @@ const ZonesManager = () => {
 
 
   const openEditModal = (zone) => {
-    setZoneId(zone.id);
+    setZone(zone);
 
     zoneForm.reset({
       name: zone.name,
@@ -62,8 +62,8 @@ const ZonesManager = () => {
   };
 
 
-  const openDeleteModal = (id) => {
-    setDeleteId(id);
+  const openDeleteModal = (zone) => {
+    setDeleteZone(zone);
     setIsDeleteOpen(true);
   };
 
@@ -82,8 +82,8 @@ const ZonesManager = () => {
 
       formData.append('name', data.name.toUpperCase());
 
-      if (zoneId) {
-        const res = await zonesAPI.update(zoneId, formData);
+      if (zone?.id) {
+        const res = await zonesAPI.update(zone.id, zone.name, formData);
         toast.success(res.data.message);
       } else {
         const res = await zonesAPI.create(formData);
@@ -110,13 +110,13 @@ const ZonesManager = () => {
     setIsPending(true);
 
     try {
-      await zonesAPI.deleteById(deleteId);
+      await zonesAPI.deleteById(deleteZone.id, deleteZone.name);
       toast.success("Zone supprimée avec succès !");
       const response = await zonesAPI.getAll();
 
       setZoneLists(response.data);
       setIsDeleteOpen(false);
-      setDeleteId(null);
+      setDeleteZone(null);
 
     } catch (error) {
       console.error('Error deleting zone:', error);
@@ -153,7 +153,7 @@ const ZonesManager = () => {
 
   useEffect(() => {
       zoneForm.register('image', {
-        required: zoneId ? false : "L'image est obligatoire",
+        required: zone?.id ? false : "L'image est obligatoire",
         validate: {
           validSize: (files) => {
             const file = files?.[0];
@@ -162,7 +162,7 @@ const ZonesManager = () => {
           },
         },
       });
-    }, [zoneForm, zoneId]);
+    }, [zoneForm, zone?.id]);
 
     const handleFileSelect = (e) => {
       const file = e.target.files?.[0];
@@ -218,17 +218,17 @@ const ZonesManager = () => {
         Chaque Zone est unique en terme de nom.
     </p>
     <p className="text-xs text-jci-blue">
-    * Pour une meilleure qualité et un affichage optimal, veuillez redimensionner votre photo au format PNG avant de l’ajouter. Vous pouvez utiliser gratuitement{" "}
-    <a
-        href="https://pixhaul.com/tools/image-resize"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="font-semibold underline hover:opacity-80"
-    >
-        PixHaul – Free Image Resizer
-    </a>
-    .
-</p>
+      * Pour une meilleure qualité et un affichage optimal, veuillez redimensionner votre photo au format PNG avant de l’ajouter. Vous pouvez utiliser gratuitement{" "}
+      <a
+          href="https://pixhaul.com/tools/image-resize"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-semibold underline hover:opacity-80"
+      >
+          PixHaul – Free Image Resizer
+      </a>
+      .
+  </p>
 
 
       {isPending && (
@@ -252,7 +252,7 @@ const ZonesManager = () => {
           onClick={(e) => {
             if (e.target === e.currentTarget) {
               setIsDeleteOpen(false);
-              setDeleteId(null);
+              setDeleteZone(null);
             }
           }}
         >
@@ -272,7 +272,7 @@ const ZonesManager = () => {
                 type='button'
                 onClick={() => {
                   setIsDeleteOpen(false);
-                  setDeleteId(null);
+                  setDeleteZone(null);
                 }}
                 className='px-4 py-2 rounded-lg border border-gray-300 text-sm font-semibold text-jci-black hover:bg-gray-100 cursor-pointer'
               >
@@ -308,7 +308,7 @@ const ZonesManager = () => {
             <div className='relative flex items-center justify-center mb-6'>
 
               <h2 className='text-jci-black font-bold text-lg'>
-                {zoneId
+                {zone?.id
                   ? 'Modifier une zone'
                   : 'Ajouter une zone'}
               </h2>
@@ -417,7 +417,7 @@ const ZonesManager = () => {
                 type='submit'
                 className='mt-2 px-5 py-3 bg-jci-yellow rounded-lg text-jci-white font-semibold text-sm hover:text-jci-black hover:bg-jci-white border border-jci-yellow cursor-pointer transition-colors duration-300'
               >
-                {zoneId ? 'Modifier' : 'Ajouter'}
+                {zone?.id ? 'Modifier' : 'Ajouter'}
               </button>
 
             </form>
@@ -488,7 +488,7 @@ const ZonesManager = () => {
 
               <button
                 className='px-3 py-1.5 bg-red-100 rounded-lg text-red-500 font-semibold text-[12px]  hover:bg-jci-white hover:border-red-100 border border-transparent cursor-pointer transition-colors duration-300'
-                onClick={() => openDeleteModal(item.id)}
+                onClick={() => openDeleteModal(item)}
               >
                 Supprimer
               </button>

@@ -5,29 +5,14 @@
 
 @custom-variant dark (&:is(.dark *));
 
+
 /* ========================================
    Poppins
    ======================================== */
 
 @font-face {
   font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-Thin.ttf") format("truetype");
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-ExtraLight.ttf") format("truetype");
-  font-weight: 200;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-Light.ttf") format("truetype");
+  src: url("./assets/fonts/Poppins-Light.woff2") format("woff2");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -35,7 +20,7 @@
 
 @font-face {
   font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-Regular.ttf") format("truetype");
+  src: url("./assets/fonts/Poppins-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -43,7 +28,7 @@
 
 @font-face {
   font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-Medium.ttf") format("truetype");
+  src: url("./assets/fonts/Poppins-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -51,7 +36,7 @@
 
 @font-face {
   font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-SemiBold.ttf") format("truetype");
+  src: url("./assets/fonts/Poppins-SemiBold.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -59,7 +44,7 @@
 
 @font-face {
   font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-Bold.ttf") format("truetype");
+  src: url("./assets/fonts/Poppins-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -67,7 +52,7 @@
 
 @font-face {
   font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-ExtraBold.ttf") format("truetype");
+  src: url("./assets/fonts/Poppins-ExtraBold.woff2") format("woff2");
   font-weight: 800;
   font-style: normal;
   font-display: swap;
@@ -75,7 +60,7 @@
 
 @font-face {
   font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-Black.ttf") format("truetype");
+  src: url("./assets/fonts/Poppins-Black.woff2") format("woff2");
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -87,72 +72,8 @@
 
 @font-face {
   font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-ThinItalic.ttf") format("truetype");
-  font-weight: 100;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-ExtraLightItalic.ttf") format("truetype");
-  font-weight: 200;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-LightItalic.ttf") format("truetype");
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-Italic.ttf") format("truetype");
+  src: url("./assets/fonts/Poppins-Italic.woff2") format("woff2");
   font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-MediumItalic.ttf") format("truetype");
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-SemiBoldItalic.ttf") format("truetype");
-  font-weight: 600;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-BoldItalic.ttf") format("truetype");
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-ExtraBoldItalic.ttf") format("truetype");
-  font-weight: 800;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-BlackItalic.ttf") format("truetype");
-  font-weight: 900;
   font-style: italic;
   font-display: swap;
 }
@@ -203,19 +124,6 @@
   font-display: swap;
 }
 
-/* ========================================
-   Readex Pro
-   Variable Font
-   ======================================== */
-
-@font-face {
-  font-family: "Readex Pro";
-  src: url("./assets/fonts/ReadexPro-VariableFont_HEXP,wght.ttf")
-    format("truetype");
-  font-weight: 200 700;
-  font-style: normal;
-  font-display: swap;
-}
 
 /* ========================================
    Roboto
@@ -224,8 +132,8 @@
 
 @font-face {
   font-family: "Roboto";
-  src: url("./assets/fonts/Roboto-VariableFont_wdth,wght.ttf")
-    format("truetype");
+  src: url("./assets/fonts/Roboto-VariableFont_wdth,wght.woff2")
+  format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -233,12 +141,14 @@
 
 @font-face {
   font-family: "Roboto";
-  src: url("./assets/fonts/Roboto-Italic-VariableFont_wdth,wght.ttf")
-    format("truetype");
+  src: url("./assets/fonts/Roboto-Italic-VariableFont_wdth,wght.woff2")
+  format("woff2");
   font-weight: 100 900;
   font-style: italic;
   font-display: swap;
 }
+
+
 
 @theme {
     --color-jci-black: #110E27;
@@ -251,7 +161,6 @@
     --font-poppins: "Poppins", sans-serif;
     --font-noto: "Noto Sans", sans-serif;
     --font-jakarta: "Plus Jakarta Sans", sans-serif;
-    --font-readex: "Readex Pro", sans-serif;
     --font-roboto: "Roboto", sans-serif;
 }
 

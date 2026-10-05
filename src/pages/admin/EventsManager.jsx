@@ -110,7 +110,7 @@ const EventsManager = () => {
       formData.append("date", data.date);
 
       if (eventId) {
-        const res = await eventAPI.update(eventId, formData);
+        const res = await eventAPI.update(eventId,null, formData);
         toast.success(res.data.message);
       } else {  
         const res = await eventAPI.createNational(formData);
@@ -140,7 +140,7 @@ const EventsManager = () => {
     setIsPending(true);
 
     try {
-      await eventAPI.delete(deleteEventId);
+      await eventAPI.delete(deleteEventId,null);
       toast.success("Événement supprimé avec succès !");
 
       const response = await eventAPI.getAllByNational();

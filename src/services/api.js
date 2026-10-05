@@ -86,12 +86,12 @@ export const zonesAPI = {
         "Content-Type": "multipart/form-data"
     }
     }),
-    update: (id, data) => api.put(`/zones/${id}`, data, {
+    update: (id,zoneName, data) => api.put(`/zones/${id}/name/${zoneName}`, data, {
     headers: {
         "Content-Type": "multipart/form-data"
     }
     }),
-    deleteById: (id) => api.delete(`/zones/${id}`),
+    deleteById: (id, name) => api.delete(`/zones/${id}/${name}`),
     createPsd: (data) => api.post(`/zones/presidents`, data, {
     headers: {
         "Content-Type": "multipart/form-data"
@@ -102,7 +102,7 @@ export const zonesAPI = {
         "Content-Type": "multipart/form-data"
     }
     }),
-    deletePsd: (id) => api.delete(`/zones/presidents/${id}`),
+    deletePsd: (id, zoneId) => api.delete(`/zones/presidents/${id}/${zoneId}`),
 
 };
 
@@ -116,20 +116,20 @@ export const olAPI = {
     getAll : (zoneId) => api.get(`/organisation-locales/${zoneId}`),
     getById : (id) => api.get(`/organisation-locales/details/${id}`),
     // getBySlug: (slug) => api.get(`/organisation-locales/${slug}`),
-    update : (id, data) => api.put(`/organisation-locales/${id}`,data, {
+    update : (id,zoneId, data) => api.put(`/organisation-locales/${id}/zone/${zoneId}`,data, {
     headers: {
         "Content-Type": "multipart/form-data"
     }
     }),
-    deleteById : (id) => api.delete(`/organisation-locales/${id}`),
+    deleteById : (id,zoneId) => api.delete(`/organisation-locales/${id}/zone/${zoneId}`),
 
 }
 // Organisation Locale (OL) Content API
 export const contentAPI = {
     create : (data) => api.post("/organisation-locales/contents", data),
     getAll : (id) => api.get(`/organisation-locales/contents/${id}`),
-    update : (id, data) => api.put(`/organisation-locales/contents/${id}`,data),
-    deleteById : (id) => api.delete(`/organisation-locales/contents/${id}`),
+    update : (id,olId, data) => api.put(`/organisation-locales/contents/${id}/organisation-local/${olId}`,data),
+    deleteById : (id,olId) => api.delete(`/organisation-locales/contents/${id}/organisation-local/${olId}`),
 }
 //
 //Membre de Bureau de l'Ol API
@@ -140,12 +140,12 @@ export const memberAPI = {
         "Content-Type": "multipart/form-data"
     }
     }),
-    update : (id,data) => api.put(`/organisation-locales/members/${id}`, data, {
+    update : (id,olId, data) => api.put(`/organisation-locales/members/${id}/organisation-local/${olId}`, data, {
     headers: {
         "Content-Type": "multipart/form-data"
     }
     }),
-    deleteById : (id) => api.delete(`/organisation-locales/members/${id}`),
+    deleteById : (id,olId) => api.delete(`/organisation-locales/members/${id}/organisation-local/${olId}`),
 }
 //image Service details API
 export const eventAPI = {
@@ -163,12 +163,12 @@ export const eventAPI = {
         "Content-Type": "multipart/form-data"
     }
     }),
-    update : (id, data) => api.put(`/events/${id}`, data, {
+    update : (id,olId, data) => api.put(`/events/${id}/organisation-local/${olId}`, data, {
     headers: {
         "Content-Type": "multipart/form-data"
     }
     }),
-    delete : (id) => api.delete(`/events/${id}`),
+    delete : (id,olId) => api.delete(`/events/${id}/organisation-local/${olId}`),
     getById: (id) => api.get(`/events/details/${id}`),
 }
 //features API

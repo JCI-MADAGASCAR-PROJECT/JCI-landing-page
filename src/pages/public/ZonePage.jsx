@@ -95,11 +95,7 @@ const ZonePage = () => {
   fetchZoneDetails();
  }, [zone]);
 
-  // useEffect(() => {
-  //   if (OlListByZone?.length > 0 && !currentOl) {
-  //     setCurrentOl(OlListByZone[0]);
-  //   }
-  // }, [OlListByZone, currentOl]);
+
 
   useEffect(() => {
     const fetchCurrentOlContent = async () => {
