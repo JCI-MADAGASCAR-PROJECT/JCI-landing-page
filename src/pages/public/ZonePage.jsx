@@ -431,23 +431,23 @@ useEffect(() => {
               ) : (
                 currentOlMemberList?.slice(1).map((member) => (
                   <Reveal from="right" duration={1000} threshold={0.05}>
-                  <div key={member?.id} className='relative flex flex-col gap-1 p-2 border border-[#F9F9F9] bg-[#F9F9F9]  h-fit '>
-                    <div className="flex flex-row gap-3">
-                      <div className="shrink-0 ">
-                        <div className="rounded-full border-2 border-green-500">
-                          <img src={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${member?.imgUrl}`} alt={member.name} className="h-10 w-10 rounded-full object-cover" loading="lazy"/>
+                    <div key={member?.id} className='relative flex flex-col gap-1 p-2 border border-[#F9F9F9] bg-[#F9F9F9]  h-fit '>
+                      <div className="flex flex-row gap-3">
+                        <div className="shrink-0 ">
+                          <div className="rounded-full border-2 border-green-500">
+                            <img src={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${member?.imgUrl}`} alt={member.name} className="h-10 w-10 rounded-full object-cover" loading="lazy"/>
+                          </div>
+                        </div>
+                        <div className="flex flex-col justify-center gap-[0.5px] w-full">
+                          <p className='text-[12px] font-bold text-jci-black w-full wrap-break-word'>{member?.name}</p>
+                          <p className='text-[11px] font-normal text-jci-black/50'>{member.title}</p>
                         </div>
                       </div>
-                      <div className="flex flex-col justify-center gap-[0.5px] w-full">
-                        <p className='text-[12px] font-bold text-jci-black w-full wrap-break-word'>{member?.name}</p>
-                        <p className='text-[11px] font-normal text-jci-black/50'>{member.title}</p>
+                      <div className="px-3 md:px-2 py-0.5 bg-jci-yellow text-[7px] md:text-[9px] text-jci-black font-extrabold font-roboto text-center absolute bottom-1 right-0">
+                        {member.ticket}
                       </div>
                     </div>
-                    <div className="px-3 md:px-2 py-0.5 bg-jci-yellow text-[7px] md:text-[9px] text-jci-black font-extrabold font-roboto text-center absolute bottom-1 right-0">
-                      {member.ticket}
-                    </div>
-                  </div>
-                </Reveal>
+                  </Reveal>
               ))
               )}
             </div>
