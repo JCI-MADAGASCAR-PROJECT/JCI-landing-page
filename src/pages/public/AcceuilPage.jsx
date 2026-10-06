@@ -258,6 +258,8 @@ const AcceuilPage = () => {
                   src={PSD2026}
                   alt={t("home.president.imageAlt")}
                   className='peer h-10 w-10 rounded-full object-cover transition-all duration-300 ease-out hover:h-24 hover:w-24'
+                  decoding="async"
+                  loading="lazy"
                 />
 
                 <div className='relative lg:absolute w-full lg:w-[500px] lg:left-25 top-0 z-55 mt-3 lg:mt-0 lg:ml-3 max-w-full max-h-fit overflow-visible lg:overflow-hidden lg:max-w-0 lg:max-h-0 rounded border border-jci-blue/40 bg-jci-black/40 backdrop-blur-xl p-5 lg:p-0 opacity-100 lg:opacity-0 shadow-lg transition-all duration-300 ease-out lg:peer-hover:max-w-[10000px] lg:peer-hover:max-h-fit lg:peer-hover:p-5 lg:peer-hover:opacity-100'>
@@ -270,6 +272,8 @@ const AcceuilPage = () => {
                         src={LogoJCIMNoBg}
                         alt="Logo JCI Madagascar"
                         className="h-5 w-fit bg-no-repeat"
+                        decoding="async"
+                        loading="lazy"
                       />
 
                       <div>
@@ -292,6 +296,8 @@ const AcceuilPage = () => {
                         src={LogoBLTNoBgRow}
                         alt="Logo Build Legacy Together"
                         className="h-5 w-auto"
+                        decoding="async"
+                        loading="lazy"
                       />
                     </div>
 
@@ -541,12 +547,16 @@ const AcceuilPage = () => {
                   src={LogoBLTNoBgRowWhite}
                   alt="Logo Build Legacy Together"
                   className="absolute left-0 top-0 h-11 w-auto translate-y-0 opacity-50 transition-all duration-500 ease-out group-hover:opacity-0"
+                  decoding="async"
+                  loading="lazy"
                 />
 
                 <img
                   src={LogoBLTNoBgRow}
                   alt="Logo Build Legacy Together"
                   className="absolute left-0 top-0 h-11 w-auto translate-y-0 opacity-0 transition-all duration-500 ease-out group-hover:h-13 group-hover:w-auto group-hover:opacity-100"
+                  decoding="async"
+                  loading="lazy"
                 />
 
               </div>
@@ -627,6 +637,7 @@ const AcceuilPage = () => {
               <img
                 src={LogoBLTNoBgRowWhite}
                 alt="Logo Build Legacy Together"
+                decoding="async"
                 className={`absolute left-0 top-0 h-11 w-auto transition-all duration-500 ease-out ${
                   showSecondImage
                     ? "opacity-0"
@@ -637,6 +648,7 @@ const AcceuilPage = () => {
               <img
                 src={LogoBLTNoBgRow}
                 alt="Logo Build Legacy Together"
+                decoding="async"
                 className={`absolute left-0 top-0 h-11 w-auto transition-all duration-500 ease-out ${
                   showSecondImage
                     ? "opacity-100"
@@ -754,6 +766,7 @@ const AcceuilPage = () => {
                           src={LogoJCIMNoBg}
                           alt="Logo JCI Madagascar"
                           className="h-5 w-fit"
+                          decoding="async"
                         />
 
                         <H1
@@ -773,6 +786,7 @@ const AcceuilPage = () => {
                         src={LogoBLTNoBgRow}
                         alt="Logo Build Legacy Together"
                         className="h-5 w-auto"
+                        decoding="async"
                       />
 
                     </div>
@@ -833,6 +847,7 @@ const AcceuilPage = () => {
                     alt={t("home.president.imageAlt")}
                     className="h-15 w-15 rounded-full object-cover"
                     loading="eager"
+                    decoding="async"
                   />
 
                   <span className="absolute inset-0 rounded-full border-2 border-jci-blue animate-ping" />
@@ -1050,8 +1065,8 @@ const AcceuilPage = () => {
                 <img
                   src={LogoMasae}
                   alt={t("home.partners.images.midiMadagascar")}
-                  
-                  
+                  loading="lazy"
+                  decoding="async"
                   className="h-15 w-auto"
                 />
               </div>
@@ -1060,8 +1075,8 @@ const AcceuilPage = () => {
                 <img
                   src={LogoVitafoam}
                   alt={t("home.partners.images.orangeMadagascar")}
-                  
-                  
+                    loading="lazy"
+                    decoding="async"
                   className="h-17 w-auto"
                 />
               </div>
@@ -1070,8 +1085,8 @@ const AcceuilPage = () => {
                 <img
                   src={Logo2424}
                   alt={t("home.partners.images.kentia")}
-                  
-                  
+                  loading="lazy"
+                  decoding="async"
                   className="h-20 w-auto"
                 />
               </div>
@@ -1080,8 +1095,8 @@ const AcceuilPage = () => {
                 <img
                   src={ISevenLogo}
                   alt={t("home.partners.images.iseven")}
-                  
-                  
+                  loading="lazy"
+                  decoding="async"
                   className="h-15 w-auto"
                 />
               </div>
@@ -1090,7 +1105,8 @@ const AcceuilPage = () => {
                 <img
                   src={OrangeLogo}
                   alt={t("home.partners.images.koonSpace")}
-                    
+                  loading="lazy"
+                  decoding="async"
                   className="h-16 w-auto"
                 />
               </div>
@@ -1098,7 +1114,8 @@ const AcceuilPage = () => {
                 <img
                   src={GroupeKentiaLogo}
                   alt={t("home.partners.images.koonSpace")}
-                    
+                  loading="lazy"
+                  decoding="async"
                   className="h-16 w-auto"
                 />
               </div>
@@ -1106,7 +1123,8 @@ const AcceuilPage = () => {
                 <img
                   src={MidiMadagascarLogo}
                   alt={t("home.partners.images.koonSpace")}
-                    
+                  loading="lazy"
+                  decoding="async"
                   className="h-16 w-auto"
                 />
               </div>
@@ -1121,8 +1139,8 @@ const AcceuilPage = () => {
                 <img
                   src={LogoMasae}
                   alt={t("home.partners.images.midiMadagascar")}
-                  
-                  
+                  loading="lazy"
+                  decoding="async"
                   className="h-15 w-auto"
                 />
               </div>
@@ -1131,8 +1149,8 @@ const AcceuilPage = () => {
                 <img
                   src={LogoVitafoam}
                   alt={t("home.partners.images.orangeMadagascar")}
-                  
-                  
+                  loading="lazy"
+                  decoding="async"
                   className="h-17 w-auto"
                 />
               </div>
@@ -1141,8 +1159,8 @@ const AcceuilPage = () => {
                 <img
                   src={Logo2424}
                   alt={t("home.partners.images.kentia")}
-                  
-                  
+                  loading="lazy"
+                  decoding="async"
                   className="h-20 w-auto"
                 />
               </div>
@@ -1151,8 +1169,8 @@ const AcceuilPage = () => {
                 <img
                   src={ISevenLogo}
                   alt={t("home.partners.images.iseven")}
-                  
-                  
+                  loading="lazy"
+                  decoding="async"
                   className="h-15 w-auto"
                 />
               </div>
@@ -1161,7 +1179,8 @@ const AcceuilPage = () => {
                 <img
                   src={OrangeLogo}
                   alt={t("home.partners.images.koonSpace")}
-                    
+                  loading="lazy"
+                  decoding="async"
                   className="h-16 w-auto"
                 />
               </div>
@@ -1169,7 +1188,8 @@ const AcceuilPage = () => {
                 <img
                   src={GroupeKentiaLogo}
                   alt={t("home.partners.images.koonSpace")}
-                    
+                  loading="lazy"
+                  decoding="async"
                   className="h-16 w-auto"
                 />
               </div>
@@ -1177,7 +1197,8 @@ const AcceuilPage = () => {
                 <img
                   src={MidiMadagascarLogo}
                   alt={t("home.partners.images.koonSpace")}
-                    
+                  loading="lazy"
+                  decoding="async"
                   className="h-16 w-auto"
                 />
               </div>

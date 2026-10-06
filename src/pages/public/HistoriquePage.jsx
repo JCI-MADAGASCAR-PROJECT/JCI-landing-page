@@ -108,16 +108,16 @@ const HistoriquePage = () => {
             </div>
             <div className='w-full mt-5 lg:0 items-center  flex justify-center'>
               <Reveal from="fade" duration={1000} threshold={0.05}>
-                <img src={Timeline} alt="" className="h-auto w-[90%] " />
+                <img src={Timeline} alt="" className="h-auto w-[90%] " decoding="async"/>
               </Reveal>
             </div>
           </div>
           <div className='flex flex-1 flex-col gap-1 w-full'>
             <Reveal from="right" duration={1000} threshold={0.05}>
-              <img src={HistoriqueImg1} alt="" className="h-auto w-full rounded object-cover hover:scale-105  transition-all duration-300" loading="lazy" />
+              <img src={HistoriqueImg1} alt="" className="h-auto w-full rounded object-cover hover:scale-105  transition-all duration-300" loading="lazy" decoding="async" />
             </Reveal>
             <Reveal from="right" duration={1000} threshold={0.05}>
-              <img src={HistoriqueImg2} alt="" className="h-auto w-full rounded object-cover hover:scale-105  transition-all duration-300" loading="lazy" />
+              <img src={HistoriqueImg2} alt="" className="h-auto w-full rounded object-cover hover:scale-105  transition-all duration-300" loading="lazy" decoding="async" />
             </Reveal>
           </div>
         </div>
@@ -133,7 +133,7 @@ const HistoriquePage = () => {
                 <div className="flex flex-row gap-3">
                   <div>
                     <div className="rounded-full border-2 border-green-500">
-                      <img src={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${president?.imgUrl}`} alt={president?.name} className="h-10 w-10 rounded-full object-cover" loading="lazy"/>
+                      <img src={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${president?.imgUrl}`} alt={president?.name} className="h-10 w-10 rounded-full object-cover" loading="lazy" decoding="async"/>
                     </div>
                   </div>
                   <div className="flex flex-col justify-center gap-[0.5px]">
@@ -196,16 +196,16 @@ const HistoriquePage = () => {
             </div>
             <div className='w-full mt-5 lg:0 items-center  flex justify-center'>
               <Reveal from="bottom" duration={1000} threshold={0.05}>
-                <img src={Timeline} alt="" className="h-auto w-[90%] " />
+                <img src={Timeline} alt="" className="h-auto w-[90%] " decoding="async"/>
               </Reveal>
             </div>
           </div>
           <div className='flex flex-1 flex-col gap-1 w-full'>
             <Reveal from="bottom" duration={1000} threshold={0.05}>
-              <img src={HistoriqueImg1} alt="" className="h-auto w-full rounded object-cover hover:scale-105  transition-all duration-300" loading="lazy" />
+              <img src={HistoriqueImg1} alt="" className="h-auto w-full rounded object-cover hover:scale-105  transition-all duration-300" loading="lazy" decoding="async"/>
             </Reveal>
             <Reveal from="bottom" duration={1000} threshold={0.05}>
-              <img src={HistoriqueImg2} alt="" className="h-auto w-full rounded object-cover hover:scale-105  transition-all duration-300" loading="lazy" />
+              <img src={HistoriqueImg2} alt="" className="h-auto w-full rounded object-cover hover:scale-105  transition-all duration-300" loading="lazy" decoding="async"/>
             </Reveal>
           </div>
         </div>
@@ -221,7 +221,7 @@ const HistoriquePage = () => {
                 <div className="flex flex-row gap-3">
                   <div>
                     <div className="rounded-full border-2 border-green-500">
-                      <img src={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${president?.imgUrl}`} alt={president?.name} className="h-10 w-10 rounded-full object-cover" loading="lazy"/>
+                      <img src={`${import.meta.env.VITE_BACKEND_APP_API_URL_IMAGE}${president?.imgUrl}`} alt={president?.name} className="h-10 w-10 rounded-full object-cover" loading="lazy" decoding="async"/>
                     </div>
                   </div>
                   <div className="flex flex-col justify-center gap-[0.5px]">

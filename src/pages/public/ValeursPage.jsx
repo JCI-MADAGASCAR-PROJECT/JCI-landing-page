@@ -187,7 +187,7 @@ const ValeursPage = () => {
           <div className='flex flex-1 md:flex-col flex-col gap-10'>
             <Reveal from="right" duration={1000} threshold={0.05}>
             <div className="rounded-2xl border-5 border-jci-teal/50 ">
-              <img src={CWilliam} alt="C. William Brownfield" className="h-auto w-full object-cover rounded-xl" />
+              <img src={CWilliam} alt="C. William Brownfield" className="h-auto w-full object-cover rounded-xl" loading="lazy" decoding="async"/>
             </div>
             </Reveal>
             <Reveal from="right" duration={1000} threshold={0.05}>
@@ -223,7 +223,7 @@ const ValeursPage = () => {
         </div>
 
         <div className='relative flex flex-col gap-5 items-start text-start max-w-full  bg-jci-white  rounded-b-xl px-10 lg:pr-20 pb-20'>
-          <img src={DecoFond} alt="" className="absolute bottom-0 right-0 lg:w-80 lg:h-80 opacity-100 " />
+          <img src={DecoFond} alt="" className="absolute bottom-0 right-0 lg:w-80 lg:h-80 opacity-100 "loading="lazy" decoding="async" />
           {/* <div className='group flex flex-col gap-2 items-start text-start '>
             
             <LabelTraitSimple Label="NOTRE" H1Text="MISSION" />
@@ -248,7 +248,7 @@ const ValeursPage = () => {
             </Reveal>
             <Reveal from="bottom" duration={1000} threshold={0.05}>
             <div className="rounded-2xl border-5 border-jci-teal/50 ">
-              <img src={CWilliam} alt="C. William Brownfield" className="h-auto w-full object-cover rounded-xl" />
+              <img src={CWilliam} alt="C. William Brownfield" className="h-auto w-full object-cover rounded-xl" loading="lazy" decoding="async"/>
             </div>
             </Reveal>
             <Reveal from="bottom" duration={1000} threshold={0.05}>

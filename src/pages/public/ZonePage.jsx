@@ -98,67 +98,42 @@ const ZonePage = () => {
 
 
   useEffect(() => {
-    const fetchCurrentOlContent = async () => {
-      if (!currentOl?.id) {
+    if (!currentOl?.id) {
+      setCurrentOlContentList([]);
+      setCurrentOlMemberList([]);
+      setCurrentEventList([]);
+      setContentLoading(false);
+      setMembersLoading(false);
+      setEventsLoading(false);
+      return;
+    }
+
+    setContentLoading(true);
+    setMembersLoading(true);
+    setEventsLoading(true);
+
+    Promise.all([
+      contentAPI.getAll(currentOl.id),
+      memberAPI.getAll(currentOl.id),
+      eventAPI.getAllByOl(currentOl.id),
+    ])
+      .then(([contentRes, memberRes, eventRes]) => {
+        setCurrentOlContentList(contentRes.data);
+        setCurrentOlMemberList(memberRes.data);
+        setCurrentEventList(eventRes.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching OL data in parallel:", error);
         setCurrentOlContentList([]);
-        setContentLoading(false);
-        return;
-      }
-
-      setContentLoading(true);
-      try {
-        const res = await contentAPI.getAll(currentOl.id);
-        setCurrentOlContentList(res.data);
-      } catch (error) {
-        console.error("Error fetching OL content:", error);
-        setCurrentOlContentList([]);
-      } finally {
-        setContentLoading(false);
-      }
-    };
-
-    const fetchCurrentOlMembers = async () => {
-      if (!currentOl?.id) {
         setCurrentOlMemberList([]);
-        setMembersLoading(false);
-        return;
-      }
-
-      setMembersLoading(true);
-      try {
-        const res = await memberAPI.getAll(currentOl.id);
-        setCurrentOlMemberList(res.data);
-      } catch (error) {
-        console.error("Error fetching OL members:", error);
-        setCurrentOlMemberList([]);
-      } finally {
-        setMembersLoading(false);
-      }
-    };
-
-    const fetchCurrentEventList = async () => {
-      if (!currentOl?.id) {
         setCurrentEventList([]);
+      })
+      .finally(() => {
+        setContentLoading(false);
+        setMembersLoading(false);
         setEventsLoading(false);
-        return;
-      }
-
-      setEventsLoading(true);
-      try {
-        const res = await eventAPI.getAllByOl(currentOl.id);
-        setCurrentEventList(res.data);
-      } catch (error) {
-        console.error("Error fetching OL events:", error);
-        setCurrentEventList([]);
-      } finally {
-        setEventsLoading(false);
-      }
-    };
-
-    fetchCurrentOlContent();
-    fetchCurrentOlMembers();
-    fetchCurrentEventList();
-}, [currentOl]);
+      });
+  }, [currentOl]);
 
   useEffect(() => {
     const fetchZonePsdDetails = async () => {

@@ -589,7 +589,7 @@ useEffect(() => {
         <>
         <div className="md:w-[90%] w-full rounded-xl p-5 bg-white flex flex-col gap-20 md:pt-10 pt-20">
           <div>          
-            <h1 className="text-4xl font-bold mb-4 text-jci text-jci-black font-jakarta self-center text-start">Page de détails de l'organisation locale <br />
+            <h1 className="text-4xl font-bold mb-4 text-jci text-jci-black font-sana self-center text-start">Page de détails de l'organisation locale <br />
               <span className="text-jci-yellow">{olDetails.name}</span>
                 {user && user?.role != "ADMIN_LOCAL" &&
                 (

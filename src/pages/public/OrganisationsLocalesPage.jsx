@@ -86,13 +86,13 @@ const OrganisationsLocalesPage = () => {
 
                 {listeOl1.map((ol, index) => (
                   <div key={index} className="flex flex-col items-center hover:scale-105 transition-transform duration-300">
-                    <img src={ol.logo} alt={ol.name} className="md:w-25 w-20 aspect-[50/50] object-cover"/>
+                    <img src={ol.logo} alt={ol.name} className="md:w-25 w-20 aspect-[50/50] object-cover " loading="lazy" decoding="async"/>
                   </div>
                 ))}
 
                 {listeOl2.map((ol, index) => (
                   <div key={index} className="flex flex-col items-center hover:scale-105 transition-transform duration-300">
-                    <img src={ol.logo} alt={ol.name} className="md:w-25 w-20 object-cover aspect-[50/50]"/>
+                    <img src={ol.logo} alt={ol.name} className="md:w-25 w-20 object-cover aspect-[50/50]" loading="lazy" decoding="async"/>
                   </div>
                 ))}
 
@@ -101,7 +101,7 @@ const OrganisationsLocalesPage = () => {
           </div>
           <div className='flex flex-1 rounded-b-xl '>
             <Reveal from="right" duration={1000} threshold={0.05}>
-            <img src={Mada} alt="Madagascar Map" className="h-full w-auto object-cover rounded-none lg:rounded-b-xl "/>
+            <img src={Mada} alt="Madagascar Map" className="h-full w-auto object-cover rounded-none lg:rounded-b-xl " loading="lazy" decoding="async"/>
             </Reveal>
           </div>
         </div>
@@ -126,7 +126,7 @@ const OrganisationsLocalesPage = () => {
                 {listeOl1.map((ol, index) => (
                   <Reveal from="bottom" duration={1000} threshold={0.05}>
                   <div key={index} className="">
-                    <img src={ol.logo} alt={ol.name} className="md:w-25 w-20 aspect-[50/50] object-cover"/>
+                    <img src={ol.logo} alt={ol.name} className="md:w-25 w-20 aspect-[50/50] object-cover" loading="lazy" decoding="async"/>
                   </div>
                   </Reveal>
                 ))}
@@ -134,7 +134,7 @@ const OrganisationsLocalesPage = () => {
                 {listeOl2.map((ol, index) => (
                   <Reveal from="bottom" duration={1000} threshold={0.05}>
                   <div key={index} className="">
-                    <img src={ol.logo} alt={ol.name} className="md:w-25 w-20 object-cover aspect-[50/50]"/>
+                    <img src={ol.logo} alt={ol.name} className="md:w-25 w-20 object-cover aspect-[50/50]" loading="lazy" decoding="async"/>
                   </div>
                   </Reveal>
                 ))}
@@ -144,7 +144,7 @@ const OrganisationsLocalesPage = () => {
           </div>
           <div className='flex flex-1 rounded-b-xl pl-5'>
             <Reveal from="bottom" duration={1000} threshold={0.05} className="">
-            <img src={Mada} alt="Madagascar Map" className="h-full w-auto object-cover rounded-none lg:rounded-b-xl  "/>
+            <img src={Mada} alt="Madagascar Map" className="h-full w-auto object-cover rounded-none lg:rounded-b-xl  " loading="lazy" decoding="async"/>
             </Reveal>
           </div>
         </div>
