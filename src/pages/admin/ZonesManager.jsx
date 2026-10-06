@@ -20,6 +20,7 @@ const ZonesManager = () => {
   const [pendingAction, setPendingAction] = useState(null);
   const [search, setSearch] = useState('');
 
+  //test
   //IMAGE CROPER//
   const ASPECT = 1073.51 / 349;
 
