@@ -27,7 +27,7 @@ import Reveal from "../../components/ui/Reveal"
 
 import SEO from "../../components/common/SEO"
 
-
+{/**TEST du nouveau repo */}
 
 const AcceuilPage = () => {
   const { t, i18n } = useTranslation()
@@ -168,7 +168,7 @@ const AcceuilPage = () => {
     <div className='flex flex-col w-full min-h-screen bg-jci-black'>
 
       {/* DESKTOP*/}
-      <section
+     {!isMobile && (<section
         className='hidden md:flex px-2 sm:px-2 md:px-12 lg:pl-20 lg:pr-1 py-20 md:py-14 lg:py-20 bg-cover bg-center bg-no-repeat'
         style={{ backgroundImage: `url(${BG})` }}
         name="qui-sommes-nous"
@@ -381,7 +381,7 @@ const AcceuilPage = () => {
 
 
           {/* CARTE */}
-          <Reveal from="zoom" duration={1000} threshold={0.05}>
+          <Reveal from="zoom" duration={1000} threshold={0.05} initialVisible>
           <div className='flex justify-center md:row-span-2 md:self-center -mt-15 lg:row-span-1 lg:self-start z-50'>
             <div className="mada-interaction-container">
               <div className="mada-interaction-hint">
@@ -575,11 +575,12 @@ const AcceuilPage = () => {
 
         </div>
 
-      </section>
+                    </section>)
+      } 
 
 
       {/* MOBILE */}
-      <section
+      {isMobile && (<section
         className='relative md:hidden flex px-3 sm:px-2 pt-10 pb-0 md:py-14 bg-cover bg-center bg-no-repeat flex-col gap-1'
         style={{ backgroundImage: `url(${BG})` }}
         name="qui-sommes-nous"
@@ -1017,7 +1018,8 @@ const AcceuilPage = () => {
 
         </div>
 
-      </section>
+                    </section>)
+      }
 
 
       {/* PARTENAIRES */}
