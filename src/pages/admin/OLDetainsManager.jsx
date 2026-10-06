@@ -565,9 +565,15 @@ useEffect(() => {
 
       const { src, key } = cropper;
       const { form, field, fileName } = CROP_CONFIG[key];
+      const f = forms[form];
 
       try {
         const file = await getCroppedFile(src, croppedPixels, fileName);
+          if (file.size > 5 * 1024 * 1024) {
+            setCropper(null)
+            return f.setError(field, { type: 'validate', message: 'Formats acceptés : JPG, PNG ou WebP.' });
+          }
+
         forms[form].setValue(field, [file], { shouldValidate: true, shouldDirty: true });
         URL.revokeObjectURL(src);
         setCropper(null);
@@ -1808,7 +1814,7 @@ useEffect(() => {
                   {...memberForm.register("title", {
                     required: "Le titre est obligatoire",
                     validate: (value) =>
-                    value.trim().length >= 3 || "Le titre est trop court 3 caractères minimum"
+                    value.trim().length >= 2 || "Le titre est trop court 2 caractères minimum"
                   })}
                   className="px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-jci-yellow focus:border-jci-yellow transition-colors duration-200"
                 />
@@ -1838,7 +1844,7 @@ useEffect(() => {
                   {...memberForm.register("ticket", {
                     required: "Le ticket est obligatoire" ,
                     validate: (value) =>
-                    value.trim().length >= 3 || "Le ticket est trop court 3 caractères minimum"
+                    value.trim().length >= 2 || "Le ticket est trop court 2 caractères minimum"
                   })}
                   className="px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-jci-yellow focus:border-jci-yellow transition-colors duration-200"
                 />

@@ -181,7 +181,11 @@ const PastPresidentManager = () => {
     };
   
     const handleCropConfirm = async () => {
-      const file = await getCroppedFile(cropSrc, croppedPixels, 'photo.jpg');
+      const file = await getCroppedFile(cropSrc, croppedPixels, 'photo.webp');
+      if (file.size > 5 * 1024 * 1024) {
+        setCropSrc(null);
+        return pastPresidentForm.setError('image', { type: 'validate', message: "L'image après recadrage ne doit pas dépasser 5 Mo." });
+      }
       pastPresidentForm.setValue('image', [file], { shouldValidate: true, shouldDirty: true });
       URL.revokeObjectURL(cropSrc);
       setCropSrc(null);

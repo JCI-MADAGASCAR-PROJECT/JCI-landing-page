@@ -16,7 +16,7 @@ export const getCroppedFile = (imageSrc, pixelCrop, fileName = 'photo.png') =>
           resolve(new File([blob], fileName, { type: 'image/png' }));
         },
         'image/png',
-        0.9
+        0.95
       );
     };
     img.onerror = reject;

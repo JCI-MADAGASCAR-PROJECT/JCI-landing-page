@@ -244,7 +244,7 @@
     align-items: center;
 
     color: rgba(246, 244, 244, 0.549);
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 14px;
     font-weight: 600;
     text-align: center;
@@ -392,3 +392,4 @@
 @media (prefers-reduced-motion: reduce) {
     .mada-swipe-hint { animation: none; }
 }
+

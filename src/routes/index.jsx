@@ -2,8 +2,6 @@ import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router";
 import PublicLayout from "../layouts/PublicLayout";
 import RoleRoute from "./RoleRoute";
-import AdminLayout from "../layouts/AdminLayout";
-import Ecommercelayout from "../layouts/Ecommercelayout";
 import Loader from '@/components/ui/Loader';
 
 const PageLoader = () => (
@@ -11,6 +9,9 @@ const PageLoader = () => (
     <Loader />
   </div>
 );
+
+const AdminLayout = lazy(() => import("../layouts/AdminLayout"));
+const Ecommercelayout = lazy(() => import("../layouts/Ecommercelayout"));
 
 const AcceuilPage                  = lazy(() => import("../pages/public/AcceuilPage"));
 const HistoriquePage               = lazy(() => import("../pages/public/HistoriquePage"));

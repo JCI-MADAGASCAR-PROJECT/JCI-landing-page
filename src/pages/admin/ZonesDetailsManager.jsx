@@ -207,7 +207,7 @@ const ZonesDetailsManager = () => {
             formData.append("zoneId", zoneDetails.id);
 
             if (isOlEdit) {
-                const res = await olAPI.update(olId, formData);
+                const res = await olAPI.update(olId, zoneDetails.id, formData);
                 toast.success(res.data.message);
             } else {
                 const res = await olAPI.create(formData);
@@ -331,37 +331,63 @@ const ZonesDetailsManager = () => {
         }, [olForm, isOlEdit]);
    
      const handleFileSelect = (e, field) => {
-  const file = e.target.files?.[0];
-  e.target.value = '';
-  if (!file) return;
 
-  const form = getForm(field);
+        const file = e.target.files?.[0];
 
-  if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
-    return form.setError(field, { type: 'validate', message: 'Formats acceptés : JPG, PNG ou WebP.' });
-  }
-  if (file.size > 5 * 1024 * 1024) {
-    return form.setError(field, { type: 'validate', message: "L'image ne doit pas dépasser 5 Mo." });
-  }
 
-  form.clearErrors(field);
-  setCrop({ x: 0, y: 0 });
-  setZoom(1);
-  setCropper({ src: URL.createObjectURL(file), field, ...CROP_CONFIG[field] });
-};
+        e.target.value = '';
+        if (!file) return;
 
-const handleCropConfirm = async () => {
-  const { src, field, fileName } = cropper;
-  const file = await getCroppedFile(src, croppedPixels, fileName);
-  getForm(field).setValue(field, [file], { shouldValidate: true, shouldDirty: true });
-  URL.revokeObjectURL(src);
-  setCropper(null);
-};
+        const form = getForm(field);
 
-const handleCropCancel = () => {
-  URL.revokeObjectURL(cropper.src);
-  setCropper(null);
-};
+        if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+            return form.setError(field, { type: 'validate', message: 'Formats acceptés : JPG, PNG ou WebP.' });
+        }
+
+        if (file.size > 5 * 1024 * 1024) {
+            return form.setError(field, { type: 'validate', message: "L'image ne doit pas dépasser 5 Mo." });
+        }
+
+        form.clearErrors(field);
+        setCrop({ x: 0, y: 0 });
+        setZoom(1);
+        setCropper({ src: URL.createObjectURL(file), field, ...CROP_CONFIG[field] });
+    };
+
+    const handleCropConfirm = async () => {
+    if (!cropper || !croppedPixels) return;
+
+    const { src, field, fileName } = cropper;
+
+    try {
+        const file = await getCroppedFile(src, croppedPixels, fileName);
+
+        if (file.size > 5 * 1024 * 1024) {
+            setCropper(null)
+        getForm(field).setError(field, {
+            type: 'validate',
+            message: "L'image après recadrage ne doit pas dépasser 5 Mo."
+        });
+        return;
+        }
+
+        getForm(field).setValue(field, [file], {
+        shouldValidate: true,
+        shouldDirty: true
+        });
+
+        URL.revokeObjectURL(src);
+        setCropper(null);
+    } catch (error) {
+        console.error('Erreur de crop :', error);
+        toast.error("Impossible de rogner l'image");
+    }
+    };
+
+    const handleCropCancel = () => {
+    URL.revokeObjectURL(cropper.src);
+    setCropper(null);
+    };
    
 
     return (
@@ -810,7 +836,8 @@ const handleCropCancel = () => {
                                         id="logoImg"
                                         type="file"
                                         accept="image/jpeg,image/png,image/webp"
-                                        onChange={(e) => handleFileSelect(e, 'logoImg')}
+                                        onChange={(e) =>handleFileSelect(e, 'logoImg')}
+                                            
                                         className="hidden"
                                         />
 

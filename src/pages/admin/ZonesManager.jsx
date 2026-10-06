@@ -183,7 +183,11 @@ const ZonesManager = () => {
     };
 
     const handleCropConfirm = async () => {
-      const file = await getCroppedFile(cropSrc, croppedPixels, 'photo.jpg');
+      const file = await getCroppedFile(cropSrc, croppedPixels, 'photo.png');
+      if (file.size > 5 * 1024 * 1024) {
+        setCropSrc(null); 
+        return zoneForm.setError('image', { type: 'validate', message: "L'image après recadrage ne doit pas dépasser 5 Mo." }); 
+      }
       zoneForm.setValue('image', [file], { shouldValidate: true, shouldDirty: true });
       URL.revokeObjectURL(cropSrc);
       setCropSrc(null);

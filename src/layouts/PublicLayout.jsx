@@ -1,39 +1,31 @@
 import React, { useContext } from 'react'
-import { Navigate ,Outlet} from 'react-router'
+import { Navigate, Outlet } from 'react-router'
 import Header from '../components/layout/Header'
 import Navbar from '../components/layout/Navbar'
 import Footer from '../components/layout/Footer'
-import { UserContext } from '../context/UserContext';
-import Loader from '@/components/ui/Loader';
-  
+import { UserContext } from '../context/UserContext'
 
 const PublicLayout = () => {
-    const {user, loading} = useContext(UserContext);
-    if (loading) {
-      return (
-          <div className='bg-jci-blue flex flex-col justify-center items-center h-screen text-[20px] text-jci-white gap-3 font-poppins'>
-            <Loader />
-          </div>
-        )
+  const { user } = useContext(UserContext)
+
+  if (user) {
+    if (user.role === "ADMIN_LOCAL") {
+      return <Navigate to="/admin/local/mon-organisation-locale" replace />
     }
-    if(user){
-      if(user.role == "ADMIN_LOCAL"){
-        return <Navigate to ="/admin/local/mon-organisation-locale" replace/>
-      }
-      else if(user.role == "ADMIN_E_COMMERCE"){
-        return <Navigate to ="/admin/e-commerce/boutique" replace/>
-      }
-      else {
-        return <Navigate to ="/admin" replace/>
-      }
+
+    if (user.role === "ADMIN_E_COMMERCE") {
+      return <Navigate to="/admin/e-commerce/boutique" replace />
     }
+
+    return <Navigate to="/admin" replace />
+  }
 
   return (
     <>
-    <Header/>
-    <Navbar/>
-    <Outlet/>
-    <Footer/>
+      <Header />
+      <Navbar />
+      <Outlet />
+      <Footer />
     </>
   )
 }
