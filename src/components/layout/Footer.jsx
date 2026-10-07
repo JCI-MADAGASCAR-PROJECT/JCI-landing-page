@@ -166,7 +166,7 @@ const Footer = () => {
           </a>
 
           <a
-            href="https://www.instagram.com/jcimadagascar?stkn=ejBqNHU1YWZseWU3"
+            href=" https://www.instagram.com/iseven_studio.7"
             target="_blank"
             rel="noopener noreferrer"
             className='flex flex-row gap-2 items-center hover:text-[#C1CA1D] hover:scale-105 hover:-translate-y-1  transition-transform duration-300'
@@ -176,7 +176,7 @@ const Footer = () => {
           </a>
 
           <a
-            href="https://www.linkedin.com/company/jcimadagascar"
+            href="https://www.linkedin.com/company/iseven-studio07/"
             target="_blank"
             rel="noopener noreferrer"
             className='flex flex-row gap-2 items-center hover:text-[#C1CA1D] hover:scale-105 hover:-translate-y-1  transition-transform duration-300'
