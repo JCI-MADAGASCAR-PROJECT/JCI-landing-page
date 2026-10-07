@@ -1176,6 +1176,17 @@ const ZonesDetailsManager = () => {
                                 {/* INFORMATIONS */}
 
                                 <div className="p-4 flex flex-col gap-2">
+                                    <div className="flex flex-col gap-1">
+
+                                        <span className="text-xs text-jci-black/40">
+                                            ID
+                                        </span>
+
+                                        <p className="text-sm text-jci-black">
+                                            {ol.id}
+                                        </p>
+
+                                    </div>
 
                                     <div className="flex flex-col gap-1">
 

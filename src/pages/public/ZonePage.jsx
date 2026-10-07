@@ -1,4 +1,4 @@
-import { useParams } from 'react-router'
+import { useParams, useSearchParams } from 'react-router'
 import ZoneFilterTabs from "../../components/layout/ZoneFilterTabs"
 import LabelTraitSimple from './../../components/ui/LabelTraitSimple';
 import { RiSendPlaneFill } from "react-icons/ri";
@@ -13,7 +13,9 @@ import SEO from "../../components/common/SEO"
 
 
 const ZonePage = () => {
-  const { zone } = useParams()
+  const { zone } = useParams();
+  const [searchParams] = useSearchParams()
+  const olParam = searchParams.get("ol")
   const [zoneDetails, setZoneDetails] = useState(null);
   const [zonePsdDetails, setZonePsdDetails] = useState(null);
   const [OlListByZone, setOlListByZone] = useState([]);
@@ -167,7 +169,11 @@ useEffect(() => {
       const res = await olAPI.getAll(zoneDetails.id);
 
       setOlListByZone(res.data);
-      setCurrentOl(res.data?.[0] || null);
+      const selectedOl = olParam
+      ? res.data.find((ol) => String(ol.id) === String(olParam))
+      : null;
+
+      setCurrentOl(selectedOl || res.data?.[0] || null);
     } catch (error) {
       console.error("Error fetching OL list by zone:", error);
       setOlListByZone([]);
@@ -178,7 +184,7 @@ useEffect(() => {
   };
 
   fetchOlListByZone();
-}, [zoneDetails?.id]);
+}, [zoneDetails?.id, olParam]);
 
   return (
     <>
