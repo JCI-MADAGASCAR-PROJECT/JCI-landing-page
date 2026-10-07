@@ -186,7 +186,7 @@ const Footer = () => {
           </a>
 
           <a
-            href="https://linktr.ee/JCI_Madagascar"
+            href="https://linktr.ee/isevenstudio07"
             target="_blank"
             rel="noopener noreferrer"
             className='flex flex-row gap-2 items-center hover:text-[#C1CA1D] hover:scale-105 hover:-translate-y-1  transition-transform duration-300'
