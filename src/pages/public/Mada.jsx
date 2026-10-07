@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect ,useRef} from 'react'
+import { Link } from 'react-router'
+
 import LogoAmbilobe from "../../images/JCI/JCI Ambilobe/JCI_Ambilobe_background_marine_blue_logo-removebg-preview.png"
 import LogoAntananarivo from "../../images/JCI/JCI Antananarivo/JCI_Antananarivo_background_marine_blue_logo-removebg-preview.png"
 import LogoAntsiranana from "../../images/JCI/JCI Antsiaranana/JCI_Antsiranana_background_marine_blue_logo-removebg-preview.png"
@@ -55,95 +57,109 @@ const Mada = ({ Width, Height }) => {
             id: "ol-antsiranana",
             name: "Antsiranana",
             logo: LogoAntsiranana,
+            zone:"nord"
         },
         {
             id: "ol-ambilobe",
             name: "Ambilobe",
             logo: LogoAmbilobe,
+            zone:"nord"
         },
         {
             id: "ol-nosy_be",
             name: "Nosy Be",
             logo: LogoNosyBe,
+            zone:"nord"
         },
     ],
 
     sambava: [
         {
             id: "ol-sambava",
-            name: "OL Sambava",
+            name: "Sambava",
             logo: LogoSambava,
+            zone:"nord"
         },
     ],
 
     antsohihy: [
         {
             id: "ol-antsohihy",
-            name: "OL Antsohihy",
+            name: "Antsohihy",
             logo: LogoAntsohihy,
+            zone:"nord"
         },
     ],
 
     mahajanga: [
         {
             id: "ol-mahajanga",
-            name: "OL Mahajanga",
+            name: "Mahajanga",
             logo: LogoMahajanga,
+            zone:"nord"
         },
     ],
 
     tamatave: [
         {
             id: "ol-tamatave",
-            name: "OL Tamatave",
+            name: "Toamasina",
             logo: LogoToamasina,
+            zone:"centre"
         },
     ],
 
     analamanga: [
         {
             id: "ol-antananarivo",
-            name: "OL Antananarivo",
+            name: "Antananarivo",
             logo: LogoAntananarivo,
+            zone:"centre"
         },
         {
             id: "ol-ilon-iarivo",
-            name: "OL Ivandry",
+            name: "Ilon'Iarivo",
             logo: LogoIlonIarivo,
+            zone:"centre"
         },
         {
             id: "ol-iarivo",
-            name: "OL Iarivo",
+            name: "Iarivo",
             logo: Logoiarivo,
+            zone:"centre"
         },
         {
             id: "ol-mayendeleyo",
-            name: "OL Mayendeleyo",
+            name: "Mayendeleyo",
             logo: LogoMayendeleyo,
+            zone:"centre"
         },
     ],
 
     ivonea: [
         {
             id: "ol-ivonea",
-            name: "OL Ivonea",
+            name: "Ivonea",
             logo: LogoIvonea,
+            zone:"sud"
         },
     ],
 
     faradofay: [
         {
             id: "ol-faradofay",
-            name: "OL Faradofay",
+            name: "Faradofay",
             logo: LogoFaradofay,
+            zone:"sud"
         },
     ],
 
     toliara: [
         {
             id: "ol-toliara",
-            name: "OL Toliara",
+            name: "Toliara",
             logo: LogoToliara,
+            zone:"sud"
         },
     ],
     test:[]
@@ -154,7 +170,14 @@ const Mada = ({ Width, Height }) => {
      *
      * Les coordonnées correspondent directement au viewBox
      * du SVG : 0 0 452 902
+     * 
      */
+    const closeTimer = useRef(null)
+
+    const cancelClose = () => clearTimeout(closeTimer.current)
+
+    useEffect(() => () => clearTimeout(closeTimer.current), [])
+
     const olPositions = {
     toliara: [
         { x: -10, y: 700 },
@@ -198,17 +221,18 @@ const Mada = ({ Width, Height }) => {
     ],
 }
 
-    const handleMouseEnter = (e) => {
+   const handleMouseEnter = (e) => {
     if (isTouch) return
-
+    cancelClose()
     setIntroStopped(true)
     setHoveredOl(e.currentTarget.id)
 }
 
     const handleMouseLeave = () => {
-        if (isTouch) return
-        setHoveredOl(null)
-    }
+    if (isTouch) return
+    clearTimeout(closeTimer.current)
+    closeTimer.current = setTimeout(() => setHoveredOl(null), 300)
+}
 
     // Mobile : tap (un second tap sur la même région la referme)
     const handleClick = (e) => {
@@ -236,6 +260,7 @@ const Mada = ({ Width, Height }) => {
         (olData[region] || [])
             .map((ol, index) => ({
                 ol,
+                region,
                 position: olPositions[region]?.[index],
             }))
             .filter((label) => label.position)
@@ -548,15 +573,28 @@ const Mada = ({ Width, Height }) => {
 
                     {/* Couche 2 : logos */}
                     {labelsToShow.map(({ ol, position }) => (
-                        <g key={ol.id} transform={`translate(${position.x} ${position.y})`}>
-                            <g className="ol-label-inner">
-                                <image
-                                    href={ol.logo}
-                                    x="-27" y="-40" width="100" height="70"
-                                    preserveAspectRatio="xMidYMid meet"
-                                />
-                            </g>
+                         <Link
+                            key={ol.id}
+                            to={`/organisations-locales/${ol.zone}?ol=${encodeURIComponent(ol.name)}`}
+                            className="ol-logo-link"
+                            onMouseEnter={cancelClose}
+                            onMouseLeave={handleMouseLeave}
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                        <g transform={`translate(${position.x} ${position.y})`}>
+                        <g className="ol-label-inner">
+                            <rect x="-38" y="-38" width="150" height="70" fill="transparent" />
+                            <image
+                                href={ol.logo}
+                                x="-27"
+                                y="-40"
+                                width="100"
+                                height="70"
+                                preserveAspectRatio="xMidYMid meet"
+                            />
                         </g>
+                    </g>
+                    </Link>
                     ))}
                 </g>
             )}

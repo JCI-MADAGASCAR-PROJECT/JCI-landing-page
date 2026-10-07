@@ -170,7 +170,7 @@ useEffect(() => {
 
       setOlListByZone(res.data);
       const selectedOl = olParam
-      ? res.data.find((ol) => String(ol.id) === String(olParam))
+      ? res.data.find((ol) => String(ol.name) === String(olParam))
       : null;
 
       setCurrentOl(selectedOl || res.data?.[0] || null);
