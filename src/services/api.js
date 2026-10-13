@@ -115,7 +115,7 @@ export const olAPI = {
     }),
     getAll : (zoneId) => api.get(`/organisation-locales/${zoneId}`),
     getById : (id) => api.get(`/organisation-locales/details/${id}`),
-    // getBySlug: (slug) => api.get(`/organisation-locales/${slug}`),
+    getAllIds : () => api.get(`/organisation-locales/all-ids`),
     update : (id,zoneId, data) => api.put(`/organisation-locales/${id}/zone/${zoneId}`,data, {
     headers: {
         "Content-Type": "multipart/form-data"

@@ -1,7 +1,7 @@
 import {useEffect, useState, useContext } from 'react'
 import { UserContext } from '../../context/UserContext';
-import { usersAPI, organisationLocalesAPI } from '../../services/api';
-import {useForm} from 'react-hook-form';
+import { usersAPI, olAPI } from '../../services/api';
+import { useForm} from 'react-hook-form';
 import { IoClose , IoAdd, IoImages } from "react-icons/io5";
 import { toast } from "sonner";
 
@@ -71,6 +71,8 @@ const UserManager = () => {
       }
        toast.success("Compte utilisateur " + (userId ? "mis à jour" : "créé") + " avec succès");
       const res = await usersAPI.getAll();
+      const Ols = await olAPI.getAllIds();
+      setOrganisationLocales(Ols.data);
       setUsers(res.data);
     } catch (error) {
       toast.error(error.response?.data?.message || "Une erreur est survenue");
@@ -86,8 +88,10 @@ const UserManager = () => {
     try {
       await usersAPI.deleteById(deleteId);
       const res = await usersAPI.getAll();
+      const Ols = await olAPI.getAllIds();
       toast.success("Compte utilisateur supprimé avec succès");
       setUsers(res.data);
+      setOrganisationLocales(Ols.data);
     } catch (error) {
       toast.error(error.response?.data?.message || "Suppression impossible");
     } finally {
@@ -136,7 +140,7 @@ const UserManager = () => {
     }
     const fetchOrganisationLocales = async () =>{
       try {
-        const res = await organisationLocalesAPI.getAll();
+        const res = await olAPI.getAllIds();
         setOrganisationLocales(res.data);
       } catch (error) {
       console.log(error.response?.data?.message || "Impossible de récupérer les organisations locales");
